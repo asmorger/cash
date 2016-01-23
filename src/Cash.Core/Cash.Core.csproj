@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Attributes\CacheAttribute.cs" />
     <Compile Include="CashContext.cs" />
+    <Compile Include="Exceptions\DuplicateCacheProviderRegistrationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
