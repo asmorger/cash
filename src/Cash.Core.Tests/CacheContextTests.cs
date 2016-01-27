@@ -20,13 +20,13 @@ namespace Cash.Core.Tests
             CashContext = CashContext.Instance;
 
             CashContext.ClearCacheKeyProviders();
-            CashContext.SetCacheProvider(FakeCache);
+            CashContext.SetCacheBackingStore(FakeCache);
         }
 
         [TestMethod]
         public void SetCacheProvider_SetsTheProperty()
         {
-            Assert.IsNotNull(CashContext.CacheProvider);
+            Assert.IsNotNull(CashContext.CacheBackingStore);
         }
 
         [TestMethod]

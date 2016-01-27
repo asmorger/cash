@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.Caching;
-using Cash.Core.Exceptions;
+using Cash.Core.Services;
 
 namespace Cash.Core
 {
@@ -11,7 +10,7 @@ namespace Cash.Core
         private static volatile CashContext instance;
         private static readonly object CreationLock = new object();
 
-        private readonly IDictionary<Type, LambdaExpression> _cacheKeyProviders = new Dictionary<Type, LambdaExpression>();
+        private readonly ICacheKeyRegistrationService _cacheKeyRegistrationService;
 
         public static CashContext Instance
         {
@@ -34,45 +33,30 @@ namespace Cash.Core
 
         private CashContext()
         {
-            
+            _cacheKeyRegistrationService = new CacheKeyRegistrationService();
         }
 
-        public ObjectCache CacheProvider { get; private set; }
+        public ObjectCache CacheBackingStore { get; private set; }
 
         public void ClearCacheKeyProviders()
         {
-            _cacheKeyProviders.Clear();
+            _cacheKeyRegistrationService.ClearCacheKeyProviders();
         }
 
-        public void SetCacheProvider(ObjectCache objectCache)
+        public void SetCacheBackingStore(ObjectCache objectCache)
         {
-            CacheProvider = objectCache;
+            CacheBackingStore = objectCache;
         }
         
         public void AddTypedCacheKeyProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
         {
-            var targetType = typeof (TEntity);
-
-            if (_cacheKeyProviders.ContainsKey(targetType))
-            {
-                throw new DuplicateCacheProviderRegistrationException(targetType);
-            }
-
-            // using this for inspiration: http://stackoverflow.com/questions/16678057/list-of-expressionfunct-tproperty
-            _cacheKeyProviders.Add(targetType, registrationPattern);
+            _cacheKeyRegistrationService.AddTypedCacheKeyProvider(registrationPattern);
         }
 
         public Expression<Func<TEntity, string>> GetTypedCacheKeyProvider<TEntity>()
         {
-            var targetType = typeof (TEntity);
-
-            if (_cacheKeyProviders.ContainsKey(targetType))
-            {
-                var provider = _cacheKeyProviders[targetType];
-                return (Expression<Func<TEntity, string>>)provider;
-            }
-
-            return null;
+            var output = _cacheKeyRegistrationService.GetTypedCacheKeyProvider<TEntity>();
+            return output;
         }
     }
 }
