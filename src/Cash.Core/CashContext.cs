@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using System.Runtime.Caching;
+﻿using System.Runtime.Caching;
 using Cash.Core.Services;
 
 namespace Cash.Core
@@ -10,7 +8,14 @@ namespace Cash.Core
         private static volatile CashContext instance;
         private static readonly object CreationLock = new object();
 
-        public readonly ICacheKeyRegistrationService RegistrationService;
+        public ObjectCache CacheBackingStore { get; private set; }
+
+        public ICacheKeyRegistrationService RegistrationService { get; private set; }
+
+        private CashContext()
+        {
+            RegistrationService = new CacheKeyRegistrationService();
+        }
 
         public static CashContext Instance
         {
@@ -30,14 +35,7 @@ namespace Cash.Core
                 return instance;
             }
         }
-
-        private CashContext()
-        {
-            RegistrationService = new CacheKeyRegistrationService();
-        }
-
-        public ObjectCache CacheBackingStore { get; private set; }
-
+        
         public void SetCacheBackingStore(ObjectCache objectCache)
         {
             CacheBackingStore = objectCache;
