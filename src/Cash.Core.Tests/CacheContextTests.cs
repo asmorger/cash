@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Caching;
+﻿using System.Runtime.Caching;
 using Cash.Core.Exceptions;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,7 +19,7 @@ namespace Cash.Core.Tests
 
             CashContext = CashContext.Instance;
 
-            CashContext.ClearCacheProviders();
+            CashContext.ClearCacheKeyProviders();
             CashContext.SetCacheProvider(FakeCache);
         }
 

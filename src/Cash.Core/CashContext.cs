@@ -39,7 +39,7 @@ namespace Cash.Core
 
         public ObjectCache CacheProvider { get; private set; }
 
-        public void ClearCacheProviders()
+        public void ClearCacheKeyProviders()
         {
             _cacheKeyProviders.Clear();
         }
