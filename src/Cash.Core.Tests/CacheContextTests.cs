@@ -18,39 +18,13 @@ namespace Cash.Core.Tests
             FakeCache = A.Fake<ObjectCache>();
 
             CashContext = CashContext.Instance;
-
-            CashContext.ClearCacheKeyProviders();
-            CashContext.SetCacheBackingStore(FakeCache);
         }
 
         [TestMethod]
         public void SetCacheProvider_SetsTheProperty()
         {
+            CashContext.SetCacheBackingStore(FakeCache);
             Assert.IsNotNull(CashContext.CacheBackingStore);
-        }
-
-        [TestMethod]
-        public void AddAndGetTypedCacheKeyProviders_PropertySetAndGet()
-        {
-            CashContext.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
-
-            var targetProvider = CashContext.GetTypedCacheKeyProvider<int>();
-            Assert.IsNotNull(targetProvider);
-        }
-
-        [TestMethod]
-        public void GetTypedCacheKeyProvider_ReturnsNullWhenAProviderHasNotBeenRegistered()
-        {
-            var targetProvider = CashContext.GetTypedCacheKeyProvider<string>();
-            Assert.IsNull(targetProvider);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(DuplicateCacheProviderRegistrationException))]
-        public void AddTypedCacheKeyProvider_ThrowsAnExceptionWhenTheSameRegistrationTypeIsSet()
-        {
-            CashContext.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
-            CashContext.AddTypedCacheKeyProvider<int>(i => $"int2_{i}");
         }
     }
 }
