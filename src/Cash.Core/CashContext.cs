@@ -6,42 +6,69 @@ using Cash.Core.Exceptions;
 
 namespace Cash.Core
 {
-    public static class CashContext
+    public class CashContext
     {
-        private static IDictionary<Type, LambdaExpression> CacheKeyProviders = new Dictionary<Type, LambdaExpression>();
+        private static volatile CashContext instance;
+        private static readonly object CreationLock = new object();
 
-        public static ObjectCache CacheProvider { get; private set; }
+        private readonly IDictionary<Type, LambdaExpression> _cacheKeyProviders = new Dictionary<Type, LambdaExpression>();
 
-        public static void ClearCacheProviders()
+        public static CashContext Instance
         {
-            CacheKeyProviders = new Dictionary<Type, LambdaExpression>();
+            get
+            {
+                if (instance == null)
+                {
+                    lock (CreationLock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new CashContext();
+                        }
+                    }
+                }
+
+                return instance;
+            }
         }
 
-        public static void SetCacheProvider(ObjectCache objectCache)
+        private CashContext()
+        {
+            
+        }
+
+        public ObjectCache CacheProvider { get; private set; }
+
+        public void ClearCacheProviders()
+        {
+            _cacheKeyProviders.Clear();
+        }
+
+        public void SetCacheProvider(ObjectCache objectCache)
         {
             CacheProvider = objectCache;
         }
         
-        public static void AddProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
+        public void AddProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
         {
             var targetType = typeof (TEntity);
 
-            if (CacheKeyProviders.ContainsKey(targetType))
+            if (_cacheKeyProviders.ContainsKey(targetType))
             {
                 throw new DuplicateCacheProviderRegistrationException(targetType);
             }
 
             // using this for inspiration: http://stackoverflow.com/questions/16678057/list-of-expressionfunct-tproperty
-            CacheKeyProviders.Add(targetType, registrationPattern);
+            _cacheKeyProviders.Add(targetType, registrationPattern);
         }
 
-        public static Expression<Func<TEntity, string>> GetProvider<TEntity>()
+        public Expression<Func<TEntity, string>> GetProvider<TEntity>()
         {
             var targetType = typeof (TEntity);
 
-            if (CacheKeyProviders.ContainsKey(targetType))
+            if (_cacheKeyProviders.ContainsKey(targetType))
             {
-                var provider = CacheKeyProviders[targetType];
+                var provider = _cacheKeyProviders[targetType];
                 return (Expression<Func<TEntity, string>>)provider;
             }
 

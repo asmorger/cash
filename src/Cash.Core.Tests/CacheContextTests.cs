@@ -11,10 +11,14 @@ namespace Cash.Core.Tests
     {
         public ObjectCache FakeCache { get; set; }
 
+        public CashContext CashContext { get; set; }
+
         [TestInitialize]
         public void Initialize()
         {
             FakeCache = A.Fake<ObjectCache>();
+
+            CashContext = CashContext.Instance;
 
             CashContext.ClearCacheProviders();
             CashContext.SetCacheProvider(FakeCache);
