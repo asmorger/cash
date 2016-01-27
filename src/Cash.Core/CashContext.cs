@@ -49,7 +49,7 @@ namespace Cash.Core
             CacheProvider = objectCache;
         }
         
-        public void AddProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
+        public void AddTypedCacheKeyProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
         {
             var targetType = typeof (TEntity);
 
@@ -62,7 +62,7 @@ namespace Cash.Core
             _cacheKeyProviders.Add(targetType, registrationPattern);
         }
 
-        public Expression<Func<TEntity, string>> GetProvider<TEntity>()
+        public Expression<Func<TEntity, string>> GetTypedCacheKeyProvider<TEntity>()
         {
             var targetType = typeof (TEntity);
 

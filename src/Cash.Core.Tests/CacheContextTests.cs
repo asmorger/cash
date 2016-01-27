@@ -31,27 +31,27 @@ namespace Cash.Core.Tests
         }
 
         [TestMethod]
-        public void AddAndGetProviders_PropertySetAndGet()
+        public void AddAndGetTypedCacheKeyProviders_PropertySetAndGet()
         {
-            CashContext.AddProvider<int>(i => $"int_{i}");
+            CashContext.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
 
-            var targetProvider = CashContext.GetProvider<int>();
+            var targetProvider = CashContext.GetTypedCacheKeyProvider<int>();
             Assert.IsNotNull(targetProvider);
         }
 
         [TestMethod]
-        public void GetProvider_ReturnsNullWhenAProviderHasNotBeenRegistered()
+        public void GetTypedCacheKeyProvider_ReturnsNullWhenAProviderHasNotBeenRegistered()
         {
-            var targetProvider = CashContext.GetProvider<string>();
+            var targetProvider = CashContext.GetTypedCacheKeyProvider<string>();
             Assert.IsNull(targetProvider);
         }
 
         [TestMethod]
         [ExpectedException(typeof(DuplicateCacheProviderRegistrationException))]
-        public void AddProvider_ThrowsAnExceptionWhenTheSameRegistrationTypeIsSet()
+        public void AddTypedCacheKeyProvider_ThrowsAnExceptionWhenTheSameRegistrationTypeIsSet()
         {
-            CashContext.AddProvider<int>(i => $"int_{i}");
-            CashContext.AddProvider<int>(i => $"int2_{i}");
+            CashContext.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
+            CashContext.AddTypedCacheKeyProvider<int>(i => $"int2_{i}");
         }
     }
 }
