@@ -37,14 +37,15 @@ namespace Cash.Core.Services
         /// </summary>
         /// <typeparam name="TEntity">The type of the t entity.</typeparam>
         /// <returns>Expression&lt;Func&lt;TEntity, System.String&gt;&gt;.</returns>
-        public Expression<Func<TEntity, string>> GetTypedCacheKeyProvider<TEntity>()
+        public Func<TEntity, string> GetTypedCacheKeyProvider<TEntity>()
         {
             var targetType = typeof(TEntity);
 
             if (_cacheKeyProviders.ContainsKey(targetType))
             {
                 var provider = _cacheKeyProviders[targetType];
-                return (Expression<Func<TEntity, string>>)provider;
+                var expression = (Expression<Func<TEntity, string>>)provider;
+                return expression.Compile();
             }
 
             return null;
