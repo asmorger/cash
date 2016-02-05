@@ -6,12 +6,16 @@ using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
 using Cash.Core.Attributes;
+using Cash.Core.Services;
+
 using Castle.DynamicProxy;
 
 namespace Cash.Core.Interceptors
 {
     public class CachingInterceptor : IInterceptor
     {
+        private readonly ICacheKeyGenerationService _cacheKeyGenerationService = new CacheKeyGenerationService();
+
         public void Intercept(IInvocation invocation)
         {
             var method = invocation.GetConcreteMethod();
@@ -26,7 +30,7 @@ namespace Cash.Core.Interceptors
             }
 
             // get the cache key for the method and it's parameters
-            var methodCacheKey = GetMethodCacheKey(method);
+            var methodCacheKey = _cacheKeyGenerationService.GetMethodCacheKey(method);
 
             // check to see if the cached item exists.  If so, retrieve it from the cache and return it
             if (CashContext.Instance.CacheBackingStore.Contains(methodCacheKey))
@@ -56,50 +60,6 @@ namespace Cash.Core.Interceptors
             }
 
             return null;
-        }
-
-        private string GetMethodCacheKey(MethodInfo method)
-        {
-            var typeName = method.DeclaringType == null ? "<unknown>" : method.DeclaringType.FullName;
-
-            var cacheKey = $"{typeName}.{method.Name}";
-            return cacheKey;
-        }
-
-        private string GetArgumentsCacheKey(object[] arguments)
-        {
-            var cacheKeys = arguments.Select(a => GetCacheKeyForArgument(a, nameof(a)));
-            var cacheKey = string.Join("||", cacheKeys);
-
-            return cacheKey;
-        }
-
-        private string GetCacheKeyForArgument(object argument, string argumentName)
-        {
-            var type = argument.GetType();
-
-            var getCacheKeyMethod = this.GetType().GetMethod("GetCacheKey", BindingFlags.Public | BindingFlags.Instance);
-            var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
-
-            var cacheKey = (string) typedGetCacheKeyMethod.Invoke(this, new[] { argument, argumentName });
-            return cacheKey;
-        }
-
-        public string GetCacheKey<TEntity>(TEntity item, string argumentName)
-        {
-            const string delimiter = "::";
-
-            var cacheKeyProvider = CashContext.Instance.RegistrationService.GetTypedCacheKeyProvider<TEntity>();
-
-            if (cacheKeyProvider == null)
-            {
-                return $"{argumentName}{delimiter}NULL";
-            }
-
-            var cacheKey = cacheKeyProvider(item);
-
-            var output = $"{argumentName}{delimiter}{cacheKey}";
-            return output;
         }
 
         private CacheItem GetCacheItem(string key, object value)

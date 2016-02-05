@@ -51,7 +51,9 @@
     <Compile Include="Exceptions\DuplicateCacheProviderRegistrationException.cs" />
     <Compile Include="Interceptors\CachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Base\ICacheKeyGenerationService.cs" />
     <Compile Include="Services\Base\ICacheKeyRegistrationService.cs" />
+    <Compile Include="Services\CacheKeyGenerationService.cs" />
     <Compile Include="Services\CacheKeyRegistrationService.cs" />
     <Compile Include="Services\Base\ICacheService.cs" />
   </ItemGroup>
