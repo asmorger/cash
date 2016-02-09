@@ -20,6 +20,11 @@ namespace Cash.Core.Services
 
         public string GetArgumentsCacheKey(object[] arguments)
         {
+            if (arguments == null || !arguments.Any())
+            {
+                return "<no_arguments>";
+            }
+
             var cacheKeys = arguments.Select(a => GetCacheKeyForArgument(a, nameof(a)));
             var cacheKey = string.Join(IndividualArgumentDelimiter, cacheKeys);
 
