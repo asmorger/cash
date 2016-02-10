@@ -1,7 +1,6 @@
 ﻿using Cash.Core.Services;
 using Cash.Core.Tests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shouldly;
 
 namespace Cash.Core.Tests.Services
 {
@@ -27,7 +26,8 @@ namespace Cash.Core.Tests.Services
             var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
             var expectedResult = $"{model.GetType().FullName}.{methodInfo.Name}";
 
-            result.ShouldBe(expectedResult);
+            Assert.AreEqual(result, expectedResult);
+            // result.ShouldBe(expectedResult);
         }
 
         [TestMethod]
@@ -38,7 +38,8 @@ namespace Cash.Core.Tests.Services
             var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
             var expectedResult = $"<unknown>.{methodInfo.Name}";
 
-            result.ShouldBe(expectedResult);
+            Assert.AreEqual(result, expectedResult);
+            // result.ShouldBe(expectedResult);
         }
 
         [TestMethod]
@@ -46,7 +47,8 @@ namespace Cash.Core.Tests.Services
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] {});
 
-            result.ShouldBe(NullOrZeroArgumentsResult);
+            Assert.AreEqual(result, NullOrZeroArgumentsResult);
+            // result.ShouldBe(NullOrZeroArgumentsResult);
         }
 
         [TestMethod]
@@ -54,7 +56,41 @@ namespace Cash.Core.Tests.Services
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(null);
 
-            result.ShouldBe(NullOrZeroArgumentsResult);
+            Assert.AreEqual(result, NullOrZeroArgumentsResult);
+            // result.ShouldBe(NullOrZeroArgumentsResult);
+        }
+
+        [TestMethod]
+        public void GetArugmentCacheKey_CreatesProperKey_ForOneIntArgument()
+        {
+            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
+            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<int>(x => $"{x}");
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5 });
+
+            Assert.AreEqual("Int32::5", result);
+        }
+
+        [TestMethod]
+        public void GetArugmentCacheKey_CreatesProperKey_ForTwoIntArguments()
+        {
+            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
+            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<int>(x => $"{x}");
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, 10 });
+
+            Assert.AreEqual("Int32::5||Int32::10", result);
+        }
+
+        [TestMethod]
+        public void GetArugmentCacheKey_CreatesProperKey_ForTwoDisprateArguments()
+        {
+            // todo: remove singleton in favor of complete constructor injection
+            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
+            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<int>(x => $"{x}");
+            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<string>(x => $"{x}");
+
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, "test" });
+
+            Assert.AreEqual("Int32::5||String::test", result);
         }
     }
 }

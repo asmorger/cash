@@ -2,6 +2,8 @@
 {
     public class TestModelDefinition
     {
+        public int Id { get; set; }
+
         public void TestMethod_NoParameters()
         {
         }

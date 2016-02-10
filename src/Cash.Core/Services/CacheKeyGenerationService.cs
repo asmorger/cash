@@ -25,35 +25,36 @@ namespace Cash.Core.Services
                 return "<no_arguments>";
             }
 
-            var cacheKeys = arguments.Select(a => GetCacheKeyForArgument(a, nameof(a)));
+            var cacheKeys = arguments.Select(GetCacheKeyForArgument);
             var cacheKey = string.Join(IndividualArgumentDelimiter, cacheKeys);
 
             return cacheKey;
         }
 
-        private string GetCacheKeyForArgument(object argument, string argumentName)
+        private string GetCacheKeyForArgument(object argument)
         {
             var type = argument.GetType();
 
-            var getCacheKeyMethod = this.GetType().GetMethod("GetCacheKey", BindingFlags.Public | BindingFlags.Instance);
+            var getCacheKeyMethod = this.GetType().GetMethod(nameof(GetCacheKey), BindingFlags.Public | BindingFlags.Instance);
             var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
 
-            var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument, argumentName });
+            var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument });
             return cacheKey;
         }
 
-        public string GetCacheKey<TEntity>(TEntity item, string argumentName)
+        public string GetCacheKey<TEntity>(TEntity item)
         {
             var cacheKeyProvider = CashContext.Instance.RegistrationService.GetTypedCacheKeyProvider<TEntity>();
+            var typeName = typeof (TEntity).Name;
 
             if (cacheKeyProvider == null)
             {
-                return $"{argumentName}{ArgumentNameValueDelimiter}NULL";
+                return $"{typeName}{ArgumentNameValueDelimiter}NULL";
             }
 
             var cacheKey = cacheKeyProvider(item);
 
-            var output = $"{argumentName}{ArgumentNameValueDelimiter}{cacheKey}";
+            var output = $"{typeName}{ArgumentNameValueDelimiter}{cacheKey}";
             return output;
         }
     }
