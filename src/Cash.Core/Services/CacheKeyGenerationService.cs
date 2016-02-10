@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -35,11 +36,25 @@ namespace Cash.Core.Services
         {
             var type = argument.GetType();
 
+            if (type.IsPrimitive || type == typeof(string))
+            {
+                var primitiveCacheKey = GetPrimitiveCacheKey(argument, type);
+                return primitiveCacheKey;
+            }
+
             var getCacheKeyMethod = this.GetType().GetMethod(nameof(GetCacheKey), BindingFlags.Public | BindingFlags.Instance);
             var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
 
             var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument });
             return cacheKey;
+        }
+
+        private string GetPrimitiveCacheKey(object argument, Type type)
+        {
+            var typeName = type.Name;
+
+            var output = $"{typeName}{ArgumentNameValueDelimiter}{argument}";
+            return output;
         }
 
         public string GetCacheKey<TEntity>(TEntity item)
