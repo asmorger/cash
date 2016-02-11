@@ -26,10 +26,10 @@ namespace Cash.Core.Tests.Services
         }
 
         [TestMethod]
-        public void GetTypedCacheKeyProvider_ReturnsNullWhenAProviderHasNotBeenRegistered()
+        [ExpectedException(typeof(UnregisteredCacheTypeException))]
+        public void GetTypedCacheKeyProvider_ThrowsAnExceptionWhenAProviderHasNotBeenRegistered()
         {
             var targetProvider = Service.GetTypedCacheKeyProvider<string>();
-            Assert.IsNull(targetProvider);
         }
 
         [TestMethod]

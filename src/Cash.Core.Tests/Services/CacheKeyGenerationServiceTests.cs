@@ -1,4 +1,5 @@
-﻿using Cash.Core.Services;
+﻿using Cash.Core.Exceptions;
+using Cash.Core.Services;
 using Cash.Core.Tests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
@@ -79,6 +80,41 @@ namespace Cash.Core.Tests.Services
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, "test" });
 
             result.ShouldBe("Int32::5||String::test");
+        }
+
+        [TestMethod]
+        public void GetArgumentCacheKey_CreatesProperKey_ForUserDefinedType()
+        {
+            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
+            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<TestModelDefinition>(x => $"{x.Id}");
+
+            var model = new TestModelDefinition { Id = 100 };
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
+
+            result.ShouldBe("TestModelDefinition::100");
+        }
+
+        [TestMethod]
+        public void GetArgumentCacheKey_CreatesProperKey_ForMultipleUserDefinedType()
+        {
+            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
+            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<TestModelDefinition>(x => $"{x.Id}");
+
+            var model1 = new TestModelDefinition { Id = 100 };
+            var model2 = new TestModelDefinition { Id = 500 };
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model1, model2 });
+
+            result.ShouldBe("TestModelDefinition::100||TestModelDefinition::500");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UnregisteredCacheTypeException))]
+        public void GetArgumentCacheKey_ThrowsAnException_WhenACacheKeyProviderHasNotBeenRegistered()
+        {
+            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
+
+            var model = new TestModelDefinition { Id = 100 };
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
         }
     }
 }

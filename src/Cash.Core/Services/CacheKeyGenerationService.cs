@@ -42,11 +42,19 @@ namespace Cash.Core.Services
                 return primitiveCacheKey;
             }
 
-            var getCacheKeyMethod = this.GetType().GetMethod(nameof(GetCacheKey), BindingFlags.Public | BindingFlags.Instance);
-            var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
+            try
+            {
+                var getCacheKeyMethod = this.GetType().GetMethod(nameof(GetCacheKey), BindingFlags.Public | BindingFlags.Instance);
+                var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
 
-            var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument });
-            return cacheKey;
+                var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument });
+                return cacheKey;
+            }
+            catch (TargetInvocationException ex)
+            {
+                // unwrap the reflection exception and re-throw the inner exception
+                throw ex.InnerException;
+            }
         }
 
         private string GetPrimitiveCacheKey(object argument, Type type)
@@ -61,11 +69,6 @@ namespace Cash.Core.Services
         {
             var cacheKeyProvider = CashContext.Instance.RegistrationService.GetTypedCacheKeyProvider<TEntity>();
             var typeName = typeof (TEntity).Name;
-
-            if (cacheKeyProvider == null)
-            {
-                return $"{typeName}{ArgumentNameValueDelimiter}NULL";
-            }
 
             var cacheKey = cacheKeyProvider(item);
 

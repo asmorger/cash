@@ -49,6 +49,7 @@
     <Compile Include="CashContext.cs" />
     <Compile Include="Enums\CacheItemPriority.cs" />
     <Compile Include="Exceptions\DuplicateCacheProviderRegistrationException.cs" />
+    <Compile Include="Exceptions\UnregisteredCacheTypeException.cs" />
     <Compile Include="Interceptors\CachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Base\ICacheKeyGenerationService.cs" />

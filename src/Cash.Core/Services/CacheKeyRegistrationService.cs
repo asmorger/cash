@@ -48,7 +48,7 @@ namespace Cash.Core.Services
                 return expression.Compile();
             }
 
-            return null;
+            throw new UnregisteredCacheTypeException(typeof(TEntity));
         }
 
         /// <summary>
