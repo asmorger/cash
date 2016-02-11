@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Attributes\CacheAttributeTests.cs" />
     <Compile Include="CacheContextTests.cs" />
     <Compile Include="Models\MethodInfoWithNullDeclaringType.cs" />
     <Compile Include="Models\TestModelDefinition.cs" />
