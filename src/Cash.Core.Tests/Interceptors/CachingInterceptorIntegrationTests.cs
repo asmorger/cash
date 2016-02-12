@@ -66,5 +66,26 @@ namespace Cash.Core.Tests.Interceptors
 
             Invocation.ReturnValue.ShouldBe(cacheOutput);
         }
+
+        [TestMethod]
+        public void Intercept_ChecksCacheAndInvokesThenCachesTheResult_WhenTheCacheDoesNotContainTheKey()
+        {
+            const string cacheKey = "cacheKey";
+            const string region = null;
+            var returnValue = new TestModelDefinition { Id = 500 };
+
+            var methodInfo = typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
+
+            A.CallTo(() => Invocation.GetConcreteMethod()).Returns(methodInfo);
+            A.CallTo(() => CacheKeyGenerationService.GetMethodCacheKey(methodInfo)).Returns(cacheKey);
+            A.CallTo(() => Cache.Contains(cacheKey, region)).Returns(false);
+            A.CallTo(() => Invocation.ReturnValue).Returns(returnValue);
+
+            Interceptor.Intercept(Invocation);
+
+            A.CallTo(() => Invocation.Proceed()).MustHaveHappened();
+            A.CallTo(() => CacheKeyGenerationService.GetMethodCacheKey(methodInfo)).MustHaveHappened();
+            A.CallTo(() => Cache.Set(A<CacheItem>.Ignored, A<CacheItemPolicy>.Ignored)).MustHaveHappened();
+        }
     }
 }
