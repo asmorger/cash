@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Caching;
 using Cash.Core.Interceptors;
 using Cash.Core.Services;
 using Cash.Core.Tests.Models;
@@ -33,7 +28,8 @@ namespace Cash.Core.Tests.Interceptors
         [TestMethod]
         public void GetCacheAttribute_ReturnsACacheAttributeWhenPresentOnAMethod()
         {
-            var methodInfo = typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
+            var methodInfo =
+                typeof (TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
             var attribute = Interceptor.GetCacheAttribute(methodInfo);
 
             attribute.ShouldNotBeNull();
@@ -42,10 +38,35 @@ namespace Cash.Core.Tests.Interceptors
         [TestMethod]
         public void GetCacheAttribute_ReturnsNullWhenACacheAttributeIsNotPresentOnAMethod()
         {
-            var methodInfo = typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
+            var methodInfo =
+                typeof (TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
             var attribute = Interceptor.GetCacheAttribute(methodInfo);
 
             attribute.ShouldBeNull();
+        }
+
+        [TestMethod]
+        public void GetCacheItem_ReturnsNotNullItem()
+        {
+            var item = Interceptor.GetCacheItem("key", "value");
+
+            item.ShouldNotBeNull();
+        }
+
+        [TestMethod]
+        public void GetCacheItem_ResultingItemShouldSetKeyCorrectly()
+        {
+            var item = Interceptor.GetCacheItem("key", "value");
+
+            item.Key.ShouldBe("key");
+        }
+
+        [TestMethod]
+        public void GetCacheItem_ResultingItemShouldSetValueCorrectly()
+        {
+            var item = Interceptor.GetCacheItem("key", "value");
+
+            item.Value.ShouldBe("value");
         }
     }
 }
