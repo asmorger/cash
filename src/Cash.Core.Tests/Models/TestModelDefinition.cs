@@ -1,4 +1,6 @@
-﻿namespace Cash.Core.Tests.Models
+﻿using Cash.Core.Attributes;
+
+namespace Cash.Core.Tests.Models
 {
     public class TestModelDefinition
     {
@@ -14,6 +16,17 @@
 
         public void TestMethod_TwoSimpleParameters(double height, int age)
         {
+        }
+
+        [Cache]
+        public void TestMethod_WithCacheAttribute()
+        {
+            
+        }
+
+        public void TestMethod_WithNoCacheAttribute()
+        {
+            
         }
     }
 }

@@ -14,7 +14,14 @@ namespace Cash.Core.Interceptors
 {
     public class CachingInterceptor : IInterceptor
     {
-        private readonly ICacheKeyGenerationService _cacheKeyGenerationService = new CacheKeyGenerationService();
+        private readonly ObjectCache _cache;
+        private readonly ICacheKeyGenerationService _cacheKeyGenerationService;
+
+        public CachingInterceptor(ObjectCache cache, ICacheKeyGenerationService cacheKeyGenerationService)
+        {
+            _cache = cache;
+            _cacheKeyGenerationService = cacheKeyGenerationService;
+        }
 
         public void Intercept(IInvocation invocation)
         {
@@ -33,9 +40,9 @@ namespace Cash.Core.Interceptors
             var methodCacheKey = _cacheKeyGenerationService.GetMethodCacheKey(method);
 
             // check to see if the cached item exists.  If so, retrieve it from the cache and return it
-            if (CashContext.Instance.CacheBackingStore.Contains(methodCacheKey))
+            if (_cache.Contains(methodCacheKey))
             {
-                var result = CashContext.Instance.CacheBackingStore.Get(methodCacheKey);
+                var result = _cache.Get(methodCacheKey);
                 invocation.ReturnValue = result;
                 return;
             }
@@ -45,11 +52,11 @@ namespace Cash.Core.Interceptors
 
             // cache the resulting output
             var cacheItem = GetCacheItem(methodCacheKey, invocation.ReturnValue);
-            CashContext.Instance.CacheBackingStore.Set(cacheItem, new CacheItemPolicy());
+            _cache.Set(cacheItem, new CacheItemPolicy());
 
         }
 
-        private CacheAttribute GetCacheAttribute(MethodInfo method)
+        public CacheAttribute GetCacheAttribute(MethodInfo method)
         {
             var cacheAttribute = method.GetCustomAttribute(typeof (CacheAttribute));
 
@@ -62,7 +69,7 @@ namespace Cash.Core.Interceptors
             return null;
         }
 
-        private CacheItem GetCacheItem(string key, object value)
+        public CacheItem GetCacheItem(string key, object value)
         {
             var output = new CacheItem(key, value);
             return output;
