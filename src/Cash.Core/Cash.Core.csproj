@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\CacheAttribute.cs" />
-    <Compile Include="CashContext.cs" />
     <Compile Include="Enums\CacheItemPriority.cs" />
     <Compile Include="Exceptions\DuplicateCacheProviderRegistrationException.cs" />
     <Compile Include="Exceptions\UnregisteredCacheTypeException.cs" />

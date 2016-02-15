@@ -54,13 +54,5 @@ namespace Cash.Core.Services
 
             throw new UnregisteredCacheTypeException(typeof(TEntity));
         }
-
-        /// <summary>
-        ///     Clears the cache key providers.
-        /// </summary>
-        public void ClearCacheKeyProviders()
-        {
-            _cacheKeyProviders.Clear();
-        }
     }
 }

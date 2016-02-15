@@ -21,10 +21,5 @@ namespace Cash.Core.Services
         /// <typeparam name="TEntity">The type of the t entity.</typeparam>
         /// <returns>Expression&lt;Func&lt;TEntity, System.String&gt;&gt;.</returns>
         Func<TEntity, string> GetTypedCacheKeyProvider<TEntity>();
-
-        /// <summary>
-        ///     Clears the cache key providers.
-        /// </summary>
-        void ClearCacheKeyProviders();
     }
 }

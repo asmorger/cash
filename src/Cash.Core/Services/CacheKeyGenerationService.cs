@@ -9,9 +9,16 @@ namespace Cash.Core.Services
 {
     public class CacheKeyGenerationService : ICacheKeyGenerationService
     {
+        private readonly ICacheKeyRegistrationService _cacheKeyRegistrationService;
+
         private const string ArgumentNameValueDelimiter = "::";
 
         private const string IndividualArgumentDelimiter = "||";
+
+        public CacheKeyGenerationService(ICacheKeyRegistrationService cacheKeyRegistrationService)
+        {
+            _cacheKeyRegistrationService = cacheKeyRegistrationService;
+        }
 
         private string GetCacheKeyForArgument(object argument)
         {
@@ -49,7 +56,7 @@ namespace Cash.Core.Services
 
         public string GetCacheKey<TEntity>(TEntity item)
         {
-            var cacheKeyProvider = CashContext.Instance.RegistrationService.GetTypedCacheKeyProvider<TEntity>();
+            var cacheKeyProvider = _cacheKeyRegistrationService.GetTypedCacheKeyProvider<TEntity>();
             var typeName = typeof(TEntity).Name;
 
             var cacheKey = cacheKeyProvider(item);

@@ -64,7 +64,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Attributes\CacheAttributeTests.cs" />
-    <Compile Include="CacheContextTests.cs" />
     <Compile Include="Interceptors\CachingInterceptorIntegrationTests.cs" />
     <Compile Include="Interceptors\CachingInterceptorTests.cs" />
     <Compile Include="Models\MethodInfoWithNullDeclaringType.cs" />

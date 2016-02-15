@@ -5,6 +5,8 @@ using Cash.Core.Exceptions;
 using Cash.Core.Services;
 using Cash.Core.Tests.Models;
 
+using FakeItEasy;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Shouldly;
@@ -18,10 +20,13 @@ namespace Cash.Core.Tests.Services
 
         public ICacheKeyGenerationService CacheKeyGenerationService { get; set; }
 
+        public ICacheKeyRegistrationService CacheKeyRegistrationService { get; set; }
+
         [TestInitialize]
         public void Initialize()
         {
-            CacheKeyGenerationService = new CacheKeyGenerationService();
+            CacheKeyRegistrationService = A.Fake<ICacheKeyRegistrationService>();
+            CacheKeyGenerationService = new CacheKeyGenerationService(CacheKeyRegistrationService);
         }
 
         [TestMethod]
@@ -90,8 +95,7 @@ namespace Cash.Core.Tests.Services
         [TestMethod]
         public void GetArgumentCacheKey_CreatesProperKey_ForUserDefinedType()
         {
-            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
-            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<TestModelDefinition>(x => $"{x.Id}");
+            A.CallTo(() => CacheKeyRegistrationService.GetTypedCacheKeyProvider<TestModelDefinition>()).Returns(x => $"{x.Id}");
 
             var model = new TestModelDefinition { Id = 100 };
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
@@ -102,8 +106,7 @@ namespace Cash.Core.Tests.Services
         [TestMethod]
         public void GetArgumentCacheKey_CreatesProperKey_ForMultipleUserDefinedType()
         {
-            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
-            CashContext.Instance.RegistrationService.AddTypedCacheKeyProvider<TestModelDefinition>(x => $"{x.Id}");
+            A.CallTo(() => CacheKeyRegistrationService.GetTypedCacheKeyProvider<TestModelDefinition>()).Returns(x => $"{x.Id}");
 
             var model1 = new TestModelDefinition { Id = 100 };
             var model2 = new TestModelDefinition { Id = 500 };
@@ -116,8 +119,7 @@ namespace Cash.Core.Tests.Services
         [ExpectedException(typeof(UnregisteredCacheTypeException))]
         public void GetArgumentCacheKey_ThrowsAnException_WhenACacheKeyProviderHasNotBeenRegistered()
         {
-            CashContext.Instance.RegistrationService.ClearCacheKeyProviders();
-
+            A.CallTo(() => CacheKeyRegistrationService.GetTypedCacheKeyProvider<TestModelDefinition>()).Throws(new UnregisteredCacheTypeException(typeof(TestModelDefinition)));
             var model = new TestModelDefinition { Id = 100 };
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
         }
