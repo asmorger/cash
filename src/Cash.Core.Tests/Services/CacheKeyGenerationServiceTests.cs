@@ -1,7 +1,12 @@
-﻿using Cash.Core.Exceptions;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
+using Cash.Core.Exceptions;
 using Cash.Core.Services;
 using Cash.Core.Tests.Models;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Shouldly;
 
 namespace Cash.Core.Tests.Services
@@ -45,7 +50,7 @@ namespace Cash.Core.Tests.Services
         [TestMethod]
         public void GetArgumentsCacheKey_CreatesProperKey_ForZeroArguments()
         {
-            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] {});
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { });
 
             result.ShouldBe(NullOrZeroArgumentsResult);
         }
@@ -70,7 +75,7 @@ namespace Cash.Core.Tests.Services
         public void GetArugmentCacheKey_CreatesProperKey_ForTwoIntArguments()
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, 10 });
-            
+
             result.ShouldBe("Int32::5||Int32::10");
         }
 

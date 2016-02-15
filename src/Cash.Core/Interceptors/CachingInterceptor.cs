@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
 using System.Reflection;
 using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
+
 using Cash.Core.Attributes;
 using Cash.Core.Services;
 
@@ -15,12 +14,32 @@ namespace Cash.Core.Interceptors
     public class CachingInterceptor : IInterceptor
     {
         private readonly ObjectCache _cache;
+
         private readonly ICacheKeyGenerationService _cacheKeyGenerationService;
 
         public CachingInterceptor(ObjectCache cache, ICacheKeyGenerationService cacheKeyGenerationService)
         {
             _cache = cache;
             _cacheKeyGenerationService = cacheKeyGenerationService;
+        }
+
+        public CacheAttribute GetCacheAttribute(MethodInfo method)
+        {
+            var cacheAttribute = method.GetCustomAttribute(typeof(CacheAttribute));
+
+            if (cacheAttribute != null)
+            {
+                var typedAttribute = (CacheAttribute)cacheAttribute;
+                return typedAttribute;
+            }
+
+            return null;
+        }
+
+        public CacheItem GetCacheItem(string key, object value)
+        {
+            var output = new CacheItem(key, value);
+            return output;
         }
 
         public void Intercept(IInvocation invocation)
@@ -53,26 +72,6 @@ namespace Cash.Core.Interceptors
             // cache the resulting output
             var cacheItem = GetCacheItem(methodCacheKey, invocation.ReturnValue);
             _cache.Set(cacheItem, new CacheItemPolicy());
-
-        }
-
-        public CacheAttribute GetCacheAttribute(MethodInfo method)
-        {
-            var cacheAttribute = method.GetCustomAttribute(typeof (CacheAttribute));
-
-            if (cacheAttribute != null)
-            {
-                var typedAttribute = (CacheAttribute) cacheAttribute;
-                return typedAttribute;
-            }
-
-            return null;
-        }
-
-        public CacheItem GetCacheItem(string key, object value)
-        {
-            var output = new CacheItem(key, value);
-            return output;
         }
     }
 }
