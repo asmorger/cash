@@ -1,10 +1,16 @@
-﻿namespace Cash.Core
+﻿// // Copyright (c) Andrew Morger. All rights reserved.
+// // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
+namespace Cash.Core
 {
     public enum CacheItemPriority
     {
         Low = 1,
+
         Normal = 2,
+
         High = 3,
+
         NeverRemove = 4
     }
 }

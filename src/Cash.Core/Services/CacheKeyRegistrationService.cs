@@ -1,4 +1,7 @@
-﻿using System;
+﻿// // Copyright (c) Andrew Morger. All rights reserved.
+// // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
@@ -7,14 +10,15 @@ using Cash.Core.Exceptions;
 namespace Cash.Core.Services
 {
     /// <summary>
-    /// Class CacheKeyRegistrationService.
+    ///     Class CacheKeyRegistrationService.
     /// </summary>
     public class CacheKeyRegistrationService : ICacheKeyRegistrationService
     {
-        private readonly IDictionary<Type, LambdaExpression> _cacheKeyProviders = new Dictionary<Type, LambdaExpression>();
+        private readonly IDictionary<Type, LambdaExpression> _cacheKeyProviders =
+            new Dictionary<Type, LambdaExpression>();
 
         /// <summary>
-        /// Adds the typed cache key provider.
+        ///     Adds the typed cache key provider.
         /// </summary>
         /// <typeparam name="TEntity">The type of the registration entity.</typeparam>
         /// <param name="registrationPattern">The registration pattern.</param>
@@ -33,7 +37,7 @@ namespace Cash.Core.Services
         }
 
         /// <summary>
-        /// Gets the typed cache key provider.
+        ///     Gets the typed cache key provider.
         /// </summary>
         /// <typeparam name="TEntity">The type of the t entity.</typeparam>
         /// <returns>Expression&lt;Func&lt;TEntity, System.String&gt;&gt;.</returns>
@@ -52,7 +56,7 @@ namespace Cash.Core.Services
         }
 
         /// <summary>
-        /// Clears the cache key providers.
+        ///     Clears the cache key providers.
         /// </summary>
         public void ClearCacheKeyProviders()
         {

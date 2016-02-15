@@ -1,11 +1,18 @@
-﻿using System.Reflection;
+﻿// // Copyright (c) Andrew Morger. All rights reserved.
+// // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
 using System.Runtime.Caching;
+
 using Cash.Core.Interceptors;
 using Cash.Core.Services;
 using Cash.Core.Tests.Models;
+
 using Castle.DynamicProxy;
+
 using FakeItEasy;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Shouldly;
 
 namespace Cash.Core.Tests.Interceptors
@@ -34,7 +41,8 @@ namespace Cash.Core.Tests.Interceptors
         [TestMethod]
         public void Intercept_CallsInvocationProceed_WhenThereIsNoCacheAttribute()
         {
-            var methodInfo = typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
+            var methodInfo =
+                typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
 
             A.CallTo(() => Invocation.GetConcreteMethod()).Returns(methodInfo);
 
@@ -51,7 +59,8 @@ namespace Cash.Core.Tests.Interceptors
             const string region = null;
             var cacheOutput = new TestModelDefinition { Id = 100 };
 
-            var methodInfo = typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
+            var methodInfo =
+                typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
 
             A.CallTo(() => Invocation.GetConcreteMethod()).Returns(methodInfo);
             A.CallTo(() => CacheKeyGenerationService.GetMethodCacheKey(methodInfo)).Returns(cacheKey);
@@ -74,7 +83,8 @@ namespace Cash.Core.Tests.Interceptors
             const string region = null;
             var returnValue = new TestModelDefinition { Id = 500 };
 
-            var methodInfo = typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
+            var methodInfo =
+                typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
 
             A.CallTo(() => Invocation.GetConcreteMethod()).Returns(methodInfo);
             A.CallTo(() => CacheKeyGenerationService.GetMethodCacheKey(methodInfo)).Returns(cacheKey);

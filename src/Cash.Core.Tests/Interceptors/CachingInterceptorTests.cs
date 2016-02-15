@@ -1,9 +1,16 @@
-﻿using System.Runtime.Caching;
+﻿// // Copyright (c) Andrew Morger. All rights reserved.
+// // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
+using System.Runtime.Caching;
+
 using Cash.Core.Interceptors;
 using Cash.Core.Services;
 using Cash.Core.Tests.Models;
+
 using FakeItEasy;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Shouldly;
 
 namespace Cash.Core.Tests.Interceptors
@@ -29,7 +36,7 @@ namespace Cash.Core.Tests.Interceptors
         public void GetCacheAttribute_ReturnsACacheAttributeWhenPresentOnAMethod()
         {
             var methodInfo =
-                typeof (TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
+                typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
             var attribute = Interceptor.GetCacheAttribute(methodInfo);
 
             attribute.ShouldNotBeNull();
@@ -39,7 +46,7 @@ namespace Cash.Core.Tests.Interceptors
         public void GetCacheAttribute_ReturnsNullWhenACacheAttributeIsNotPresentOnAMethod()
         {
             var methodInfo =
-                typeof (TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
+                typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
             var attribute = Interceptor.GetCacheAttribute(methodInfo);
 
             attribute.ShouldBeNull();

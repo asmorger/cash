@@ -1,4 +1,6 @@
-﻿
+﻿// // Copyright (c) Andrew Morger. All rights reserved.
+// // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
 using System;
 using System.Linq;
 using System.Reflection;
@@ -10,27 +12,6 @@ namespace Cash.Core.Services
         private const string ArgumentNameValueDelimiter = "::";
 
         private const string IndividualArgumentDelimiter = "||";
-
-        public string GetMethodCacheKey(MethodInfo method)
-        {
-            var typeName = method.DeclaringType == null ? "<unknown>" : method.DeclaringType.FullName;
-
-            var cacheKey = $"{typeName}.{method.Name}";
-            return cacheKey;
-        }
-
-        public string GetArgumentsCacheKey(object[] arguments)
-        {
-            if (arguments == null || !arguments.Any())
-            {
-                return "<no_arguments>";
-            }
-
-            var cacheKeys = arguments.Select(GetCacheKeyForArgument);
-            var cacheKey = string.Join(IndividualArgumentDelimiter, cacheKeys);
-
-            return cacheKey;
-        }
 
         private string GetCacheKeyForArgument(object argument)
         {
@@ -44,7 +25,8 @@ namespace Cash.Core.Services
 
             try
             {
-                var getCacheKeyMethod = this.GetType().GetMethod(nameof(GetCacheKey), BindingFlags.Public | BindingFlags.Instance);
+                var getCacheKeyMethod = GetType()
+                    .GetMethod(nameof(GetCacheKey), BindingFlags.Public | BindingFlags.Instance);
                 var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
 
                 var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument });
@@ -68,12 +50,33 @@ namespace Cash.Core.Services
         public string GetCacheKey<TEntity>(TEntity item)
         {
             var cacheKeyProvider = CashContext.Instance.RegistrationService.GetTypedCacheKeyProvider<TEntity>();
-            var typeName = typeof (TEntity).Name;
+            var typeName = typeof(TEntity).Name;
 
             var cacheKey = cacheKeyProvider(item);
 
             var output = $"{typeName}{ArgumentNameValueDelimiter}{cacheKey}";
             return output;
+        }
+
+        public string GetMethodCacheKey(MethodInfo method)
+        {
+            var typeName = method.DeclaringType == null ? "<unknown>" : method.DeclaringType.FullName;
+
+            var cacheKey = $"{typeName}.{method.Name}";
+            return cacheKey;
+        }
+
+        public string GetArgumentsCacheKey(object[] arguments)
+        {
+            if (arguments == null || !arguments.Any())
+            {
+                return "<no_arguments>";
+            }
+
+            var cacheKeys = arguments.Select(GetCacheKeyForArgument);
+            var cacheKey = string.Join(IndividualArgumentDelimiter, cacheKeys);
+
+            return cacheKey;
         }
     }
 }

@@ -1,15 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// // Copyright (c) Andrew Morger. All rights reserved.
+// // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
+
+using System;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cash.Core.Tests.Models
 {
     public class MethodInfoWithNullDeclaringType : MethodInfo
     {
+        public override ICustomAttributeProvider ReturnTypeCustomAttributes { get; }
+
+        public override string Name { get; }
+
+        public override Type DeclaringType => null;
+
+        public override Type ReflectedType { get; }
+
+        public override RuntimeMethodHandle MethodHandle { get; }
+
+        public override MethodAttributes Attributes { get; }
+
         public override object[] GetCustomAttributes(bool inherit)
         {
             throw new NotImplementedException();
@@ -30,7 +41,12 @@ namespace Cash.Core.Tests.Models
             throw new NotImplementedException();
         }
 
-        public override object Invoke(object obj, BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture)
+        public override object Invoke(
+            object obj,
+            BindingFlags invokeAttr,
+            Binder binder,
+            object[] parameters,
+            CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -39,13 +55,6 @@ namespace Cash.Core.Tests.Models
         {
             throw new NotImplementedException();
         }
-
-        public override ICustomAttributeProvider ReturnTypeCustomAttributes { get; }
-        public override string Name { get; }
-        public override Type DeclaringType => null;
-        public override Type ReflectedType { get; }
-        public override RuntimeMethodHandle MethodHandle { get; }
-        public override MethodAttributes Attributes { get; }
 
         public override object[] GetCustomAttributes(Type attributeType, bool inherit)
         {
