@@ -13,8 +13,6 @@ using FakeItEasy;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Shouldly;
-
 namespace Cash.Core.Tests.Interceptors
 {
     [TestClass]
@@ -73,7 +71,7 @@ namespace Cash.Core.Tests.Interceptors
             A.CallTo(() => CacheKeyGenerationService.GetMethodCacheKey(methodInfo)).MustHaveHappened();
             A.CallTo(() => Cache.Get(cacheKey, region)).MustHaveHappened();
 
-            Invocation.ReturnValue.ShouldBe(cacheOutput);
+            Assert.AreEqual(cacheOutput, Invocation.ReturnValue);
         }
 
         [TestMethod]

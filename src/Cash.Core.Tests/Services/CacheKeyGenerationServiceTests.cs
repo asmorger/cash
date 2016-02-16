@@ -9,8 +9,6 @@ using FakeItEasy;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Shouldly;
-
 namespace Cash.Core.Tests.Services
 {
     [TestClass]
@@ -38,7 +36,7 @@ namespace Cash.Core.Tests.Services
             var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
             var expectedResult = $"{model.GetType().FullName}.{methodInfo.Name}";
 
-            result.ShouldBe(expectedResult);
+            Assert.AreEqual(expectedResult, result);
         }
 
         [TestMethod]
@@ -49,7 +47,7 @@ namespace Cash.Core.Tests.Services
             var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
             var expectedResult = $"<unknown>.{methodInfo.Name}";
 
-            result.ShouldBe(expectedResult);
+            Assert.AreEqual(expectedResult, result);
         }
 
         [TestMethod]
@@ -57,7 +55,7 @@ namespace Cash.Core.Tests.Services
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { });
 
-            result.ShouldBe(NullOrZeroArgumentsResult);
+            Assert.AreEqual(NullOrZeroArgumentsResult, result);
         }
 
         [TestMethod]
@@ -65,7 +63,7 @@ namespace Cash.Core.Tests.Services
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(null);
 
-            result.ShouldBe(NullOrZeroArgumentsResult);
+            Assert.AreEqual(NullOrZeroArgumentsResult, result);
         }
 
         [TestMethod]
@@ -73,15 +71,18 @@ namespace Cash.Core.Tests.Services
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5 });
 
-            result.ShouldBe("Int32::5");
+            Assert.AreEqual("Int32::5", result);
         }
 
+        /// <summary>
+        /// Gets the arugment cache key_ creates proper key_ for two int arguments.
+        /// </summary>
         [TestMethod]
         public void GetArugmentCacheKey_CreatesProperKey_ForTwoIntArguments()
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, 10 });
 
-            result.ShouldBe("Int32::5||Int32::10");
+            Assert.AreEqual("Int32::5||Int32::10", result);
         }
 
         [TestMethod]
@@ -89,7 +90,7 @@ namespace Cash.Core.Tests.Services
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, "test" });
 
-            result.ShouldBe("Int32::5||String::test");
+            Assert.AreEqual("Int32::5||String::test", result);
         }
 
         [TestMethod]
@@ -100,7 +101,7 @@ namespace Cash.Core.Tests.Services
             var model = new TestModelDefinition { Id = 100 };
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
 
-            result.ShouldBe("TestModelDefinition::100");
+            Assert.AreEqual("TestModelDefinition::100", result);
         }
 
         [TestMethod]
@@ -112,7 +113,7 @@ namespace Cash.Core.Tests.Services
             var model2 = new TestModelDefinition { Id = 500 };
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model1, model2 });
 
-            result.ShouldBe("TestModelDefinition::100||TestModelDefinition::500");
+            Assert.AreEqual("TestModelDefinition::100||TestModelDefinition::500", result);
         }
 
         [TestMethod]

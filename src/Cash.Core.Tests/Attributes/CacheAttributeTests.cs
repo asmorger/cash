@@ -5,8 +5,6 @@ using Cash.Core.Attributes;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Shouldly;
-
 namespace Cash.Core.Tests.Attributes
 {
     [TestClass]
@@ -25,7 +23,7 @@ namespace Cash.Core.Tests.Attributes
         {
             var attribute = new CacheAttribute();
 
-            attribute.Priority.ShouldBe(CacheItemPriority.Normal);
+            Assert.AreEqual(CacheItemPriority.Normal, attribute.Priority);
         }
 
         [TestMethod]
@@ -33,7 +31,7 @@ namespace Cash.Core.Tests.Attributes
         {
             var attribute = new CacheAttribute(CacheItemPriority.High);
 
-            attribute.Priority.ShouldBe(CacheItemPriority.High);
+            Assert.AreEqual(CacheItemPriority.High, attribute.Priority);
         }
     }
 }
