@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
 
-using System;
-
 using Cash.Core.Exceptions;
 using Cash.Core.Services;
 
@@ -31,44 +29,18 @@ namespace Cash.Core.Tests.Services
         }
 
         [TestMethod]
+        [ExpectedException(typeof(UnregisteredCacheTypeException))]
         public void GetTypedCacheKeyProvider_ThrowsAnExceptionWhenAProviderHasNotBeenRegistered()
         {
-            try
-            {
-                var targetProvider = Service.GetTypedCacheKeyProvider<string>();
-            }
-            catch (Exception e)
-            {
-                if (e is UnregisteredCacheTypeException)
-                {
-                    Assert.IsNotNull(e);
-                    return;
-                }
-
-                Assert.Fail($"Expected exception type was 'UnregisteredCacheTypeException'.  What was thrown was '{e.GetType()}'");
-            }
+            var targetProvider = Service.GetTypedCacheKeyProvider<string>();
         }
 
         [TestMethod]
+        [ExpectedException(typeof(DuplicateCacheProviderRegistrationException))]
         public void AddTypedCacheKeyProvider_ThrowsAnExceptionWhenTheSameRegistrationTypeIsSet()
         {
-            try
-            {
-                Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
-                Service.AddTypedCacheKeyProvider<int>(i => $"int2_{i}");
-
-                Assert.Fail("Error should have been thrown here.");
-            }
-            catch (Exception e)
-            {
-                if (e is DuplicateCacheProviderRegistrationException)
-                {
-                    Assert.IsNotNull(e);
-                    return;
-                }
-
-                Assert.Fail($"Expected exception type was 'DuplicateCacheProviderRegistrationException'.  What was thrown was '{e.GetType()}'");
-            }
+            Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
+            Service.AddTypedCacheKeyProvider<int>(i => $"int2_{i}");
         }
     }
 }
