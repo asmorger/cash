@@ -8,7 +8,7 @@ init:
 build:
   project: src\Cash.Core\Cash.Core.sln
   parallel: false
-  verbosity: detailed
+  verbosity: normal
 
 environment:
   EnableNuGetPackageRestore: true
@@ -22,5 +22,5 @@ before_build:
 
 after_test: 
 # generate report for MSTest testing framework:
-- cmd: C:\projects\cash\src\Cash.Core\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe" -targetargs:"/testcontainer:C:\projects\cash\src\Cash.Core.Tests\bin\Release\Cash.Core.Tests.dll" -output:coverage.xml
+- cmd: C:\projects\cash\src\Cash.Core\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -filter:"+[*]* -[Cash.Core.Tests]Cash.Core.Tests.Models.*" -target:"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe" -targetargs:"/testcontainer:C:\projects\cash\src\Cash.Core.Tests\bin\Release\Cash.Core.Tests.dll" -output:coverage.xml
 - cmd: C:\projects\cash\src\Cash.Core\packages\coveralls.io.1.3.3\tools\coveralls.net.exe --opencover coverage.xml
