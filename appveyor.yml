@@ -6,7 +6,9 @@ init:
 - cmd: PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
 
 build:
-  verbosity: minimal
+  project: src\Cash.Core\Cash.Core.sln
+  parallel: false
+  verbosity: detailed
 
 environment:
   EnableNuGetPackageRestore: true
