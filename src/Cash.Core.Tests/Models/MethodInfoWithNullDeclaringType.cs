@@ -2,11 +2,15 @@
 // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
 
 using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Reflection;
 
 namespace Cash.Core.Tests.Models
 {
+    [DebuggerNonUserCode]
+    [ExcludeFromCodeCoverage]
     public class MethodInfoWithNullDeclaringType : MethodInfo
     {
         public override ICustomAttributeProvider ReturnTypeCustomAttributes { get; }
