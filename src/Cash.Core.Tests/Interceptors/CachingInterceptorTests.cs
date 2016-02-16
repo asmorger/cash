@@ -11,8 +11,6 @@ using FakeItEasy;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Shouldly;
-
 namespace Cash.Core.Tests.Interceptors
 {
     [TestClass]
@@ -39,7 +37,7 @@ namespace Cash.Core.Tests.Interceptors
                 typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
             var attribute = Interceptor.GetCacheAttribute(methodInfo);
 
-            attribute.ShouldNotBeNull();
+            Assert.IsNotNull(attribute);
         }
 
         [TestMethod]
@@ -49,7 +47,7 @@ namespace Cash.Core.Tests.Interceptors
                 typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
             var attribute = Interceptor.GetCacheAttribute(methodInfo);
 
-            attribute.ShouldBeNull();
+            Assert.IsNull(attribute);
         }
 
         [TestMethod]
@@ -57,7 +55,7 @@ namespace Cash.Core.Tests.Interceptors
         {
             var item = Interceptor.GetCacheItem("key", "value");
 
-            item.ShouldNotBeNull();
+            Assert.IsNotNull(item);
         }
 
         [TestMethod]
@@ -65,7 +63,7 @@ namespace Cash.Core.Tests.Interceptors
         {
             var item = Interceptor.GetCacheItem("key", "value");
 
-            item.Key.ShouldBe("key");
+            Assert.AreEqual("key", item.Key);
         }
 
         [TestMethod]
@@ -73,7 +71,7 @@ namespace Cash.Core.Tests.Interceptors
         {
             var item = Interceptor.GetCacheItem("key", "value");
 
-            item.Value.ShouldBe("value");
+            Assert.AreEqual("value", item.Value);
         }
     }
 }
