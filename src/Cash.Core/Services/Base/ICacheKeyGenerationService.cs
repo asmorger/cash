@@ -10,5 +10,7 @@ namespace Cash.Core.Services
         string GetMethodCacheKey(MethodInfo method);
 
         string GetArgumentsCacheKey(object[] arguments);
+
+        string GetCacheKey(MethodInfo method, object[] arguments);
     }
 }

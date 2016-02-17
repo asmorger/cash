@@ -56,7 +56,7 @@ namespace Cash.Core.Interceptors
             }
 
             // get the cache key for the method and it's parameters
-            var methodCacheKey = _cacheKeyGenerationService.GetMethodCacheKey(method);
+            var methodCacheKey = _cacheKeyGenerationService.GetCacheKey(method, invocation.Arguments);
 
             // check to see if the cached item exists.  If so, retrieve it from the cache and return it
             if (_cache.Contains(methodCacheKey))
