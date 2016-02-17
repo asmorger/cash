@@ -124,5 +124,17 @@ namespace Cash.Core.Tests.Services
             var model = new TestModelDefinition { Id = 100 };
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
         }
+
+        [TestMethod]
+        public void GetCacheKey_FormatsCacheKey_WhenNoParametersAreDefined()
+        {
+            var model = new TestModelDefinition();
+            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_NoParameters));
+
+            var result = CacheKeyGenerationService.GetCacheKey(methodInfo, null);
+            var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_NoParameters({NullOrZeroArgumentsResult})";
+
+            Assert.AreEqual(expectedResult, result);
+        }
     }
 }
