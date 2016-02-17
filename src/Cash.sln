@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Core.Tests", "Cash.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Core.Autofac", "Cash.Core.Autofac\Cash.Core.Autofac.csproj", "{91E56CC0-6674-48E8-AA01-9C7136D05F8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Core.Autofac.Tests", "Cash.Core.Autofac.Tests\Cash.Core.Autofac.Tests.csproj", "{ED8D456D-7D80-41E0-8977-65A6CA4B5882}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,11 +31,16 @@ Global
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED8D456D-7D80-41E0-8977-65A6CA4B5882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED8D456D-7D80-41E0-8977-65A6CA4B5882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED8D456D-7D80-41E0-8977-65A6CA4B5882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED8D456D-7D80-41E0-8977-65A6CA4B5882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2A34314F-818C-4855-90C2-E2A97D1C7615} = {66E2A421-BE9E-4872-9132-EF7AB399C345}
+		{ED8D456D-7D80-41E0-8977-65A6CA4B5882} = {66E2A421-BE9E-4872-9132-EF7AB399C345}
 	EndGlobalSection
 EndGlobal
