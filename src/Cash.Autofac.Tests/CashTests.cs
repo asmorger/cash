@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Runtime.Caching;
 using Autofac;
-using FakeItEasy;
 using Cash.Core.Services;
-using System.Runtime.Caching;
+using FakeItEasy;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Cash.Core.Autofac.Tests
+namespace Cash.Autofac.Tests
 {
     [TestClass]
     public class CashTests

@@ -6,8 +6,8 @@
     <ProjectGuid>{ED8D456D-7D80-41E0-8977-65A6CA4B5882}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cash.Core.Autofac.Tests</RootNamespace>
-    <AssemblyName>Cash.Core.Autofac.Tests</AssemblyName>
+    <RootNamespace>Cash.Autofac.Tests</RootNamespace>
+    <AssemblyName>Cash.Autofac.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -75,9 +75,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cash.Core.Autofac\Cash.Core.Autofac.csproj">
+    <ProjectReference Include="..\Cash.Autofac\Cash.Autofac.csproj">
       <Project>{91e56cc0-6674-48e8-aa01-9c7136d05f8c}</Project>
-      <Name>Cash.Core.Autofac</Name>
+      <Name>Cash.Autofac</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cash.Core\Cash.Core.csproj">
       <Project>{cede2055-4771-4363-8f6c-6bc456e97f74}</Project>

@@ -1,8 +1,8 @@
-﻿using Autofac;
+﻿using System.Runtime.Caching;
+using Autofac;
 using Cash.Core.Services;
-using System.Runtime.Caching;
 
-namespace Cash.Core.Autofac
+namespace Cash.Autofac
 {
     public static class Cash
     {

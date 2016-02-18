@@ -2,7 +2,7 @@
 using Autofac.Extras.DynamicProxy2;
 using Cash.Core.Interceptors;
 
-namespace Cash.Core.Autofac.Extensions
+namespace Cash.Autofac.Extensions
 {
     /// <summary>
     /// A class to house Autofac Extension Methods

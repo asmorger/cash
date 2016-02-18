@@ -7,8 +7,8 @@
     <ProjectGuid>{91E56CC0-6674-48E8-AA01-9C7136D05F8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cash.Core.Autofac</RootNamespace>
-    <AssemblyName>Cash.Core.Autofac</AssemblyName>
+    <RootNamespace>Cash.Autofac</RootNamespace>
+    <AssemblyName>Cash.Autofac</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
