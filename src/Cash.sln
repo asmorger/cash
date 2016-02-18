@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Autofac", "Cash.Autofa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integrations", "Integrations", "{5CCA240F-A78E-4835-A451-B537DB58EDBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Ninject.Tests", "Cash.Ninject.Tests\Cash.Ninject.Tests.csproj", "{8633C780-26BD-4973-BC6F-C49BB2879F1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8633C780-26BD-4973-BC6F-C49BB2879F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8633C780-26BD-4973-BC6F-C49BB2879F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8633C780-26BD-4973-BC6F-C49BB2879F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8633C780-26BD-4973-BC6F-C49BB2879F1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +58,6 @@ Global
 		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2} = {5CCA240F-A78E-4835-A451-B537DB58EDBB}
 		{ED8D456D-7D80-41E0-8977-65A6CA4B5882} = {66E2A421-BE9E-4872-9132-EF7AB399C345}
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C} = {5CCA240F-A78E-4835-A451-B537DB58EDBB}
+		{8633C780-26BD-4973-BC6F-C49BB2879F1C} = {66E2A421-BE9E-4872-9132-EF7AB399C345}
 	EndGlobalSection
 EndGlobal
