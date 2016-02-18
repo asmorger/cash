@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Core.Autofac", "Cash.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Core.Autofac.Tests", "Cash.Core.Autofac.Tests\Cash.Core.Autofac.Tests.csproj", "{ED8D456D-7D80-41E0-8977-65A6CA4B5882}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Ninject", "Cash.Ninject\Cash.Ninject.csproj", "{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{ED8D456D-7D80-41E0-8977-65A6CA4B5882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED8D456D-7D80-41E0-8977-65A6CA4B5882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED8D456D-7D80-41E0-8977-65A6CA4B5882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

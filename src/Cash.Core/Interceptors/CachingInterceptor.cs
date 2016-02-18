@@ -1,77 +1,58 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
 
+using System;
 using System.Reflection;
 using System.Runtime.Caching;
 
-using Cash.Core.Attributes;
 using Cash.Core.Services;
 
 using Castle.DynamicProxy;
 
 namespace Cash.Core.Interceptors
 {
-    public class CachingInterceptor : IInterceptor
+    public class CachingInterceptor : BaseCachingInterceptor, IInterceptor
     {
-        private readonly ObjectCache _cache;
-
-        private readonly ICacheKeyGenerationService _cacheKeyGenerationService;
+        private IInvocation _invocation;
 
         public CachingInterceptor(ObjectCache cache, ICacheKeyGenerationService cacheKeyGenerationService)
+            : base(cache, cacheKeyGenerationService)
         {
-            _cache = cache;
-            _cacheKeyGenerationService = cacheKeyGenerationService;
-        }
-
-        public CacheAttribute GetCacheAttribute(MethodInfo method)
-        {
-            var cacheAttribute = method.GetCustomAttribute(typeof(CacheAttribute));
-
-            if (cacheAttribute != null)
-            {
-                var typedAttribute = (CacheAttribute)cacheAttribute;
-                return typedAttribute;
-            }
-
-            return null;
-        }
-
-        public CacheItem GetCacheItem(string key, object value)
-        {
-            var output = new CacheItem(key, value);
-            return output;
         }
 
         public void Intercept(IInvocation invocation)
         {
-            var method = invocation.GetConcreteMethod();
+            _invocation = invocation;
 
-            var cacheAttribute = GetCacheAttribute(method);
+            ExecuteInterceptionLogic();
+        }
 
-            // if the attribute doesn't exist on the method, then continue and exit
-            if (cacheAttribute == null)
-            {
-                invocation.Proceed();
-                return;
-            }
+        protected override MethodInfo GetMethodInfoFromInterceptor()
+        {
+            var method = _invocation.GetConcreteMethod();
+            return method;
+        }
 
-            // get the cache key for the method and it's parameters
-            var methodCacheKey = _cacheKeyGenerationService.GetCacheKey(method, invocation.Arguments);
+        protected override object[] GetArgumentsFromInterceptor()
+        {
+            var arguments = _invocation.Arguments;
+            return arguments;
+        }
 
-            // check to see if the cached item exists.  If so, retrieve it from the cache and return it
-            if (_cache.Contains(methodCacheKey))
-            {
-                var result = _cache.Get(methodCacheKey);
-                invocation.ReturnValue = result;
-                return;
-            }
+        protected override void SetIntercetporReturnValue(object value)
+        {
+            _invocation.ReturnValue = value;
+        }
 
-            // the item is not cached - now go execute the method
-            invocation.Proceed();
+        protected override void InterceptorProceed()
+        {
+            _invocation.Proceed();
+        }
 
-            // cache the resulting output
-            var cacheItem = GetCacheItem(methodCacheKey, invocation.ReturnValue);
-            _cache.Set(cacheItem, new CacheItemPolicy());
+        protected override object GetInterceptorReturnValue()
+        {
+            var output = _invocation.ReturnValue;
+            return output;
         }
     }
 }

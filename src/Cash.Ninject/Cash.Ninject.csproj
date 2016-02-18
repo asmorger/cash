@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CEDE2055-4771-4363-8F6C-6BC456E97F74}</ProjectGuid>
+    <ProjectGuid>{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cash.Core</RootNamespace>
-    <AssemblyName>Cash.Core</AssemblyName>
+    <RootNamespace>Cash.Ninject</RootNamespace>
+    <AssemblyName>Cash.Ninject</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,6 +34,18 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.DynamicProxy.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
@@ -45,20 +57,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\CacheAttribute.cs" />
-    <Compile Include="Enums\CacheItemPriority.cs" />
-    <Compile Include="Exceptions\DuplicateCacheProviderRegistrationException.cs" />
-    <Compile Include="Exceptions\UnregisteredCacheTypeException.cs" />
-    <Compile Include="Interceptors\BaseCachingInterceptor.cs" />
-    <Compile Include="Interceptors\CachingInterceptor.cs" />
+    <Compile Include="Cash.cs" />
+    <Compile Include="Extensions\NinjectExtensions.cs" />
+    <Compile Include="Interceptors\NinjectCachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Base\ICacheKeyGenerationService.cs" />
-    <Compile Include="Services\Base\ICacheKeyRegistrationService.cs" />
-    <Compile Include="Services\CacheKeyGenerationService.cs" />
-    <Compile Include="Services\CacheKeyRegistrationService.cs" />
-    <Compile Include="Services\Base\ICacheService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cash.Core\Cash.Core.csproj">
+      <Project>{cede2055-4771-4363-8f6c-6bc456e97f74}</Project>
+      <Name>Cash.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
