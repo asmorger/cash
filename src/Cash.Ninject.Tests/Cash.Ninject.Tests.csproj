@@ -74,6 +74,9 @@
   <ItemGroup>
     <Compile Include="CashTests.cs" />
     <Compile Include="Extensions\NinjectExtensionsTests.cs" />
+    <Compile Include="Interceptors\NinjectCachingInterceptorIntegrationTests.cs" />
+    <Compile Include="Interceptors\NinjectInterceptorTests.cs" />
+    <Compile Include="Models\TestModelDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
