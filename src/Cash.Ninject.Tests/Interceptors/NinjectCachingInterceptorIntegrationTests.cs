@@ -95,8 +95,9 @@ namespace Cash.Ninject.Tests.Interceptors
             const string region = null;
             var returnValue = new TestModelDefinition { Id = 500 };
 
+            // this uses a different method from above to test a Ninject-specific Test Coverage Path
             var methodInfo =
-                typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
+                typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute_AndParameters));
 
             A.CallTo(() => ProxyRequest.Method).Returns(methodInfo);
             A.CallTo(() => CacheKeyGenerationService.GetCacheKey(methodInfo, A<object[]>.Ignored)).Returns(cacheKey);

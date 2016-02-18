@@ -26,5 +26,11 @@ namespace Cash.Ninject.Tests.Models
         public void TestMethod_WithNoCacheAttribute()
         {
         }
+
+        [Cache]
+        public void TestMethod_WithCacheAttribute_AndParameters(int x, int y)
+        {
+            
+        }
     }
 }
