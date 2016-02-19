@@ -1,5 +1,7 @@
 ﻿using System.Runtime.Caching;
 using Autofac;
+
+using Cash.Core.Interceptors;
 using Cash.Core.Services;
 
 namespace Cash.Autofac
@@ -16,6 +18,8 @@ namespace Cash.Autofac
             builder.Register(x => cacheProvider).As<ObjectCache>().SingleInstance();
             builder.RegisterType<CacheKeyGenerationService>().As<ICacheKeyGenerationService>().SingleInstance();
             builder.RegisterType<CacheKeyRegistrationService>().As<ICacheKeyRegistrationService>().SingleInstance();
+
+            builder.Register(c => new CachingInterceptor(c.Resolve<ObjectCache>(), c.Resolve<ICacheKeyGenerationService>())).InstancePerDependency();
         }
     }
 }
