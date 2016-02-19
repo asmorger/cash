@@ -42,7 +42,7 @@ namespace Cash.Core.Tests.Interceptors
             var methodInfo =
                 typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithNoCacheAttribute));
 
-            A.CallTo(() => Invocation.GetConcreteMethod()).Returns(methodInfo);
+            A.CallTo(() => Invocation.GetConcreteMethodInvocationTarget()).Returns(methodInfo);
 
             Interceptor.Intercept(Invocation);
 
@@ -60,7 +60,7 @@ namespace Cash.Core.Tests.Interceptors
             var methodInfo =
                 typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
 
-            A.CallTo(() => Invocation.GetConcreteMethod()).Returns(methodInfo);
+            A.CallTo(() => Invocation.GetConcreteMethodInvocationTarget()).Returns(methodInfo);
             A.CallTo(() => CacheKeyGenerationService.GetCacheKey(methodInfo, A<object[]>.Ignored)).Returns(cacheKey);
             A.CallTo(() => Cache.Contains(cacheKey, region)).Returns(true);
             A.CallTo(() => Cache.Get(cacheKey, region)).Returns(cacheOutput);
@@ -84,7 +84,7 @@ namespace Cash.Core.Tests.Interceptors
             var methodInfo =
                 typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
 
-            A.CallTo(() => Invocation.GetConcreteMethod()).Returns(methodInfo);
+            A.CallTo(() => Invocation.GetConcreteMethodInvocationTarget()).Returns(methodInfo);
             A.CallTo(() => CacheKeyGenerationService.GetCacheKey(methodInfo, A<object[]>.Ignored)).Returns(cacheKey);
             A.CallTo(() => Cache.Contains(cacheKey, region)).Returns(false);
             A.CallTo(() => Invocation.ReturnValue).Returns(returnValue);
