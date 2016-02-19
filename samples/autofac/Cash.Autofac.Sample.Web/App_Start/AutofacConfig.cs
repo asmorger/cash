@@ -19,6 +19,7 @@ namespace Cash.Autofac.Sample.Web.App_Start
             Cash.RegisterCacheInfrastructure(builder, MemoryCache.Default);
 
             builder.RegisterType<RandomDataService>().As<IRandomDataService>().SingleInstance().WithDefaultCache();
+            builder.RegisterType<UserService>().As<IUserService>().SingleInstance().WithDefaultCache();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

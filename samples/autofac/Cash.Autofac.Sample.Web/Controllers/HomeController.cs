@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 using Cash.Autofac.Sample.Web.Services;
 
@@ -12,15 +8,24 @@ namespace Cash.Autofac.Sample.Web.Controllers
     {
         private readonly IRandomDataService _randomDataService;
 
-        public HomeController(IRandomDataService randomDataService)
+        private readonly IUserService _userService;
+
+        public HomeController(IRandomDataService randomDataService, IUserService userService)
         {
             _randomDataService = randomDataService;
+            _userService = userService;
         }
 
         public ActionResult Index()
         {
             ViewBag.CachedRandomNumber = _randomDataService.GetCachedRandomNumber();
             ViewBag.NonCachedRandomNumber = _randomDataService.GetNonCachedRandomNumber();
+
+            var user = _userService.GetUserById(1);
+            var address = _userService.GetByUser(user);
+
+            ViewBag.UserName = string.Concat(user.FirstName, " ", user.LastName);
+            ViewBag.Address = string.Concat(address.PrimaryAddress, " ", address.SecondaryAddress);
 
             return View();
         }
