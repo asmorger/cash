@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
 
+using Castle.DynamicProxy;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -33,7 +34,7 @@ namespace Cash.Core.Services
             try
             {
                 var getCacheKeyMethod = GetType()
-                    .GetMethod(nameof(GetCacheKey), BindingFlags.Public | BindingFlags.Instance);
+                    .GetMethod(nameof(GetCacheKey), BindingFlags.NonPublic | BindingFlags.Instance);
                 var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
 
                 var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument });
@@ -54,7 +55,7 @@ namespace Cash.Core.Services
             return output;
         }
 
-        public string GetCacheKey<TEntity>(TEntity item)
+        protected string GetCacheKey<TEntity>(TEntity item)
         {
             var cacheKeyProvider = _cacheKeyRegistrationService.GetTypedCacheKeyProvider<TEntity>();
             var typeName = typeof(TEntity).Name;
@@ -84,6 +85,15 @@ namespace Cash.Core.Services
             var cacheKey = string.Join(IndividualArgumentDelimiter, cacheKeys);
 
             return cacheKey;
+        }
+
+        public string GetCacheKey(MethodInfo method, object[] arguments)
+        {
+            var methodCacheKey = GetMethodCacheKey(method);
+            var argumentsCacheKey = GetArgumentsCacheKey(arguments);
+
+            var output = $"{methodCacheKey}({argumentsCacheKey})";
+            return output;
         }
     }
 }
