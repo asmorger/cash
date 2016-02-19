@@ -13,11 +13,12 @@ namespace Cash.Autofac
         /// </summary>
         /// <param name="builder">The Autofac <see cref="ContainerBuilder"/></param>
         /// <param name="cacheProvider">The <see cref="ObjectCache"/> instance to use as a cache provider.</param>
-        public static void RegisterCacheInfrastructure(ContainerBuilder builder, ObjectCache cacheProvider)
+        /// <param name="registrationService">The <see cref="ICacheKeyRegistrationService"/> that contains the registrations for this solution. </param>
+        public static void RegisterCacheInfrastructure(ContainerBuilder builder, ObjectCache cacheProvider, ICacheKeyRegistrationService registrationService)
         {
             builder.Register(x => cacheProvider).As<ObjectCache>().SingleInstance();
             builder.RegisterType<CacheKeyGenerationService>().As<ICacheKeyGenerationService>().SingleInstance();
-            builder.RegisterType<CacheKeyRegistrationService>().As<ICacheKeyRegistrationService>().SingleInstance();
+            builder.Register(x => registrationService).As<ICacheKeyRegistrationService>().SingleInstance();
 
             builder.Register(c => new CachingInterceptor(c.Resolve<ObjectCache>(), c.Resolve<ICacheKeyGenerationService>())).InstancePerDependency();
         }
