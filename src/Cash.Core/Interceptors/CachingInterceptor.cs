@@ -29,7 +29,7 @@ namespace Cash.Core.Interceptors
 
         protected override MethodInfo GetMethodInfoFromInterceptor()
         {
-            var method = _invocation.GetConcreteMethod();
+            var method = _invocation.GetConcreteMethodInvocationTarget();
             return method;
         }
 
