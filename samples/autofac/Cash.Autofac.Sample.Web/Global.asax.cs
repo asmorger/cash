@@ -18,7 +18,9 @@ namespace Cash.Autofac.Sample.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AutofacConfig.RegisterDependencies();
+
+            var cacheRegistrationService = CashConfig.RegisterCacheKeys();
+            AutofacConfig.RegisterDependencies(cacheRegistrationService);
         }
     }
 }
