@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Cash.Core.Services;
+﻿using Cash.Core.Services;
+using Cash.Sample.Shared.Models;
 
 namespace Cash.Ninject.Sample.Web.App_Start
 {
@@ -14,7 +9,7 @@ namespace Cash.Ninject.Sample.Web.App_Start
         {
             var registrationService = new CacheKeyRegistrationService();
 
-            // registrationService.AddTypedCacheKeyProvider<UserModel>(x => $"{x.Id}");
+            registrationService.AddTypedCacheKeyProvider<UserModel>(x => $"{x.Id}");
 
             return registrationService;
         }
