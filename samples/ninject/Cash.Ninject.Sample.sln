@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Core", "..\..\src\Cash
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Ninject", "..\..\src\Cash.Ninject\Cash.Ninject.csproj", "{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Sample.Shared", "..\shared\Cash.Sample.Shared\Cash.Sample.Shared.csproj", "{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3FE59CB-C8FD-46E2-AB26-5CC3DE7B1DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
