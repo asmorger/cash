@@ -1,4 +1,5 @@
-﻿using System.Runtime.Caching;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Caching;
 
 using Cash.Core.Services;
 using Cash.Ninject.Interceptors;
@@ -11,6 +12,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cash.Ninject.Tests.Interceptors
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class NinjectInterceptorTests
     {
         public NinjectCachingInterceptor Interceptor { get; set; }

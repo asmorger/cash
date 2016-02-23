@@ -1,4 +1,5 @@
-﻿using System.Runtime.Caching;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Caching;
 
 using Cash.Core.Services;
 
@@ -11,6 +12,7 @@ using Ninject;
 namespace Cash.Ninject.Tests
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class CashTests
     {
         public StandardKernel Kernel { get; set; }

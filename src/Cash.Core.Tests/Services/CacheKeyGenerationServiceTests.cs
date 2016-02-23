@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the GNU General Public License, Version 3.0. See License.txt in the project root for license information.
 
+using System.Diagnostics.CodeAnalysis;
+
 using Cash.Core.Exceptions;
 using Cash.Core.Services;
 using Cash.Core.Tests.Models;
@@ -12,6 +14,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cash.Core.Tests.Services
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class CacheKeyGenerationServiceTests
     {
         private const string NullOrZeroArgumentsResult = "<no_arguments>";

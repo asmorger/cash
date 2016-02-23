@@ -1,4 +1,5 @@
-﻿using System.Runtime.Caching;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Caching;
 using Autofac;
 using Cash.Core.Services;
 using FakeItEasy;
@@ -7,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cash.Autofac.Tests
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class CashTests
     {
         public ContainerBuilder Builder { get; set; }
