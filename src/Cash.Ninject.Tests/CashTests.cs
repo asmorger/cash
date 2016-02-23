@@ -17,18 +17,21 @@ namespace Cash.Ninject.Tests
 
         public ObjectCache Cache { get; set; }
 
+        public ICacheKeyRegistrationService RegistrationService { get; set; }
+
         [TestInitialize]
         public void Initialize()
         {
             Kernel = new StandardKernel();
             Cache = A.Fake<ObjectCache>();
+            RegistrationService = A.Fake<ICacheKeyRegistrationService>();
         }
 
 
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheKeyGenerationService()
         {
-            Cash.RegisterCacheInfrastructure(Kernel, Cache);
+            Cash.RegisterCacheInfrastructure(Kernel, Cache, RegistrationService);
 
             var canResolve = Kernel.CanResolve<ICacheKeyGenerationService>();
 
@@ -38,7 +41,7 @@ namespace Cash.Ninject.Tests
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheKeyRegistrationService()
         {
-            Cash.RegisterCacheInfrastructure(Kernel, Cache);
+            Cash.RegisterCacheInfrastructure(Kernel, Cache, RegistrationService);
 
             var canResolve = Kernel.CanResolve<ICacheKeyRegistrationService>();
 
@@ -48,7 +51,7 @@ namespace Cash.Ninject.Tests
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheStore()
         {
-            Cash.RegisterCacheInfrastructure(Kernel, Cache);
+            Cash.RegisterCacheInfrastructure(Kernel, Cache, RegistrationService);
 
             var canResolve = Kernel.CanResolve<ObjectCache>();
 
