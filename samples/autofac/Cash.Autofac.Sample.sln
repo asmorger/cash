@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Core", "..\..\src\Cash
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Autofac", "..\..\src\Cash.Autofac\Cash.Autofac.csproj", "{91E56CC0-6674-48E8-AA01-9C7136D05F8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cash.Sample.Shared", "..\shared\Cash.Sample.Shared\Cash.Sample.Shared.csproj", "{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E56CC0-6674-48E8-AA01-9C7136D05F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5F7267A-8505-4F30-AFDB-A9A222EBB05A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

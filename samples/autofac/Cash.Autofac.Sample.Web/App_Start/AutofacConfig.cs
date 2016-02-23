@@ -5,8 +5,8 @@ using Autofac;
 using Autofac.Integration.Mvc;
 
 using Cash.Autofac.Extensions;
-using Cash.Autofac.Sample.Web.Services;
 using Cash.Core.Services;
+using Cash.Sample.Shared.Services;
 
 namespace Cash.Autofac.Sample.Web.App_Start
 {

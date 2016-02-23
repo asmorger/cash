@@ -1,4 +1,4 @@
-﻿namespace Cash.Autofac.Sample.Web.Models
+namespace Cash.Sample.Shared.Models
 {
     public class UserModel
     {

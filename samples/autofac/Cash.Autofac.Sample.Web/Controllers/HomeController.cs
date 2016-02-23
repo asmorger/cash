@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-using Cash.Autofac.Sample.Web.Services;
+using Cash.Sample.Shared.Services;
 
 namespace Cash.Autofac.Sample.Web.Controllers
 {

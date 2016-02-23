@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 using Cash.Core.Attributes;
 
-namespace Cash.Autofac.Sample.Web.Services
+namespace Cash.Sample.Shared.Services
 {
     public class RandomDataService : IRandomDataService
     {
