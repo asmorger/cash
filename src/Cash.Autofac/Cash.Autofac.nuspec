@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Cash.Autofac</id>
+    <version>$version$</version>
+    <title>Cash.Autofac</title>
+    <authors>Andrew Morger</authors>
+    <owners>Andrew Morger</owners>
+    <licenseUrl>https://github.com/asmorger/cash/blob/master/License.txt</licenseUrl>
+    <projectUrl>http://www.cashallthethings.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An elegant, Autofac-specific solution to an old problem: caching.</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>Caching Cache AOP Autofac</tags>
+    <dependencies>
+      <dependency id="Cash.Core" />
+      <dependency id="Castle.Core" />
+      <dependency id="Cash.Autofac" version="3.5.2" />
+      <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.7" />
+    </dependencies>
+  </metadata>
+</package>
