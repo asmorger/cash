@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 using Autofac;
 
@@ -10,6 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cash.Autofac.Tests.Extensions
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class AutofacExtensionsTests
     {
         public ContainerBuilder Builder { get; set; }

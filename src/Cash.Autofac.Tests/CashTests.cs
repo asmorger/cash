@@ -1,5 +1,8 @@
-﻿using System.Runtime.Caching;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Caching;
 using Autofac;
+
+using Cash.Core.Interceptors;
 using Cash.Core.Services;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cash.Autofac.Tests
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class CashTests
     {
         public ContainerBuilder Builder { get; set; }
@@ -56,6 +60,17 @@ namespace Cash.Autofac.Tests
 
             Assert.IsNotNull(cache);
             Assert.AreEqual(Cache, cache);
+        }
+
+        [TestMethod]
+        public void RegisterCacheInfrastructure_RegistersTheCacheInterceptor()
+        {
+            Cash.RegisterCacheInfrastructure(Builder, Cache, RegistrationService);
+
+            var container = Builder.Build();
+            var interceptor = container.Resolve<CachingInterceptor>();
+
+            Assert.IsNotNull(interceptor);
         }
     }
 }

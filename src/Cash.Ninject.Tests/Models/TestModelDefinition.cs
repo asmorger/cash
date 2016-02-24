@@ -1,7 +1,10 @@
-﻿using Cash.Core.Attributes;
+﻿using System.Diagnostics.CodeAnalysis;
+
+using Cash.Core.Attributes;
 
 namespace Cash.Ninject.Tests.Models
 {
+    [ExcludeFromCodeCoverage]
     public class TestModelDefinition
     {
         public int Id { get; set; }

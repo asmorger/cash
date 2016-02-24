@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
@@ -20,6 +21,7 @@ using Ninject.Extensions.Interception.Request;
 namespace Cash.Ninject.Tests.Interceptors
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class NinjectCachingInterceptorIntegrationTests
     {
         public NinjectCachingInterceptor Interceptor { get; set; }

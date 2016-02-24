@@ -1,6 +1,6 @@
-﻿using Cash.Autofac.Sample.Web.Models;
+using Cash.Sample.Shared.Models;
 
-namespace Cash.Autofac.Sample.Web.Services
+namespace Cash.Sample.Shared.Services
 {
     public interface IUserService
     {

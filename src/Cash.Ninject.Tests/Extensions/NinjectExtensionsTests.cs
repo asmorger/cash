@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 using Cash.Core.Services;
 using Cash.Ninject.Extensions;
@@ -10,6 +11,7 @@ using Ninject;
 namespace Cash.Ninject.Tests.Extensions
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class NinjectExtensionsTests
     {
         public StandardKernel Kernel { get; set; }
