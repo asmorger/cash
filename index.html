@@ -196,24 +196,16 @@ clients:
 </div>
 
 <hr>
-<div class='two spacing'></div>
-<div class='row'>
-  <div class='large-12 columns'>
-    <h3>Features</h3>
-    <div class='two spacing'></div>
-  </div>
-</div>
-<div class='row'>
-  {% for service in page.services %}
-    <div class='medium-3 large-3 columns'>
-      <div class='fadein mod modIconText' data-delay='{{ 200 | times:forloop.index0 }}'>
-        <div class='icon-text-circle'>
-          <i class='{{service.icon_class}}'></i>
-          <h3>{{service.title}}</h3>
-          <p>{{service.desc}}</p>
-        </div>
-        <div class='two spacing'></div>
-      </div>
+<div class='full no-padding'>
+  <div class='spacing'></div>
+  <div class='row'>
+    <div class='large-12 columns'>
+      <h3> < Version 1.0?</h3>
+      <p>
+        This solution (in a previous form) has been in production for almost a year now, but I re-wrote it from the ground up for this open-sourcing.  
+        Since this exact code hasn't been through all of it's paces in all of the places, I wanted reflect that, and the version seemed to be the best way of doing that.
+        Dont worry, I expect this will be updated to 1.0 in the near future.     
+      </p>
     </div>
-  {% endfor %}
+  </div>
 </div>
