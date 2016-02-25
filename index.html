@@ -15,7 +15,7 @@ services:
     title: Simple
     desc: Not much to it, really
   - icon_class: fa fa-plug
-    title: Pluggable
+    title: Versatile
     desc: Integrates directly with DI
 
 bars:
@@ -37,6 +37,23 @@ testimonials:
     author: Ninject
     position: 
     avatar: images/ninject.jpg
+    
+other_services:
+  - icon_class: fa fa-tag
+    title: < version 1.0?
+    desc: 
+      This solution (in a previous form) has been in production for almost a year now, but I re-wrote it from the ground up for this open-sourcing.  
+      Since this exact code hasn't been through all of it's paces in all of the places, I wanted reflect that, and the version seemed to be the best way of doing that.
+      Dont worry, I expect this will be updated to 1.0 in the near future. 
+  - icon_class: fa fa-shield
+    title: netcore
+    desc:
+      Netcore support is high on the list.  The one core dependency of the project is Castle.Core, but unfortunately there isn't a version of that library that is compatible.  
+      <br /> I need to determine if there is another library that will work, or if I need to roll my own.
+  - icon_class: fa fa-github
+    title: Github
+    desc:
+      Github goes here.
 
 clients:
   - images/@stock/client-grey-1.png
@@ -46,6 +63,10 @@ clients:
   - images/@stock/client-grey-5.png
   - images/@stock/client-grey-6.png
 ---
+
+<a href="https://github.com/asmorger/cash" target="_blank">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+</a>
 
 <div class='full no-padding'>
   <div class='two spacing'></div>
@@ -197,15 +218,19 @@ clients:
 
 <hr>
 <div class='full no-padding'>
-  <div class='spacing'></div>
-  <div class='row'>
+    <div class='row'>
     <div class='large-12 columns'>
-      <h3> < Version 1.0?</h3>
-      <p>
-        This solution (in a previous form) has been in production for almost a year now, but I re-wrote it from the ground up for this open-sourcing.  
-        Since this exact code hasn't been through all of it's paces in all of the places, I wanted reflect that, and the version seemed to be the best way of doing that.
-        Dont worry, I expect this will be updated to 1.0 in the near future.     
-      </p>
+      <div class='mod modBoxedTextSlider'>
+        <div class='boxes'>
+          {% for service in page.other_services %}
+            <div class='box' style='background: #f9f9f9;'>
+              <i class='{{service.icon_class}}'></i>
+              <h4>{{service.title}}</h4>
+              <p>{{service.desc}}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
