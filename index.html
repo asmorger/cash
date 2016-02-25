@@ -1,0 +1,170 @@
+---
+layout: default
+section_id: home
+slides:
+  - bg: images/cash.jpg
+
+services:
+  - icon_class: fa fa-fighter-jet
+    title: Fast
+    desc: Up and running in under 5 minutes
+  - icon_class: fa fa-thumbs-up
+    title: Easy
+    desc: Clean, low-impact integration
+  - icon_class: fa fa-wrench
+    title: Simple
+    desc: Not much to it, really
+  - icon_class: fa fa-plug
+    title: Pluggable
+    desc: Integrates directly with DI
+
+bars:
+  - title: Web Design
+    percent: 84
+  - title: Web Development
+    percent: 95
+  - title: Site Management
+    percent: 70
+  - title: Branding
+    percent: 65
+
+testimonials:
+  - text: Code goes here
+    author: Autofac
+    position: 
+    avatar: images/autofac.png
+  - text: Code goes here
+    author: Ninject
+    position: 
+    avatar: images/ninject.jpg
+
+clients:
+  - images/@stock/client-grey-1.png
+  - images/@stock/client-grey-2.png
+  - images/@stock/client-grey-3.png
+  - images/@stock/client-grey-4.png
+  - images/@stock/client-grey-5.png
+  - images/@stock/client-grey-6.png
+---
+
+<div class='full no-padding'>
+  <div class='two spacing'></div>
+  <div class='row'>
+    <div class='large-12 columns'>
+      <div class='mod modBoxedSlider'>
+        <div class='slides'>
+          {% for slide in page.slides %}
+            <div class='slide'>
+              <img alt="" src="{{slide.bg}}" style='margin-left: auto; margin-right: auto;' />
+              <div class='caption'>
+                {% if slide.title %}
+                <p>{{slide.title}}</p>
+                {% endif %}
+
+                {% if slide.title %}
+                <h2>{{slide.tagline}}</h2>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='full no-padding'>
+  <div class='spacing'></div>
+  <div class='row'>
+    <div class='large-12 columns'>
+      <p style='font-size: 1.5rem; font-style: italic; text-align: center;'>
+        An elegant solution to an old problem: caching.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class='full no-padding' style='background: #f5f5f5'>
+  <div class='two spacing'></div>
+  <div class='mod modCallToAction'>
+    <div class='row'>
+      <div class='medium-9 large-9 columns'>
+        <p>Nuget link goes here</p>
+      </div>
+      <div class='medium-3 large-3 columns'>
+        <a class='button' target="_blank" href='http://nuget.org'>View on Nuget</a>
+      </div>
+    </div>
+  </div>
+  <div class='spacing'></div>
+</div>
+
+{% if page.works %}
+<div class='two spacing'></div>
+<div class='row'>
+  <div class='large-12 columns'>
+    <h3>
+      Our recent work
+      /
+      <a href='portfolio.html'>View more</a>
+    </h3>
+    <div class='spacing'></div>
+  </div>
+  <div class='mod modGallery'>
+    <ul class='gallery large-block-grid-4 medium-block-grid-3 seperated small-block-grid-2'>
+      {% for work in page.works %}
+        <li class='{{work.class}}'>
+          <a href='portfolio-item.html'>
+            <img alt="" src="{{work.image}}" />
+            <div class='overlay' style='background: rgba(143, 221, 115, 0.8);'>
+              <div class='thumb-info'>
+                <h3>{{work.title}}</h3>
+                <p>{{work.desc}}</p>
+              </div>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class='two spacing'></div>
+<hr>
+{% endif %}
+
+<div class='full'>
+  <div class='row'>
+    <div class='medium-6 columns'>
+      <h3>Registration</h3>
+      <div class='spacing'></div>
+{% gist 9911426f30d635b148dc %}
+    </div>
+    <div class='medium-6 columns'>
+      <h3>Decoration</h3>
+      <div class='spacing'></div>
+{% gist e7ede721de1b2be32b75 %}
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class='two spacing'></div>
+<div class='row'>
+  <div class='large-12 columns'>
+    <h3>Features</h3>
+    <div class='two spacing'></div>
+  </div>
+</div>
+<div class='row'>
+  {% for service in page.services %}
+    <div class='medium-3 large-3 columns'>
+      <div class='fadein mod modIconText' data-delay='{{ 200 | times:forloop.index0 }}'>
+        <div class='icon-text-circle'>
+          <i class='{{service.icon_class}}'></i>
+          <h3>{{service.title}}</h3>
+          <p>{{service.desc}}</p>
+        </div>
+        <div class='two spacing'></div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
