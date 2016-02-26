@@ -82,7 +82,7 @@ shields:
 ---
 
 <div class='full no-padding'>
-  <div class='two spacing'></div>
+  
   <div class='row'>
     <div class='large-12 columns'>
       <div class='mod modBoxedSlider'>
@@ -187,12 +187,12 @@ Install-Package Cash.Ninject
 <hr>
 {% endif %}
 
-<div class='full'>
-  <div class='row'>
-    <div class='medium-6 columns'>
-      <h3>Integration</h3>
-      <p>Easily integrate into your existing services.</p>
-      <div class='spacing'></div>
+<div class='spacing'></div>
+<div class='row'>
+<div class='medium-6 columns'>
+    <h3>Integration</h3>
+    <p>Easily integrate into your existing services.</p>
+    <div class='spacing'></div>
 {% highlight csharp %}
 public class UserService
 {
@@ -209,11 +209,11 @@ public class UserService
   }
 }
 {% endhighlight %}
-    </div>
-    <div class='medium-6 columns'>
-      <h3>Key Registration</h3>
-      <p>Tell us how to construct a cache key for your complex types</p>
-      <div class='spacing'></div>
+</div>
+<div class='medium-6 columns'>
+    <h3>Key Registration</h3>
+    <p>Tell us how to construct a cache key for your complex types</p>
+    <div class='spacing'></div>
 {% highlight csharp %}
 var keyRegistration = new CacheKeyRegistrationService();
 
@@ -224,9 +224,9 @@ registrationService
         
 return keyRegistration;
 {% endhighlight %}
-    </div>
-  </div>
 </div>
+</div>
+
 
 <div class='full'>
   <div class='row'>
