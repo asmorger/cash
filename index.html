@@ -62,6 +62,23 @@ clients:
   - images/@stock/client-grey-4.png
   - images/@stock/client-grey-5.png
   - images/@stock/client-grey-6.png
+  
+shields:
+  - link: http://www.nuget.org/packages/cash.core
+    icon: https://img.shields.io/nuget/dt/Cash.Core.svg?style=flat-square
+    alt: Nuget
+  - link: http://www.nuget.org/packages/cash.core
+    icon: https://img.shields.io/nuget/v/Cash.Core.svg?style=flat-square
+    alt: Nuget Count
+  - link: https://ci.appveyor.com/project/asmorger/cash/branch/master
+    icon: https://img.shields.io/appveyor/ci/asmorger/cash.svg?style=flat-square
+    alt: Appveyor
+  - link: https://coveralls.io/github/asmorger/cash?branch=master
+    icon: https://img.shields.io/coveralls/asmorger/cash/master.svg?style=flat-square
+    alt: Unit Test Coverage
+  - link: https://github.com/asmorger/cash/blob/master/License.txt
+    icon: https://img.shields.io/github/license/asmorger/cash.svg?style=flat-square
+    alt: License
 ---
 
 <div class='full no-padding'>
@@ -124,21 +141,13 @@ Install-Package Cash.Ninject
     <div class='row'>
       <div class='small-9 small-centered columns'>
         <ul class='inline-list'>
-            <li>
-                <img src="https://img.shields.io/nuget/dt/Cash.Core.svg?style=flat-square" alt="Nuget" />
-            </li>
-            <li>
-                <img src="https://img.shields.io/nuget/v/Cash.Core.svg?style=flat-square" alt="Nuget" />
-            </li>
-            <li>
-                <img src="https://img.shields.io/appveyor/ci/asmorger/cash.svg?style=flat-square" alt="Build status" />
-            </li>
-            <li>
-                <img src="https://img.shields.io/coveralls/asmorger/cash/master.svg?style=flat-square" alt="Unit test coverage" />
-            </li>
-            <li>
-                <img src="https://img.shields.io/github/license/asmorger/cash.svg?style=flat-square" alt="License info" />
-            </li>
+            {% for shield in page.shields %}
+              <li>
+                  <a href='{{shield.link}}'' target='_blank'>
+                      <img src="{{shield.icon}}" alt="{{shield.alt}}" />
+                  </a>
+              </li>
+            {% endfor %}
         </ul>
       </div>
   </div>
