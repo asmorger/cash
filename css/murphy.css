@@ -15,6 +15,10 @@
   white-space: pre;
 }
 
+code {
+    border-style: none;
+}
+
 /* github style pygments theme for jekyll */
 /* from https://github.com/aahan/pygments-github-style */
 
