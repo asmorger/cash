@@ -192,7 +192,6 @@ Install-Package Cash.Ninject
 <div class='medium-6 columns'>
     <h3>Integration</h3>
     <p>Easily integrate into your existing services.</p>
-    <div class='spacing'></div>
 {% highlight csharp %}
 public class UserService
 {
@@ -213,7 +212,6 @@ public class UserService
 <div class='medium-6 columns'>
     <h3>Key Registration</h3>
     <p>Tell us how to construct a cache key for your complex types</p>
-    <div class='spacing'></div>
 {% highlight csharp %}
 var keyRegistration = new CacheKeyRegistrationService();
 
@@ -227,13 +225,11 @@ return keyRegistration;
 </div>
 </div>
 
-
-<div class='full'>
-  <div class='row'>
+<div class='spacing'></div>
+<div class='row'>
     <div class='medium-12 columns'>
       <h3>Dependency Injection Integration</h3>
       <p>Integrate with your Dependency Injetion framework of choice</p>
-      <div class='spacing'></div>
 {% highlight csharp %}
 var bulder = new ContainerBuilder();
 var keyRegistration = new CacheKeyRegistrationService();
@@ -244,7 +240,6 @@ builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest().
 {% endhighlight %}
     </div>
   </div>
-</div>
 
 <hr>
 <div class='two spacing'></div>
