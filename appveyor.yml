@@ -1,14 +1,37 @@
-version: 1.0.{build}
 os: Visual Studio 2015
 configuration: Release
 
-init:
-- cmd: PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+version: 0.9.{build}
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+
+install:
+- ps: >-
+    nuget restore src\Cash.sln
+- ps: >-
+    ./scripts/SetReleaseVersion.ps1
+
+# Do the build
+before_build:
+- set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+- ps: >-
+    ./scripts/SetPackageVersions.ps1
 
 build:
   project: src\Cash.sln
   parallel: false
-  verbosity: normal
+  verbosity: minimal
+
+branches:
+  only:
+    - master
+    - develop
+
+configuration: Release
 
 environment:
   EnableNuGetPackageRestore: true
@@ -17,8 +40,6 @@ environment:
 
 cache: packages -> **\packages.config
 
-before_build:
-- cmd: nuget restore src\Cash.sln
 
 after_test: 
 # generate report for MSTest testing framework:
