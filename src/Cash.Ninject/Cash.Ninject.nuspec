@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Cash.Ninject</id>
-    <version>0.9.$version$</version>
+    <version>$version$</version>
     <title>Cash.Ninject</title>
     <authors>Andrew Morger</authors>
     <owners>Andrew Morger</owners>

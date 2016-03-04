@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Cash.Autofac</id>
-    <version>0.9.$version$</version>
+    <version>$version$</version>
     <title>Cash.Autofac</title>
     <authors>Andrew Morger</authors>
     <owners>Andrew Morger</owners>
