@@ -31,8 +31,6 @@ branches:
     - master
     - develop
 
-configuration: Release
-
 environment:
   EnableNuGetPackageRestore: true
   COVERALLS_REPO_TOKEN:
