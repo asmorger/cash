@@ -29,6 +29,10 @@ namespace Cash.Core.Attributes
             Priority = priority;
         }
 
+        /// <summary>
+        ///     Gets the configured CacheItemPolicy based upon the properties of the attribute
+        /// </summary>
+        /// <returns>The <see cref="CacheItemPolicy"/> that will be applied to the cache item.</returns>
         public CacheItemPolicy GetCacheItemPolicy()
         {
             var policy = new CacheItemPolicy { Priority = Priority.Convert() };

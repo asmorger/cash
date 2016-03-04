@@ -36,5 +36,21 @@ namespace Cash.Core.Tests.Attributes
 
             Assert.AreEqual(CacheItemPriority.High, attribute.Priority);
         }
+
+        [TestMethod]
+        public void GetCacheItemPolicy_ReturnsAnObject()
+        {
+            var result = CacheAttribute.GetCacheItemPolicy();
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void GetCacheItemPolicy_ProperlySetsTheCacheItemPriority()
+        {
+            var result = new CacheAttribute(CacheItemPriority.High).GetCacheItemPolicy();
+
+            Assert.AreEqual(System.Runtime.Caching.CacheItemPriority.Default, result.Priority);
+        }
     }
 }
