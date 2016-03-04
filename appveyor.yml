@@ -38,8 +38,17 @@ environment:
   COVERALLS_REPO_TOKEN:
     secure: dKx1NBL7fa4s+psdSDbjUqGRNtRSTrcelFsU2jrddJas7ymlWmtX/vdBlQKmehLG
 
-cache: packages -> **\packages.config
-
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+deploy:
+  - provider: NuGet
+    artifact: /.*\.nupkg/
+    api_key:
+      secure: +MVCZud4OT8yDZoCgEGf8uzc+zolXarmerZP7GDhqkQlG37nuAh/EkE1r5xZfPPG
+    on:
+      branch: master
+      appveyor_repo_tag: true
 
 after_test: 
 # generate report for MSTest testing framework:
