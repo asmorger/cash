@@ -1,4 +1,7 @@
-﻿using Cash.Ninject.Interceptors;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
+using Cash.Ninject.Interceptors;
 using Ninject.Extensions.Interception.Advice.Syntax;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Syntax;

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Cash.Core</id>
+    <version>$version$</version>
+    <title>Cash Core</title>
+    <authors>Andrew Morger</authors>
+    <owners>Andrew Morger</owners>
+    <licenseUrl>https://github.com/asmorger/cash/blob/master/License.txt</licenseUrl>
+    <projectUrl>http://asmorger.github.io/cash/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An elegant solution to an old problem: caching.</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>Caching Cache AOP</tags>
+    <dependencies>
+      <dependency id="Castle.Core" version="3.3.3" />
+    </dependencies>
+  </metadata>
+  <files>
+  	<file src="bin\release\Cash.Core.dll" target="lib\net452\Cash.Core.dll" />
+  </files>
+</package>

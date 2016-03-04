@@ -1,4 +1,7 @@
-﻿using Autofac.Builder;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
+using Autofac.Builder;
 using Autofac.Extras.DynamicProxy2;
 using Cash.Core.Interceptors;
 
