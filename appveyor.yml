@@ -19,7 +19,7 @@ install:
 before_build:
 - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
 - ps: >-
-    ./scripts/SetPackageVersions.ps1
+    ./scripts/SetPackageVersion.ps1
 
 build:
   project: src\Cash.sln
