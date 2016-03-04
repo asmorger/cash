@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>Cash.Core</id>
-    <version>$version$</version>
+    <version>0.9</version>
     <title>Cash Core</title>
     <authors>Andrew Morger</authors>
     <owners>Andrew Morger</owners>
     <licenseUrl>https://github.com/asmorger/cash/blob/master/License.txt</licenseUrl>
-    <projectUrl>http://www.cashallthethings.com</projectUrl>
+    <projectUrl>http://asmorger.github.io/cash/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An elegant solution to an old problem: caching.</description>
     <copyright>Copyright 2016</copyright>

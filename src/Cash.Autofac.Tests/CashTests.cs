@@ -1,4 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Caching;
 using Autofac;
 
