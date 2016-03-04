@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Caching;
@@ -69,12 +70,16 @@ namespace Cash.Core.Interceptors
             // get the cache key for the method and it's parameters
             var methodCacheKey = _cacheKeyGenerationService.GetCacheKey(method, arguments);
 
+            WriteDebugMessage($"Cache Key generated: {methodCacheKey}");
 
             // check to see if the cached item exists.  If so, retrieve it from the cache and return it
             if (_cache.Contains(methodCacheKey))
             {
                 var result = _cache.Get(methodCacheKey);
                 SetIntercetporReturnValue(result);
+
+                WriteDebugMessage($"Cached method results being returned: {methodCacheKey}");
+
                 return;
             }
 
@@ -86,6 +91,16 @@ namespace Cash.Core.Interceptors
             // cache the resulting output
             var cacheItem = GetCacheItem(methodCacheKey, returnValue);
             _cache.Set(cacheItem, new CacheItemPolicy());
+
+            WriteDebugMessage($"Results cached for key: {methodCacheKey}");
+        }
+
+        private void WriteDebugMessage(string message)
+        {
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine(message);
+            }
         }
     }
 }
