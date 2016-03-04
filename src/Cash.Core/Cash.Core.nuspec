@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Cash.Core</id>
-    <version>0.9</version>
+    <version>0.9.$version$</version>
     <title>Cash Core</title>
     <authors>Andrew Morger</authors>
     <owners>Andrew Morger</owners>
@@ -16,4 +16,7 @@
       <dependency id="Castle.Core" />
     </dependencies>
   </metadata>
+  <files>
+  	<file src="bin\release\Cash.Core.dll" target="lib\net45\Cash.Core.dll" />
+  </files>
 </package>
