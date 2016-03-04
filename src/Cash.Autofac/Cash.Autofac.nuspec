@@ -13,8 +13,8 @@
     <copyright>Copyright 2016</copyright>
     <tags>Caching Cache AOP Autofac</tags>
     <dependencies>
-      <dependency id="Cash.Core" />
-      <dependency id="Castle.Core" />
+      <dependency id="Cash.Core" value="Highest" />
+      <dependency id="Castle.Core" value="Highest" />
       <dependency id="Cash.Autofac" version="3.5.2" />
       <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.7" />
     </dependencies>
