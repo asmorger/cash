@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>Cash.Autofac</id>
-    <version>$version$</version>
+    <version>0.9.$version$</version>
     <title>Cash.Autofac</title>
     <authors>Andrew Morger</authors>
     <owners>Andrew Morger</owners>
     <licenseUrl>https://github.com/asmorger/cash/blob/master/License.txt</licenseUrl>
-    <projectUrl>http://www.cashallthethings.com</projectUrl>
+    <projectUrl>http://asmorger.github.io/cash/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An elegant, Autofac-specific solution to an old problem: caching.</description>
     <copyright>Copyright 2016</copyright>
@@ -19,4 +19,7 @@
       <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.7" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\release\Cash.Autofac.dll" target="lib\net45\Cash.Autofac.dll" />
+  </files>
 </package>
