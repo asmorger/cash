@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>Cash.Ninject</id>
-    <version>$version$</version>
+    <version>0.9.$version$</version>
     <title>Cash.Ninject</title>
     <authors>Andrew Morger</authors>
     <owners>Andrew Morger</owners>
     <licenseUrl>https://github.com/asmorger/cash/blob/master/License.txt</licenseUrl>
-    <projectUrl>http://www.cashallthethings.com</projectUrl>
+    <projectUrl>http://asmorger.github.io/cash/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An elegant, Ninject-specific solution to an old problem: caching.</description>
     <copyright>Copyright 2016</copyright>
@@ -20,4 +20,7 @@
       <dependency id="Ninject.Extensions.Interception.DynamicProxy" version="3.2.0.0" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\release\Cash.Ninject.dll" target="lib\net45\Cash.Ninject.dll" />
+  </files>
 </package>
