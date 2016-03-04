@@ -2,6 +2,9 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using System.Runtime.Caching;
+
+using Cash.Core.Extensions;
 
 namespace Cash.Core.Attributes
 {
@@ -24,6 +27,12 @@ namespace Cash.Core.Attributes
         public CacheAttribute(CacheItemPriority priority = CacheItemPriority.Normal)
         {
             Priority = priority;
+        }
+
+        public CacheItemPolicy GetCacheItemPolicy()
+        {
+            var policy = new CacheItemPolicy { Priority = Priority.Convert() };
+            return policy;
         }
     }
 }

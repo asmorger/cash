@@ -49,6 +49,7 @@
     <Compile Include="Enums\CacheItemPriority.cs" />
     <Compile Include="Exceptions\DuplicateCacheProviderRegistrationException.cs" />
     <Compile Include="Exceptions\UnregisteredCacheTypeException.cs" />
+    <Compile Include="Extensions\CacheItemPriorityExtensions.cs" />
     <Compile Include="Interceptors\BaseCachingInterceptor.cs" />
     <Compile Include="Interceptors\CachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -90,7 +90,8 @@ namespace Cash.Core.Interceptors
 
             // cache the resulting output
             var cacheItem = GetCacheItem(methodCacheKey, returnValue);
-            _cache.Set(cacheItem, new CacheItemPolicy());
+            var cachePolicy = cacheAttribute.GetCacheItemPolicy();
+            _cache.Set(cacheItem, cachePolicy);
 
             WriteDebugMessage($"Results cached for key: {methodCacheKey}");
         }
