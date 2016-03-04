@@ -13,13 +13,13 @@
     <copyright>Copyright 2016</copyright>
     <tags>Caching Cache AOP Autofac</tags>
     <dependencies>
-      <dependency id="Cash.Core" value="Highest" />
-      <dependency id="Castle.Core" value="Highest" />
+      <dependency id="Cash.Core" version="0.9" />
+      <dependency id="Castle.Core" version="3.3.3" />
       <dependency id="Cash.Autofac" version="3.5.2" />
       <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.7" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\release\Cash.Autofac.dll" target="lib\net45\Cash.Autofac.dll" />
+    <file src="bin\release\Cash.Autofac.dll" target="lib\net452\Cash.Autofac.dll" />
   </files>
 </package>

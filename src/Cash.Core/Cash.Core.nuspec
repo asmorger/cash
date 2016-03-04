@@ -13,10 +13,10 @@
     <copyright>Copyright 2016</copyright>
     <tags>Caching Cache AOP</tags>
     <dependencies>
-      <dependency id="Castle.Core" value="Highest" />
+      <dependency id="Castle.Core" version="3.3.3" />
     </dependencies>
   </metadata>
   <files>
-  	<file src="bin\release\Cash.Core.dll" target="lib\net45\Cash.Core.dll" />
+  	<file src="bin\release\Cash.Core.dll" target="lib\net452\Cash.Core.dll" />
   </files>
 </package>
