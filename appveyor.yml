@@ -25,6 +25,8 @@ build:
   project: src\Cash.sln
   parallel: false
   verbosity: minimal
+  publish_nuget: true
+  publish_nuget_symbols: true
 
 branches:
   only:
