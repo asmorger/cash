@@ -23,6 +23,12 @@ namespace Cash.Core.Services
 
         private string GetCacheKeyForArgument(object argument)
         {
+            if (argument == null)
+            {
+                var nullCacheKey = GetNullCacheKey();
+                return nullCacheKey;
+            }
+
             var type = argument.GetType();
 
             if (type.IsPrimitive || type == typeof(string))
@@ -45,6 +51,12 @@ namespace Cash.Core.Services
                 // unwrap the reflection exception and re-throw the inner exception
                 throw ex.InnerException;
             }
+        }
+
+        private string GetNullCacheKey()
+        {
+            var output = $"[UnknownType]{ArgumentNameValueDelimiter}[NULL]";
+            return output;
         }
 
         private string GetPrimitiveCacheKey(object argument, Type type)
