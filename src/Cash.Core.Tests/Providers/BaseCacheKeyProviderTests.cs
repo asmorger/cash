@@ -12,7 +12,8 @@ namespace Cash.Core.Tests.Providers
     {
         protected ICacheKeyProvider CacheKeyProvider;
 
-        public virtual void Initialize()
+        [TestInitialize]
+        public void Initialize()
         {
             CacheKeyProvider = new TCacheKeyProvider();
         }

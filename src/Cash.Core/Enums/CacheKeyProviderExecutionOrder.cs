@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cash.Core.Enums
+﻿namespace Cash.Core.Enums
 {
     public enum CacheKeyProviderExecutionOrder
     {
         Null = 250,
-        Enum = 9500
+        Enum = 9500,
+        Primitive = 10000
     }
 }

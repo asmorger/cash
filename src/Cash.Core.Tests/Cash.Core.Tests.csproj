@@ -67,7 +67,9 @@
     <Compile Include="Models\TestModelDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseCacheKeyProviderTests.cs" />
+    <Compile Include="Providers\EumCacheKeyProviderTests.cs" />
     <Compile Include="Providers\NullCacheKeyProviderTests.cs" />
+    <Compile Include="Providers\PrimitivieTypeCacheKeyProviderTests.cs" />
     <Compile Include="Services\CacheKeyGenerationServiceTests.cs" />
     <Compile Include="Services\CacheKeyRegistrationServiceTests.cs" />
   </ItemGroup>

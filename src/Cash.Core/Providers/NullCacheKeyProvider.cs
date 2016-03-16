@@ -13,7 +13,7 @@ namespace Cash.Core.Providers
             return output;
         }
 
-        public override string GetValueRepresentation(object parameter) => "[Null]";
+        public override string GetValueRepresentation(object parameter) => "[NULL]";
 
         public override string GetTypeNameRepresentation(object parameter) => "[UnknownType]";
     }

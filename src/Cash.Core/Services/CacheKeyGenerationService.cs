@@ -3,14 +3,20 @@
 
 using Castle.DynamicProxy;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
+using Cash.Core.Providers;
+using Cash.Core.Providers.Base;
 
 namespace Cash.Core.Services
 {
     public class CacheKeyGenerationService : ICacheKeyGenerationService
     {
         private readonly ICacheKeyRegistrationService _cacheKeyRegistrationService;
+
+        private readonly IOrderedEnumerable<ICacheKeyProvider> _cacheKeyProviders;
 
         private const string ArgumentNameValueDelimiter = "::";
 
@@ -19,27 +25,29 @@ namespace Cash.Core.Services
         public CacheKeyGenerationService(ICacheKeyRegistrationService cacheKeyRegistrationService)
         {
             _cacheKeyRegistrationService = cacheKeyRegistrationService;
+
+            _cacheKeyProviders = new List<ICacheKeyProvider>
+                                        { new NullCacheKeyProvider(),
+                                          new EumCacheKeyProvider(),
+                                          new PrimitiveTypeCacheKeyProvider()
+                                        }.OrderBy(x => (int)x.ExecutionOrder);
         }
 
         private string GetCacheKeyForArgument(object argument)
         {
-            if (argument == null)
-            {
-                var nullCacheKey = GetNullCacheKey();
-                return nullCacheKey;
-            }
+            var provider = _cacheKeyProviders.FirstOrDefault(x => x.IsValid(argument));
 
-            var type = argument.GetType();
-
-            if (type.IsPrimitive || type == typeof(string))
+            if (provider != null)
             {
-                var primitiveCacheKey = GetPrimitiveCacheKey(argument, type);
-                return primitiveCacheKey;
+                var result = provider.GetKey(argument);
+                return result;
             }
 
             try
             {
-                var getCacheKeyMethod = GetType()
+                var type = argument.GetType();
+
+                var getCacheKeyMethod = this.GetType()
                     .GetMethod(nameof(GetCacheKey), BindingFlags.NonPublic | BindingFlags.Instance);
                 var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
 
@@ -51,20 +59,6 @@ namespace Cash.Core.Services
                 // unwrap the reflection exception and re-throw the inner exception
                 throw ex.InnerException;
             }
-        }
-
-        private string GetNullCacheKey()
-        {
-            var output = $"[UnknownType]{ArgumentNameValueDelimiter}[NULL]";
-            return output;
-        }
-
-        private string GetPrimitiveCacheKey(object argument, Type type)
-        {
-            var typeName = type.Name;
-
-            var output = $"{typeName}{ArgumentNameValueDelimiter}{argument}";
-            return output;
         }
 
         protected string GetCacheKey<TEntity>(TEntity item)
