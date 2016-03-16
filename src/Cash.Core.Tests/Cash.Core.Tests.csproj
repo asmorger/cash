@@ -60,11 +60,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Attributes\CacheAttributeTests.cs" />
+    <Compile Include="Extensions\CacheItemPriorityExtensionsTests.cs" />
     <Compile Include="Interceptors\CachingInterceptorIntegrationTests.cs" />
     <Compile Include="Interceptors\CachingInterceptorTests.cs" />
     <Compile Include="Models\MethodInfoWithNullDeclaringType.cs" />
     <Compile Include="Models\TestModelDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\BaseCacheKeyProviderTests.cs" />
+    <Compile Include="Providers\EumCacheKeyProviderTests.cs" />
+    <Compile Include="Providers\NullCacheKeyProviderTests.cs" />
+    <Compile Include="Providers\PrimitivieTypeCacheKeyProviderTests.cs" />
     <Compile Include="Services\CacheKeyGenerationServiceTests.cs" />
     <Compile Include="Services\CacheKeyRegistrationServiceTests.cs" />
   </ItemGroup>

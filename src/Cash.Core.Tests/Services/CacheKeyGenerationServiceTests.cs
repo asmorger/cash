@@ -139,5 +139,13 @@ namespace Cash.Core.Tests.Services
 
             Assert.AreEqual(expectedResult, result);
         }
+
+        [TestMethod]
+        public void GetArugmentCacheKey_CreatesProperKey_ForTwoDisprateArgumentsOneIsNull()
+        {
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, null });
+
+            Assert.AreEqual("Int32::5||[UnknownType]::[NULL]", result);
+        }
     }
 }
