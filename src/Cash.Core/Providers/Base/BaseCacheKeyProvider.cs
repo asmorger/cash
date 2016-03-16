@@ -2,7 +2,7 @@
 
 namespace Cash.Core.Providers.Base
 {
-    internal abstract class BaseCacheKeyProvider : ICacheKeyProvider
+    public abstract class BaseCacheKeyProvider : ICacheKeyProvider
     {
         private const string ArgumentNameValueDelimiter = "::";
 

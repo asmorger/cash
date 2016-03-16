@@ -3,7 +3,7 @@ using Cash.Core.Providers.Base;
 
 namespace Cash.Core.Providers
 {
-    internal class NullCacheKeyProvider : BaseCacheKeyProvider
+    public sealed class NullCacheKeyProvider : BaseCacheKeyProvider
     {
         public override CacheKeyProviderExecutionOrder ExecutionOrder => CacheKeyProviderExecutionOrder.Null;
 

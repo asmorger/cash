@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cash.Core.Enums
 {
-    internal enum CacheKeyProviderExecutionOrder
+    public enum CacheKeyProviderExecutionOrder
     {
         Null = 250
     }

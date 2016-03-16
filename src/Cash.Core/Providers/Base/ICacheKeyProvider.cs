@@ -2,7 +2,7 @@
 
 namespace Cash.Core.Providers.Base
 {
-    internal interface ICacheKeyProvider
+    public interface ICacheKeyProvider
     {
         /// <summary>
         /// Gets the execution order of the Cache Key Providers.  This is to allow specific implementations to run before generic ones.
@@ -22,5 +22,9 @@ namespace Cash.Core.Providers.Base
         /// <param name="parameter">The method parameter</param>
         /// <returns></returns>
         string GetKey(object parameter);
+
+        string GetValueRepresentation(object parameter);
+
+        string GetTypeNameRepresentation(object parameter);
     }
 }
