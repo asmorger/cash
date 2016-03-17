@@ -54,5 +54,11 @@ namespace Cash.Core.Services
 
             throw new UnregisteredCacheTypeException(typeof(TEntity));
         }
+
+        public bool IsProviderRegistered(Type type)
+        {
+            var output = _cacheKeyProviders.ContainsKey(type);
+            return output;
+        }
     }
 }

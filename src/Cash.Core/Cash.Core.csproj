@@ -55,10 +55,12 @@
     <Compile Include="Interceptors\CachingInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Base\BaseCacheKeyProvider.cs" />
+    <Compile Include="Providers\Base\BaseRegisteredCacheKeyProvider.cs" />
     <Compile Include="Providers\Base\ICacheKeyProvider.cs" />
     <Compile Include="Providers\EumCacheKeyProvider.cs" />
     <Compile Include="Providers\NullCacheKeyProvider.cs" />
     <Compile Include="Providers\PrimitiveTypeCacheKeyProvider.cs" />
+    <Compile Include="Providers\UserRegisteredCacheKeyProvider.cs" />
     <Compile Include="Services\Base\ICacheKeyGenerationService.cs" />
     <Compile Include="Services\Base\ICacheKeyRegistrationService.cs" />
     <Compile Include="Services\CacheKeyGenerationService.cs" />

@@ -7,14 +7,14 @@ namespace Cash.Core.Providers.Base
 {
     public abstract class BaseCacheKeyProvider : ICacheKeyProvider
     {
-        private const string ArgumentNameValueDelimiter = "::";
+        protected const string ArgumentNameValueDelimiter = "::";
 
         public abstract CacheKeyProviderExecutionOrder ExecutionOrder { get; }
         public abstract bool IsValid(object parameter);
         public abstract string GetValueRepresentation(object parameter);
         public abstract string GetTypeNameRepresentation(object parameter);
 
-        public string GetKey(object parameter)
+        public virtual string GetKey(object parameter)
         {
             var name = GetTypeNameRepresentation(parameter);
             var value = GetValueRepresentation(parameter);

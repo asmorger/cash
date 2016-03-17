@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using Cash.Core.Exceptions;
 using Cash.Core.Providers;
 using Cash.Core.Providers.Base;
 
@@ -14,22 +15,18 @@ namespace Cash.Core.Services
 {
     public class CacheKeyGenerationService : ICacheKeyGenerationService
     {
-        private readonly ICacheKeyRegistrationService _cacheKeyRegistrationService;
-
         private readonly IOrderedEnumerable<ICacheKeyProvider> _cacheKeyProviders;
-
-        private const string ArgumentNameValueDelimiter = "::";
 
         private const string IndividualArgumentDelimiter = "||";
 
         public CacheKeyGenerationService(ICacheKeyRegistrationService cacheKeyRegistrationService)
         {
-            _cacheKeyRegistrationService = cacheKeyRegistrationService;
 
             _cacheKeyProviders = new List<ICacheKeyProvider>
                                         { new NullCacheKeyProvider(),
                                           new EumCacheKeyProvider(),
-                                          new PrimitiveTypeCacheKeyProvider()
+                                          new PrimitiveTypeCacheKeyProvider(),
+                                          new UserRegisteredCacheKeyProvider(cacheKeyRegistrationService) 
                                         }.OrderBy(x => (int)x.ExecutionOrder);
         }
 
@@ -43,33 +40,8 @@ namespace Cash.Core.Services
                 return result;
             }
 
-            try
-            {
-                var type = argument.GetType();
-
-                var getCacheKeyMethod = this.GetType()
-                    .GetMethod(nameof(GetCacheKey), BindingFlags.NonPublic | BindingFlags.Instance);
-                var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
-
-                var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { argument });
-                return cacheKey;
-            }
-            catch (TargetInvocationException ex)
-            {
-                // unwrap the reflection exception and re-throw the inner exception
-                throw ex.InnerException;
-            }
-        }
-
-        protected string GetCacheKey<TEntity>(TEntity item)
-        {
-            var cacheKeyProvider = _cacheKeyRegistrationService.GetTypedCacheKeyProvider<TEntity>();
-            var typeName = typeof(TEntity).Name;
-
-            var cacheKey = cacheKeyProvider(item);
-
-            var output = $"{typeName}{ArgumentNameValueDelimiter}{cacheKey}";
-            return output;
+            var type = argument.GetType();
+            throw new UnregisteredCacheTypeException(type);
         }
 
         public string GetMethodCacheKey(MethodInfo method)
