@@ -26,8 +26,18 @@ namespace Cash.Core.Providers.Base
         /// <returns></returns>
         string GetKey(object parameter);
 
+        /// <summary>
+        /// Gets the value representation of the parameter
+        /// </summary>
+        /// <param name="parameter">The method parameter</param>
+        /// <returns></returns>
         string GetValueRepresentation(object parameter);
 
+        /// <summary>
+        /// Gets the type name representation of the parameter
+        /// </summary>
+        /// <param name="parameter">The method parameter</param>
+        /// <returns></returns>
         string GetTypeNameRepresentation(object parameter);
     }
 }
