@@ -45,7 +45,7 @@ namespace Cash.Core.Providers.Base
 
         protected string GetCacheKeyValueRepresentation<TEntity>(TEntity item)
         {
-            var cacheKeyProvider = CacheKeyRegistrationService.GetTypedCacheKeyProvider<TEntity>();
+            var cacheKeyProvider = CacheKeyRegistrationService.GetCacheKeyFormatter<TEntity>();
             var value = cacheKeyProvider(item);
 
             return value;

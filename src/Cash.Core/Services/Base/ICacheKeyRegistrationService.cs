@@ -20,13 +20,13 @@ namespace Cash.Core.Services
         /// </summary>
         /// <typeparam name="TEntity">The type of the t entity.</typeparam>
         /// <returns>Expression&lt;Func&lt;TEntity, System.String&gt;&gt;.</returns>
-        Func<TEntity, string> GetTypedCacheKeyProvider<TEntity>();
+        Func<TEntity, string> GetCacheKeyFormatter<TEntity>();
 
         /// <summary>
         ///     Determines whether a typed cache key provider has been registered for a given type.
         /// </summary>
         /// <param name="type">The type to be checked</param>
         /// <returns><c>true</c> if [is provider registered] [the specified type]; otherwise, <c>false</c>.</returns>
-        bool IsProviderRegistered(Type type);
+        bool IsFormatterRegistered(Type type);
     }
 }

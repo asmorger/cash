@@ -27,7 +27,7 @@ namespace Cash.Core.Tests.Services
         {
             Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
 
-            var targetProvider = Service.GetTypedCacheKeyProvider<int>();
+            var targetProvider = Service.GetCacheKeyFormatter<int>();
             Assert.IsNotNull(targetProvider);
         }
 
@@ -35,11 +35,11 @@ namespace Cash.Core.Tests.Services
         [ExpectedException(typeof(UnregisteredCacheTypeException))]
         public void GetTypedCacheKeyProvider_ThrowsAnExceptionWhenAProviderHasNotBeenRegistered()
         {
-            var targetProvider = Service.GetTypedCacheKeyProvider<string>();
+            var targetProvider = Service.GetCacheKeyFormatter<string>();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DuplicateCacheProviderRegistrationException))]
+        [ExpectedException(typeof(DuplicateCacheFormatterRegistrationException))]
         public void AddTypedCacheKeyProvider_ThrowsAnExceptionWhenTheSameRegistrationTypeIsSet()
         {
             Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
@@ -51,7 +51,7 @@ namespace Cash.Core.Tests.Services
         {
             Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
 
-            var result = Service.IsProviderRegistered(typeof(int));
+            var result = Service.IsFormatterRegistered(typeof(int));
 
             Assert.IsTrue(result);
         }
@@ -61,7 +61,7 @@ namespace Cash.Core.Tests.Services
         {
             Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
 
-            var result = Service.IsProviderRegistered(typeof(string));
+            var result = Service.IsFormatterRegistered(typeof(string));
 
             Assert.IsFalse(result);
         }
