@@ -14,8 +14,7 @@ namespace Cash.Core.Services
     /// </summary>
     public class CacheKeyRegistrationService : ICacheKeyRegistrationService
     {
-        private readonly IDictionary<Type, LambdaExpression> _cacheKeyProviders =
-            new Dictionary<Type, LambdaExpression>();
+        private readonly IDictionary<Type, LambdaExpression> _cacheKeyProviders = new Dictionary<Type, LambdaExpression>();
 
         /// <summary>
         ///     Adds the typed cache key provider.
@@ -23,7 +22,7 @@ namespace Cash.Core.Services
         /// <typeparam name="TEntity">The type of the registration entity.</typeparam>
         /// <param name="registrationPattern">The registration pattern.</param>
         /// <exception cref="DuplicateCacheProviderRegistrationException"></exception>
-        public void AddTypedCacheKeyProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
+        public void RegisterCacheKeyFormatter<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
         {
             var targetType = typeof(TEntity);
 

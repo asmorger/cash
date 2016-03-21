@@ -13,7 +13,7 @@ namespace Cash.Core.Services
         /// </summary>
         /// <typeparam name="TEntity">The type of the registration entity.</typeparam>
         /// <param name="registrationPattern">The registration pattern.</param>
-        void AddTypedCacheKeyProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern);
+        void RegisterCacheKeyFormatter<TEntity>(Expression<Func<TEntity, string>> registrationPattern);
 
         /// <summary>
         ///     Gets the typed cache key provider.
