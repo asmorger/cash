@@ -45,5 +45,25 @@ namespace Cash.Core.Tests.Services
             Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
             Service.AddTypedCacheKeyProvider<int>(i => $"int2_{i}");
         }
+
+        [TestMethod]
+        public void IsProviderRegistered_ReturnsTrue_WhenProviderIsRegistered()
+        {
+            Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
+
+            var result = Service.IsProviderRegistered(typeof(int));
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsProviderRegistered_ReturnsFals_WhenProviderIsNotRegistered()
+        {
+            Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
+
+            var result = Service.IsProviderRegistered(typeof(string));
+
+            Assert.IsFalse(result);
+        }
     }
 }

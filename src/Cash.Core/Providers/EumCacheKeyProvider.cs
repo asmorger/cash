@@ -31,7 +31,7 @@ namespace Cash.Core.Providers
         public override string GetTypeNameRepresentation(object parameter)
         {
             var type = parameter.GetType();
-            var key = $"Enum[{type}]";
+            var key = $"Enum[{type.Name}]";
 
             return key;
         }
