@@ -144,6 +144,30 @@ namespace Cash.Core.Tests.Services
         }
 
         [TestMethod]
+        public void GetCacheKey_FormatsCacheKey_WhenEnumerableParameterIsDefined()
+        {
+            var model = new TestModelDefinition();
+            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_EnumerableParameter));
+
+            var result = CacheKeyGenerationService.GetCacheKey(methodInfo, new object[] { 10, 20 });
+            var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_EnumerableParameter(Int32::10||Int32::20)";
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void GetCacheKey_FormatsCacheKey_WhenEnumerableOutputIsDefined_AndNoParameters()
+        {
+            var model = new TestModelDefinition();
+            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_EnumerableReturn));
+
+            var result = CacheKeyGenerationService.GetCacheKey(methodInfo, null);
+            var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_EnumerableReturn<Int32>({NullOrZeroArgumentsResult})";
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
         public void GetArugmentCacheKey_CreatesProperKey_ForTwoDisprateArgumentsOneIsNull()
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, null });
