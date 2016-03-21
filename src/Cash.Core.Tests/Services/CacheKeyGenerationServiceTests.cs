@@ -110,6 +110,16 @@ namespace Cash.Core.Tests.Services
         }
 
         [TestMethod]
+        [ExpectedException(typeof(UnregisteredCacheTypeException))]
+        public void GetArgumentsCacheKey_ThrowsAnException_WhenNoProviderIsRegistered()
+        {
+            A.CallTo(() => CacheKeyRegistrationService.IsProviderRegistered(typeof(TestModelDefinition))).Returns(false);
+
+            var model = new TestModelDefinition { Id = 100 };
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
+        }
+
+        [TestMethod]
         public void GetCacheKey_FormatsCacheKey_WhenNoParametersAreDefined()
         {
             var model = new TestModelDefinition();
@@ -117,6 +127,18 @@ namespace Cash.Core.Tests.Services
 
             var result = CacheKeyGenerationService.GetCacheKey(methodInfo, null);
             var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_NoParameters({NullOrZeroArgumentsResult})";
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void GetCacheKey_FormatsCacheKey_WhenOneParametersIsDefined()
+        {
+            var model = new TestModelDefinition();
+            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_OneSimpleParameter));
+
+            var result = CacheKeyGenerationService.GetCacheKey(methodInfo, new object[] { 10 });
+            var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_OneSimpleParameter(Int32::10)";
 
             Assert.AreEqual(expectedResult, result);
         }

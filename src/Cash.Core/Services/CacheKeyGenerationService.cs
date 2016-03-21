@@ -84,18 +84,10 @@ namespace Cash.Core.Services
                     : string.Empty;
 
             var keyFormat = string.IsNullOrEmpty(typeNames) ? "{0}.{1}" : "{0}.{1}<{2}>";
-            var output = string.Format(keyFormat, className, methodName, typeNames);
+            var formattedKey = string.Format(keyFormat, className, methodName, typeNames);
             var argumentsCacheKey = GetArgumentsCacheKey(arguments);
 
-            if (arguments!= null && arguments.Any())
-            {
-                output = string.Concat(output, "||", argumentsCacheKey);
-            }
-            else
-            {
-                output = string.Concat(output, $"({argumentsCacheKey})");
-            }
-
+            var output = string.Concat(formattedKey, $"({argumentsCacheKey})");
             return output;
         }
     }
