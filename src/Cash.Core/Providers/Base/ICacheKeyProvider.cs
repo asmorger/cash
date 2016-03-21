@@ -20,13 +20,6 @@ namespace Cash.Core.Providers.Base
         bool IsValid(object parameter);
 
         /// <summary>
-        /// Generates a unique key for the parameter
-        /// </summary>
-        /// <param name="parameter">The method parameter</param>
-        /// <returns></returns>
-        string GetKey(object parameter);
-
-        /// <summary>
         /// Gets the value representation of the parameter
         /// </summary>
         /// <param name="parameter">The method parameter</param>

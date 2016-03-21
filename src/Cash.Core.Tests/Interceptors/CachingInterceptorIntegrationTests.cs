@@ -49,7 +49,6 @@ namespace Cash.Core.Tests.Interceptors
             Interceptor.Intercept(Invocation);
 
             A.CallTo(() => Invocation.Proceed()).MustHaveHappened();
-            A.CallTo(() => CacheKeyGenerationService.GetMethodCacheKey(methodInfo)).MustNotHaveHappened();
         }
 
         [TestMethod]

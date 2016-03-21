@@ -31,29 +31,6 @@ namespace Cash.Core.Tests.Services
         }
 
         [TestMethod]
-        public void GetMethodCacheKey_CreatesProperKey_WhenDeclaringTypeIsKnown()
-        {
-            var model = new TestModelDefinition();
-            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_NoParameters));
-
-            var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
-            var expectedResult = $"{model.GetType().FullName}.{methodInfo.Name}";
-
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        [TestMethod]
-        public void GetMethodCacheKey_CreatesProperKey_WhenDeclaringTypeIsNotKnown()
-        {
-            var methodInfo = new MethodInfoWithNullDeclaringType();
-
-            var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
-            var expectedResult = $"<unknown>.{methodInfo.Name}";
-
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        [TestMethod]
         public void GetArgumentsCacheKey_CreatesProperKey_ForZeroArguments()
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { });

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
 using System.Reflection;
 
 using Cash.Core.Services;
@@ -16,23 +18,19 @@ namespace Cash.Core.Providers.Base
 
         public override string GetTypeNameRepresentation(object parameter)
         {
-            // since we override GetKey(parameter) we don't need this method
-            throw new System.NotImplementedException();
+            var type = parameter.GetType();
+            var key = type.Name;
+
+            return key;
         }
 
         public override string GetValueRepresentation(object parameter)
-        {
-            // since we override GetKey(parameter) we don't need this method
-            throw new System.NotImplementedException();
-        }
-
-        public override string GetKey(object parameter)
         {
             try
             {
                 var type = parameter.GetType();
 
-                var getCacheKeyMethod = this.GetType().GetMethod(nameof(GetCacheKey), BindingFlags.NonPublic | BindingFlags.Instance);
+                var getCacheKeyMethod = this.GetType().GetMethod(nameof(GetCacheKeyValueRepresentation), BindingFlags.NonPublic | BindingFlags.Instance);
                 var typedGetCacheKeyMethod = getCacheKeyMethod.MakeGenericMethod(type);
 
                 var cacheKey = (string)typedGetCacheKeyMethod.Invoke(this, new[] { parameter });
@@ -45,16 +43,12 @@ namespace Cash.Core.Providers.Base
             }
         }
 
-        // this needs to be public so that the reflection in the GetKey() method works properly in this and any derived classes
-        protected string GetCacheKey<TEntity>(TEntity item)
+        protected string GetCacheKeyValueRepresentation<TEntity>(TEntity item)
         {
             var cacheKeyProvider = CacheKeyRegistrationService.GetTypedCacheKeyProvider<TEntity>();
-            var typeName = typeof(TEntity).Name;
+            var value = cacheKeyProvider(item);
 
-            var cacheKey = cacheKeyProvider(item);
-
-            var output = $"{typeName}{ArgumentNameValueDelimiter}{cacheKey}";
-            return output;
+            return value;
         }
     }
 }

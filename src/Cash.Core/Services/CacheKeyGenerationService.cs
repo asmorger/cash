@@ -18,6 +18,7 @@ namespace Cash.Core.Services
         private readonly IOrderedEnumerable<ICacheKeyProvider> _cacheKeyProviders;
 
         private const string IndividualArgumentDelimiter = "||";
+        private const string ArgumentNameValueDelimiter = "::";
 
         public CacheKeyGenerationService(ICacheKeyRegistrationService cacheKeyRegistrationService)
         {
@@ -32,24 +33,31 @@ namespace Cash.Core.Services
 
         private string GetCacheKeyForArgument(object argument)
         {
+            var value = GetValueRepresentationFromProvider(argument);
+
+            if (string.IsNullOrEmpty(value))
+            {
+                var type = argument.GetType();
+                throw new UnregisteredCacheTypeException(type);
+            }
+
+            return value;
+        }
+
+        private string GetValueRepresentationFromProvider(object argument)
+        {
             var provider = _cacheKeyProviders.FirstOrDefault(x => x.IsValid(argument));
 
             if (provider != null)
             {
-                var result = provider.GetKey(argument);
-                return result;
+                var key = provider.GetTypeNameRepresentation(argument);
+                var value = provider.GetValueRepresentation(argument);
+
+                var output = $"{key}{ArgumentNameValueDelimiter}{value}";
+                return output;
             }
 
-            var type = argument.GetType();
-            throw new UnregisteredCacheTypeException(type);
-        }
-
-        public string GetMethodCacheKey(MethodInfo method)
-        {
-            var typeName = method.DeclaringType == null ? "<unknown>" : method.DeclaringType.FullName;
-
-            var cacheKey = $"{typeName}.{method.Name}";
-            return cacheKey;
+            return string.Empty;
         }
 
         public string GetArgumentsCacheKey(object[] arguments)
@@ -67,10 +75,27 @@ namespace Cash.Core.Services
 
         public string GetCacheKey(MethodInfo method, object[] arguments)
         {
-            var methodCacheKey = GetMethodCacheKey(method);
+            var type = method.DeclaringType;
+
+            var className = $"{type.Namespace}.{type.Name}";
+            var methodName = method.Name;
+            var typeNames = method.ReturnType.GenericTypeArguments.Any()
+                    ? string.Join(",", method.ReturnType.GenericTypeArguments.Select(x => x.Name))
+                    : string.Empty;
+
+            var keyFormat = string.IsNullOrEmpty(typeNames) ? "{0}.{1}" : "{0}.{1}<{2}>";
+            var output = string.Format(keyFormat, className, methodName, typeNames);
             var argumentsCacheKey = GetArgumentsCacheKey(arguments);
 
-            var output = $"{methodCacheKey}({argumentsCacheKey})";
+            if (arguments!= null && arguments.Any())
+            {
+                output = string.Concat(output, "||", argumentsCacheKey);
+            }
+            else
+            {
+                output = string.Concat(output, $"({argumentsCacheKey})");
+            }
+
             return output;
         }
     }
