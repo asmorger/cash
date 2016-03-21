@@ -16,7 +16,7 @@ namespace Cash.Core.Providers
         public override bool IsValid(object parameter)
         {
             var type = parameter.GetType();
-            var output = CacheKeyRegistrationService.IsProviderRegistered(type);
+            var output = CacheKeyRegistrationService.IsFormatterRegistered(type);
             return output;
         }
     }

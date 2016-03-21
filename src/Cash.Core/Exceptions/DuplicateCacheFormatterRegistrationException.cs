@@ -5,9 +5,9 @@ using System;
 
 namespace Cash.Core.Exceptions
 {
-    public class DuplicateCacheProviderRegistrationException : Exception
+    public class DuplicateCacheFormatterRegistrationException : Exception
     {
-        public DuplicateCacheProviderRegistrationException(Type type)
+        public DuplicateCacheFormatterRegistrationException(Type type)
             : base($"A registration for the type {type.Name} has already been registered with the system.")
         {
         }

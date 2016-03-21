@@ -10,7 +10,7 @@ namespace Cash.Autofac.Sample.Web.App_Start
         {
             var registrationService = new CacheKeyRegistrationService();
 
-            registrationService.AddTypedCacheKeyProvider<UserModel>(x => $"{x.Id}");
+            registrationService.RegisterCacheKeyFormatter<UserModel>(x => $"{x.Id}");
 
             return registrationService;
         }

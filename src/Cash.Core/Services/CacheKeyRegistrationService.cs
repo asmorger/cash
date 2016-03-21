@@ -14,26 +14,25 @@ namespace Cash.Core.Services
     /// </summary>
     public class CacheKeyRegistrationService : ICacheKeyRegistrationService
     {
-        private readonly IDictionary<Type, LambdaExpression> _cacheKeyProviders =
-            new Dictionary<Type, LambdaExpression>();
+        private readonly IDictionary<Type, LambdaExpression> _cacheKeyFormatters = new Dictionary<Type, LambdaExpression>();
 
         /// <summary>
         ///     Adds the typed cache key provider.
         /// </summary>
         /// <typeparam name="TEntity">The type of the registration entity.</typeparam>
         /// <param name="registrationPattern">The registration pattern.</param>
-        /// <exception cref="DuplicateCacheProviderRegistrationException"></exception>
-        public void AddTypedCacheKeyProvider<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
+        /// <exception cref="DuplicateCacheFormatterRegistrationException"></exception>
+        public void RegisterCacheKeyFormatter<TEntity>(Expression<Func<TEntity, string>> registrationPattern)
         {
             var targetType = typeof(TEntity);
 
-            if (_cacheKeyProviders.ContainsKey(targetType))
+            if (_cacheKeyFormatters.ContainsKey(targetType))
             {
-                throw new DuplicateCacheProviderRegistrationException(targetType);
+                throw new DuplicateCacheFormatterRegistrationException(targetType);
             }
 
             // using this for inspiration: http://stackoverflow.com/questions/16678057/list-of-expressionfunct-tproperty
-            _cacheKeyProviders.Add(targetType, registrationPattern);
+            _cacheKeyFormatters.Add(targetType, registrationPattern);
         }
 
         /// <summary>
@@ -41,13 +40,13 @@ namespace Cash.Core.Services
         /// </summary>
         /// <typeparam name="TEntity">The type of the t entity.</typeparam>
         /// <returns>Expression&lt;Func&lt;TEntity, System.String&gt;&gt;.</returns>
-        public Func<TEntity, string> GetTypedCacheKeyProvider<TEntity>()
+        public Func<TEntity, string> GetCacheKeyFormatter<TEntity>()
         {
             var targetType = typeof(TEntity);
 
-            if (_cacheKeyProviders.ContainsKey(targetType))
+            if (_cacheKeyFormatters.ContainsKey(targetType))
             {
-                var provider = _cacheKeyProviders[targetType];
+                var provider = _cacheKeyFormatters[targetType];
                 var expression = (Expression<Func<TEntity, string>>)provider;
                 return expression.Compile();
             }
@@ -55,9 +54,9 @@ namespace Cash.Core.Services
             throw new UnregisteredCacheTypeException(typeof(TEntity));
         }
 
-        public bool IsProviderRegistered(Type type)
+        public bool IsFormatterRegistered(Type type)
         {
-            var output = _cacheKeyProviders.ContainsKey(type);
+            var output = _cacheKeyFormatters.ContainsKey(type);
             return output;
         }
     }

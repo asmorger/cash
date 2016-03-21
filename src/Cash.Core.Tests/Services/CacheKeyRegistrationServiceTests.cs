@@ -25,9 +25,9 @@ namespace Cash.Core.Tests.Services
         [TestMethod]
         public void AddAndGetTypedCacheKeyProviders_PropertySetAndGet()
         {
-            Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
+            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
 
-            var targetProvider = Service.GetTypedCacheKeyProvider<int>();
+            var targetProvider = Service.GetCacheKeyFormatter<int>();
             Assert.IsNotNull(targetProvider);
         }
 
@@ -35,23 +35,23 @@ namespace Cash.Core.Tests.Services
         [ExpectedException(typeof(UnregisteredCacheTypeException))]
         public void GetTypedCacheKeyProvider_ThrowsAnExceptionWhenAProviderHasNotBeenRegistered()
         {
-            var targetProvider = Service.GetTypedCacheKeyProvider<string>();
+            var targetProvider = Service.GetCacheKeyFormatter<string>();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DuplicateCacheProviderRegistrationException))]
+        [ExpectedException(typeof(DuplicateCacheFormatterRegistrationException))]
         public void AddTypedCacheKeyProvider_ThrowsAnExceptionWhenTheSameRegistrationTypeIsSet()
         {
-            Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
-            Service.AddTypedCacheKeyProvider<int>(i => $"int2_{i}");
+            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
+            Service.RegisterCacheKeyFormatter<int>(i => $"int2_{i}");
         }
 
         [TestMethod]
         public void IsProviderRegistered_ReturnsTrue_WhenProviderIsRegistered()
         {
-            Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
+            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
 
-            var result = Service.IsProviderRegistered(typeof(int));
+            var result = Service.IsFormatterRegistered(typeof(int));
 
             Assert.IsTrue(result);
         }
@@ -59,9 +59,9 @@ namespace Cash.Core.Tests.Services
         [TestMethod]
         public void IsProviderRegistered_ReturnsFals_WhenProviderIsNotRegistered()
         {
-            Service.AddTypedCacheKeyProvider<int>(i => $"int_{i}");
+            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
 
-            var result = Service.IsProviderRegistered(typeof(string));
+            var result = Service.IsFormatterRegistered(typeof(string));
 
             Assert.IsFalse(result);
         }
