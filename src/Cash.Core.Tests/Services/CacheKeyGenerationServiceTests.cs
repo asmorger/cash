@@ -31,29 +31,6 @@ namespace Cash.Core.Tests.Services
         }
 
         [TestMethod]
-        public void GetMethodCacheKey_CreatesProperKey_WhenDeclaringTypeIsKnown()
-        {
-            var model = new TestModelDefinition();
-            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_NoParameters));
-
-            var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
-            var expectedResult = $"{model.GetType().FullName}.{methodInfo.Name}";
-
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        [TestMethod]
-        public void GetMethodCacheKey_CreatesProperKey_WhenDeclaringTypeIsNotKnown()
-        {
-            var methodInfo = new MethodInfoWithNullDeclaringType();
-
-            var result = CacheKeyGenerationService.GetMethodCacheKey(methodInfo);
-            var expectedResult = $"<unknown>.{methodInfo.Name}";
-
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        [TestMethod]
         public void GetArgumentsCacheKey_CreatesProperKey_ForZeroArguments()
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { });
@@ -100,6 +77,7 @@ namespace Cash.Core.Tests.Services
         public void GetArgumentCacheKey_CreatesProperKey_ForUserDefinedType()
         {
             A.CallTo(() => CacheKeyRegistrationService.GetTypedCacheKeyProvider<TestModelDefinition>()).Returns(x => $"{x.Id}");
+            A.CallTo(() => CacheKeyRegistrationService.IsProviderRegistered(typeof(TestModelDefinition))).Returns(true);
 
             var model = new TestModelDefinition { Id = 100 };
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
@@ -111,6 +89,7 @@ namespace Cash.Core.Tests.Services
         public void GetArgumentCacheKey_CreatesProperKey_ForMultipleUserDefinedType()
         {
             A.CallTo(() => CacheKeyRegistrationService.GetTypedCacheKeyProvider<TestModelDefinition>()).Returns(x => $"{x.Id}");
+            A.CallTo(() => CacheKeyRegistrationService.IsProviderRegistered(typeof(TestModelDefinition))).Returns(true);
 
             var model1 = new TestModelDefinition { Id = 100 };
             var model2 = new TestModelDefinition { Id = 500 };
@@ -124,6 +103,18 @@ namespace Cash.Core.Tests.Services
         public void GetArgumentCacheKey_ThrowsAnException_WhenACacheKeyProviderHasNotBeenRegistered()
         {
             A.CallTo(() => CacheKeyRegistrationService.GetTypedCacheKeyProvider<TestModelDefinition>()).Throws(new UnregisteredCacheTypeException(typeof(TestModelDefinition)));
+            A.CallTo(() => CacheKeyRegistrationService.IsProviderRegistered(typeof(TestModelDefinition))).Returns(true);
+
+            var model = new TestModelDefinition { Id = 100 };
+            var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UnregisteredCacheTypeException))]
+        public void GetArgumentsCacheKey_ThrowsAnException_WhenNoProviderIsRegistered()
+        {
+            A.CallTo(() => CacheKeyRegistrationService.IsProviderRegistered(typeof(TestModelDefinition))).Returns(false);
+
             var model = new TestModelDefinition { Id = 100 };
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { model });
         }
@@ -136,6 +127,42 @@ namespace Cash.Core.Tests.Services
 
             var result = CacheKeyGenerationService.GetCacheKey(methodInfo, null);
             var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_NoParameters({NullOrZeroArgumentsResult})";
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void GetCacheKey_FormatsCacheKey_WhenOneParametersIsDefined()
+        {
+            var model = new TestModelDefinition();
+            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_OneSimpleParameter));
+
+            var result = CacheKeyGenerationService.GetCacheKey(methodInfo, new object[] { 10 });
+            var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_OneSimpleParameter(Int32::10)";
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void GetCacheKey_FormatsCacheKey_WhenEnumerableParameterIsDefined()
+        {
+            var model = new TestModelDefinition();
+            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_EnumerableParameter));
+
+            var result = CacheKeyGenerationService.GetCacheKey(methodInfo, new object[] { 10, 20 });
+            var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_EnumerableParameter(Int32::10||Int32::20)";
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void GetCacheKey_FormatsCacheKey_WhenEnumerableOutputIsDefined_AndNoParameters()
+        {
+            var model = new TestModelDefinition();
+            var methodInfo = model.GetType().GetMethod(nameof(model.TestMethod_EnumerableReturn));
+
+            var result = CacheKeyGenerationService.GetCacheKey(methodInfo, null);
+            var expectedResult = $"Cash.Core.Tests.Models.TestModelDefinition.TestMethod_EnumerableReturn<Int32>({NullOrZeroArgumentsResult})";
 
             Assert.AreEqual(expectedResult, result);
         }

@@ -1,4 +1,7 @@
-﻿using Cash.Core.Enums;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
+using Cash.Core.Enums;
 
 namespace Cash.Core.Providers.Base
 {
@@ -17,14 +20,17 @@ namespace Cash.Core.Providers.Base
         bool IsValid(object parameter);
 
         /// <summary>
-        /// Generates a unique key for the parameter
+        /// Gets the value representation of the parameter
         /// </summary>
         /// <param name="parameter">The method parameter</param>
         /// <returns></returns>
-        string GetKey(object parameter);
-
         string GetValueRepresentation(object parameter);
 
+        /// <summary>
+        /// Gets the type name representation of the parameter
+        /// </summary>
+        /// <param name="parameter">The method parameter</param>
+        /// <returns></returns>
         string GetTypeNameRepresentation(object parameter);
     }
 }

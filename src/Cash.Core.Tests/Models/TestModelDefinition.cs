@@ -1,7 +1,9 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using Cash.Core.Attributes;
 
@@ -22,6 +24,16 @@ namespace Cash.Core.Tests.Models
 
         public void TestMethod_TwoSimpleParameters(double height, int age)
         {
+        }
+
+        public void TestMethod_EnumerableParameter(IEnumerable<int> heights)
+        {
+            
+        }
+
+        public IEnumerable<int> TestMethod_EnumerableReturn()
+        {
+            return Enumerable.Range(0, 10);
         }
 
         [Cache]

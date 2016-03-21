@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
+using System;
 using System.Globalization;
 
 using Cash.Core.Enums;
@@ -28,7 +31,7 @@ namespace Cash.Core.Providers
         public override string GetTypeNameRepresentation(object parameter)
         {
             var type = parameter.GetType();
-            var key = $"Enum[{type}]";
+            var key = $"Enum[{type.Name}]";
 
             return key;
         }
