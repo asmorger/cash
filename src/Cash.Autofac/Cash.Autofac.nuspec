@@ -15,7 +15,6 @@
     <dependencies>
       <dependency id="Cash.Core" version="0.9" />
       <dependency id="Castle.Core" version="3.3.3" />
-      <dependency id="Cash.Autofac" version="3.5.2" />
       <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.7" />
     </dependencies>
   </metadata>
