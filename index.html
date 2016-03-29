@@ -136,8 +136,8 @@ Install-Package Cash.Ninject
 <div class='full no-padding'>
     <div class='two spacing'></div>
     <div class='row'>
-      <div class='small-9 small-centered columns'>
-        <ul class='inline-list'>
+      <div class='centered-outer'>
+        <ul class='inline-list centered-inner'>
             {% for shield in page.shields %}
               <li>
                   <a href='{{shield.link}}' target='_blank'>
@@ -196,12 +196,14 @@ public class UserService
   public User GetUserById(int id)
   {
     // your logic goes here
+    
   }
   
   [Cache]
   public IEnumerable<UserRole> GetByUser(User user)
   {
-    // your logic goes here 
+    // your logic goes here
+    
   }
 }
 {% endhighlight %}
