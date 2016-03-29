@@ -218,7 +218,7 @@ var keyRegistration = new CacheKeyRegistrationService();
 // primitive types are auto-registered for you!
 
 registrationService
-    .AddTypedCacheKeyProvider<UserModel>(x => $"{x.Id}");
+    .RegisterCacheKeyFormatter<UserModel>(x => $"{x.Id}");
         
 return keyRegistration;
 {% endhighlight %}
