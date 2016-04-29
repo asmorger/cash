@@ -91,10 +91,15 @@ namespace Cash.Core.Interceptors
 
             var returnValue = GetInterceptorReturnValue();
 
-            // cache the resulting output
-            var cacheItem = GetCacheItem(methodCacheKey, returnValue);
-            var cachePolicy = cacheAttribute.GetCacheItemPolicy();
-            _cache.Set(cacheItem, cachePolicy);
+            // per MSDN documentation: https://msdn.microsoft.com/en-us/library/dd780572(v=vs.110).aspx
+            // ArgumentNullExceptions will be thrown if either Key or Value is null
+            if (returnValue != null)
+            {
+                // cache the resulting output
+                var cacheItem = GetCacheItem(methodCacheKey, returnValue);
+                var cachePolicy = cacheAttribute.GetCacheItemPolicy();
+                _cache.Set(cacheItem, cachePolicy);
+            }
 
             WriteDebugMessage($"Results cached for key: {methodCacheKey}");
         }
