@@ -1,9 +1,12 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System.Runtime.Caching;
+using Autofac;
 using Autofac.Builder;
 using Autofac.Extras.DynamicProxy;
 using Cash.Core.Interceptors;
+using Cash.Core.Services;
 
 namespace Cash.Autofac.Extensions
 {
@@ -18,6 +21,15 @@ namespace Cash.Autofac.Extensions
         public static IRegistrationBuilder<TLimit, TActivatorData, TSingleRegistrationStyle> WithDefaultCache<TLimit, TActivatorData, TSingleRegistrationStyle>(this IRegistrationBuilder<TLimit, TActivatorData, TSingleRegistrationStyle> registration)
         {
             return registration.EnableInterfaceInterceptors().InterceptedBy(typeof(CachingInterceptor));
+        }
+
+        public static void ConfigureCash(this ContainerBuilder builder, ObjectCache cacheProvider, ICacheKeyRegistrationService registrationService)
+        {
+            builder.Register(x => cacheProvider).As<ObjectCache>().SingleInstance();
+            builder.RegisterType<CacheKeyGenerationService>().As<ICacheKeyGenerationService>().SingleInstance();
+            builder.Register(x => registrationService).As<ICacheKeyRegistrationService>().SingleInstance();
+
+            builder.Register(c => new CachingInterceptor(c.Resolve<ObjectCache>(), c.Resolve<ICacheKeyGenerationService>())).InstancePerDependency();
         }
     }
 }

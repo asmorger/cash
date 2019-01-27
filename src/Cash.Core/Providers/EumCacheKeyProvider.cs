@@ -4,15 +4,12 @@
 using System;
 using System.Globalization;
 
-using Cash.Core.Enums;
 using Cash.Core.Providers.Base;
 
 namespace Cash.Core.Providers
 {
     public class EumCacheKeyProvider : BaseCacheKeyProvider
     {
-        public override CacheKeyProviderExecutionOrder ExecutionOrder => CacheKeyProviderExecutionOrder.Enum;
-
         public override bool IsValid(object parameter)
         {
             var output = parameter is Enum;

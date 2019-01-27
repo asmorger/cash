@@ -1,12 +1,13 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
-using Cash.Core.Enums;
 using Cash.Core.Providers.Base;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cash.Core.Tests.Providers
 {
+    [ExcludeFromCodeCoverage]
     public abstract class BaseCacheKeyProviderTests<TCacheKeyProvider>
         where TCacheKeyProvider : ICacheKeyProvider, new()
     {
@@ -21,8 +22,6 @@ namespace Cash.Core.Tests.Providers
         public abstract object[] GetSuccessArguments();
 
         public abstract object[] GetFailureArguments();
-
-        public abstract CacheKeyProviderExecutionOrder GetExecutionOrder();
 
         [TestMethod]
         public void IsValid_IdentifiesCorrectly_WhenInvocationIsValid()
@@ -42,13 +41,6 @@ namespace Cash.Core.Tests.Providers
             var isIdentified = results.All(x => x == false);
 
             Assert.IsTrue(isIdentified);
-        }
-
-        [TestMethod]
-        public void ExecutionOrder_IsSetToTheExpectedValue()
-        {
-            var expected = GetExecutionOrder();
-            Assert.AreEqual(expected, CacheKeyProvider.ExecutionOrder);
         }
 
         /*

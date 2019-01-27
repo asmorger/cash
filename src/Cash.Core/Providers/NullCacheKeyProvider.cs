@@ -1,15 +1,12 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using Cash.Core.Enums;
 using Cash.Core.Providers.Base;
 
 namespace Cash.Core.Providers
 {
     public sealed class NullCacheKeyProvider : BaseCacheKeyProvider
     {
-        public override CacheKeyProviderExecutionOrder ExecutionOrder => CacheKeyProviderExecutionOrder.Null;
-
         public override bool IsValid(object parameter)
         {
             var output = parameter == null;

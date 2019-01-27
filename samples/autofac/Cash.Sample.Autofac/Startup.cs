@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Caching;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Cash.Autofac.Extensions;
@@ -38,16 +39,16 @@ namespace Cash.Sample.Autofac
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
+            builder.ConfigureCash(MemoryCache.Default, ConfigureCaching());
+
             builder.RegisterType<RandomDataService>().As<IRandomDataService>().SingleInstance().WithDefaultCache();
             builder.RegisterType<UserService>().As<IUserService>().SingleInstance().WithDefaultCache();
-
-            Cash.Autofac.Cash.RegisterCacheInfrastructure(builder, System.Runtime.Caching.MemoryCache.Default, RegisterCacheKeys());
-
+            
             this.ApplicationContainer = builder.Build();
             return new AutofacServiceProvider(this.ApplicationContainer);
         }
 
-        public ICacheKeyRegistrationService RegisterCacheKeys()
+        public ICacheKeyRegistrationService ConfigureCaching()
         {
             var registrationService = new CacheKeyRegistrationService();
 

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System.Diagnostics.CodeAnalysis;
 using Cash.Core.Extensions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cash.Core.Tests.Extensions
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class CacheItemPriorityExtensionsTests
     {
         [TestMethod]

@@ -168,7 +168,7 @@ namespace Cash.Core.Tests.Services
         }
 
         [TestMethod]
-        public void GetArugmentCacheKey_CreatesProperKey_ForTwoDisprateArgumentsOneIsNull()
+        public void GetArgumentCacheKey_CreatesProperKey_ForTwoDisprateArgumentsOneIsNull()
         {
             var result = CacheKeyGenerationService.GetArgumentsCacheKey(new object[] { 5, null });
 

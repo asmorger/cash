@@ -15,7 +15,7 @@ namespace Cash.Core.Services
 {
     public class CacheKeyGenerationService : ICacheKeyGenerationService
     {
-        private readonly IOrderedEnumerable<ICacheKeyProvider> _cacheKeyProviders;
+        private readonly ICacheKeyProvider[] _cacheKeyProviders;
 
         private const string IndividualArgumentDelimiter = "||";
         private const string ArgumentNameValueDelimiter = "::";
@@ -23,12 +23,12 @@ namespace Cash.Core.Services
         public CacheKeyGenerationService(ICacheKeyRegistrationService cacheKeyRegistrationService)
         {
 
-            _cacheKeyProviders = new List<ICacheKeyProvider>
+            _cacheKeyProviders = new ICacheKeyProvider[]
                                         { new NullCacheKeyProvider(),
                                           new EumCacheKeyProvider(),
                                           new PrimitiveTypeCacheKeyProvider(),
                                           new UserRegisteredCacheKeyProvider(cacheKeyRegistrationService) 
-                                        }.OrderBy(x => (int)x.ExecutionOrder);
+                                        };
         }
 
         private string GetCacheKeyForArgument(object argument)
@@ -46,8 +46,17 @@ namespace Cash.Core.Services
 
         private string GetValueRepresentationFromProvider(object argument)
         {
-            var provider = _cacheKeyProviders.FirstOrDefault(x => x.IsValid(argument));
+            ICacheKeyProvider provider = null;
 
+            foreach (var cacheKeyProvider in _cacheKeyProviders)
+            {
+                if (cacheKeyProvider.IsValid(argument))
+                {
+                    provider = cacheKeyProvider;
+                    break;
+                }
+            }
+            
             if (provider != null)
             {
                 var key = provider.GetTypeNameRepresentation(argument);

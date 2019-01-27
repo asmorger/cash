@@ -1,17 +1,10 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using Cash.Core.Enums;
-
 namespace Cash.Core.Providers.Base
 {
     public interface ICacheKeyProvider
     {
-        /// <summary>
-        /// Gets the execution order of the Cache Key Providers.  This is to allow specific implementations to run before generic ones.
-        /// </summary>
-        CacheKeyProviderExecutionOrder ExecutionOrder { get; }
-
         /// <summary>
         /// Checks to see if this Parameter Broker is valid for the given parameter.
         /// </summary>
