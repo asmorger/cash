@@ -1,14 +1,9 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
 using Cash.Core.Attributes;
 using Cash.Core.Services;
 
@@ -101,10 +96,7 @@ namespace Cash.Core.Interceptors
 
         private void WriteDebugMessage(string message)
         {
-            if (Debugger.IsAttached)
-            {
-                Debug.WriteLine(message);
-            }
+            Debug.WriteLine(message);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 
 using Cash.Core.Providers.Base;
 
@@ -7,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cash.Core.Tests.Providers
 {
-    [ExcludeFromCodeCoverage]
     public abstract class BaseCacheKeyProviderTests<TCacheKeyProvider>
         where TCacheKeyProvider : ICacheKeyProvider, new()
     {

@@ -2,29 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc463192-221f-46c5-a761-e4e4dcf33389" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../samples/autofac/Cash.Sample.Autofac/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../samples/autofac/Cash.Sample.Autofac/Startup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests/Cash.Autofac.Tests/AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Cash/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Cash/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Cash/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Cash/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Autofac/Cash.Autofac.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Autofac/Cash.Autofac.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Autofac/Cash.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Autofac/Extensions/AutofacExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Autofac/Extensions/AutofacExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Cash.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Cash.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Enums/CacheKeyProviderExecutionOrder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Providers/Base/ICacheKeyProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Providers/Base/ICacheKeyProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Providers/EumCacheKeyProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Providers/EumCacheKeyProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Providers/NullCacheKeyProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Providers/NullCacheKeyProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Providers/PrimitiveTypeCacheKeyProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Providers/PrimitiveTypeCacheKeyProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Providers/UserRegisteredCacheKeyProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Providers/UserRegisteredCacheKeyProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cash.Core/Services/CacheKeyGenerationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.Core/Services/CacheKeyGenerationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/Cash.Autofac.Tests/Cash.Autofac.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Autofac.Tests/Cash.Autofac.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/Cash.Autofac.Tests/CashTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/Cash.Autofac.Tests/Extensions/AutofacExtensionsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Autofac.Tests/Extensions/AutofacExtensionsTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cash.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Cash.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Cash.Core.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Cash.Core.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Extensions/CacheItemPriorityExtensionsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Extensions/CacheItemPriorityExtensionsTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/BaseCacheKeyProviderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/BaseCacheKeyProviderTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/EumCacheKeyProviderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/EumCacheKeyProviderTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/NullCacheKeyProviderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/NullCacheKeyProviderTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/PrimitivieTypeCacheKeyProviderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/PrimitivieTypeCacheKeyProviderTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Services/CacheKeyGenerationServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/Cash.Core.Tests/Services/CacheKeyGenerationServiceTests.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,95 +48,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/UserRegisteredCacheKeyProvider.cs">
+        <entry file="file://$PROJECT_DIR$/../tests/Cash.Autofac.Tests/AssemblyInfo.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1548603865572" expanded="true" signature="6:57" ph="..." />
-                <marker date="1548603865572" expanded="true" signature="88:586" ph="{...}" />
-                <marker date="1548603865572" expanded="true" signature="171:584" ph="{...}" />
-                <marker date="1548603865572" expanded="true" signature="329:349" ph="{...}" />
-                <marker date="1548603865572" expanded="true" signature="405:578" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/Base/BaseRegisteredCacheKeyProvider.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="9" column="66" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
-              <folding>
-                <marker date="1548597877650" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
-                <marker date="1548597877650" expanded="false" signature="156:201" ph="..." />
-                <marker date="1548597877650" expanded="true" signature="237:1847" ph="{...}" />
-                <marker date="1548597877650" expanded="true" signature="319:1845" ph="{...}" />
-                <marker date="1548597877650" expanded="true" signature="518:609" ph="{...}" />
-                <marker date="1548597877650" expanded="true" signature="685:807" ph="{...}" />
-                <marker date="1548597877650" expanded="true" signature="880:1568" ph="{...}" />
-                <marker date="1548597877650" expanded="true" signature="906:1356" ph="{...}" />
-                <marker date="1548597877650" expanded="true" signature="1405:1558" ph="{...}" />
-                <marker date="1548597877650" expanded="true" signature="1648:1839" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-              <folding>
-                <marker date="1548603872214" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
-                <marker date="1548603872214" expanded="true" signature="184:472" ph="{...}" />
-                <marker date="1548603872214" expanded="true" signature="253:470" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/BaseCacheKeyProviderTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10">
-              <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-              <folding>
-                <marker date="1548603890929" expanded="true" signature="6:104" ph="..." />
-                <marker date="1548603890929" expanded="true" signature="141:1842" ph="{...}" />
-                <marker date="1548603890929" expanded="true" signature="273:1840" ph="{...}" />
-                <marker date="1548603890929" expanded="true" signature="392:468" ph="{...}" />
-                <marker date="1548603890929" expanded="true" signature="676:917" ph="{...}" />
-                <marker date="1548603890929" expanded="true" signature="1014:1256" ph="{...}" />
-                <marker date="1548603890929" expanded="true" signature="1266:1834" ph="/* [TestMethod] ... */" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/PrimitivieTypeCacheKeyProviderTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1548603900174" expanded="true" signature="6:79" ph="..." />
-                <marker date="1548603900174" expanded="true" signature="116:471" ph="{...}" />
-                <marker date="1548603900174" expanded="true" signature="246:469" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/NullCacheKeyProviderTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1548603909551" expanded="true" signature="6:79" ph="..." />
-                <marker date="1548603909551" expanded="true" signature="116:443" ph="{...}" />
-                <marker date="1548603909551" expanded="true" signature="227:441" ph="{...}" />
-              </folding>
+            <state relative-caret-position="36">
+              <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -157,38 +59,49 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/EumCacheKeyProviderTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+            <state>
               <folding>
-                <marker date="1548604018990" expanded="false" signature="6:122" ph="..." />
-                <marker date="1548604018990" expanded="true" signature="159:1262" ph="{...}" />
-                <marker date="1548604018990" expanded="true" signature="186:231" ph="{...}" />
-                <marker date="1548604018990" expanded="true" signature="343:1260" ph="{...}" />
-                <marker date="1548604018990" expanded="true" signature="641:896" ph="{...}" />
-                <marker date="1548604018990" expanded="true" signature="988:1254" ph="{...}" />
+                <marker date="1548604504087" expanded="true" signature="6:79" ph="..." />
+                <marker date="1548604504087" expanded="true" signature="116:1202" ph="{...}" />
+                <marker date="1548604504087" expanded="true" signature="143:171" ph="{...}" />
+                <marker date="1548604504087" expanded="true" signature="283:1200" ph="{...}" />
+                <marker date="1548604504087" expanded="true" signature="581:836" ph="{...}" />
+                <marker date="1548604504087" expanded="true" signature="928:1194" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/PrimitiveTypeCacheKeyProvider.cs">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Cash.Core/Interceptors/BaseCachingInterceptor.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            <state relative-caret-position="170">
+              <caret line="99" column="9" lean-forward="true" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
               <folding>
-                <marker date="1548603841785" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
-                <marker date="1548603841785" expanded="true" signature="212:884" ph="{...}" />
-                <marker date="1548603841785" expanded="true" signature="284:882" ph="{...}" />
-                <marker date="1548603841785" expanded="true" signature="345:505" ph="{...}" />
-                <marker date="1548603841785" expanded="true" signature="578:672" ph="{...}" />
-                <marker date="1548603841785" expanded="true" signature="748:876" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
+                <marker date="1548597888166" expanded="false" signature="156:400" ph="..." />
+                <marker date="1548597888166" expanded="true" signature="434:3490" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="485:3488" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="736:852" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="1252:1559" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="1387:1523" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="1624:1723" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="1774:3299" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="2027:2117" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="2566:2822" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="3355:3482" ph="{...}" />
+                <marker date="1548597888166" expanded="true" signature="3402:3472" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ExcludeFromCodeCoverage</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -208,11 +121,13 @@
     <setting file="file://$PROJECT_DIR$/../tests/Cash.Autofac.Tests/Extensions/AutofacExtensionsTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A7538FB0-6ED7-462D-B19F-FFC46339EBFE/f2/f9c35379/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Cash.Core/Services/CacheKeyGenerationService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Models/TestModelDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Cash.Core/Interceptors/BaseCachingInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Models/TestModelDefinition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../tests/Cash.Autofac.Tests/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Extensions/CacheItemPriorityExtensionsTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Cash.Autofac/Extensions/AutofacExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Services/CacheKeyGenerationServiceTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -229,9 +144,12 @@
         <option value="$PROJECT_DIR$/Cash.Core/Providers/NullCacheKeyProvider.cs" />
         <option value="$PROJECT_DIR$/Cash.Core/Providers/UserRegisteredCacheKeyProvider.cs" />
         <option value="$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs" />
-        <option value="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/BaseCacheKeyProviderTests.cs" />
         <option value="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/PrimitivieTypeCacheKeyProviderTests.cs" />
+        <option value="$PROJECT_DIR$/../tests/Cash.Autofac.Tests/AssemblyInfo.cs" />
+        <option value="$PROJECT_DIR$/../tests/Cash.Core.Tests/AssemblyInfo.cs" />
+        <option value="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/BaseCacheKeyProviderTests.cs" />
         <option value="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/NullCacheKeyProviderTests.cs" />
+        <option value="$PROJECT_DIR$/../tests/Cash.Core.Tests/Extensions/CacheItemPriorityExtensionsTests.cs" />
         <option value="$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/EumCacheKeyProviderTests.cs" />
       </list>
     </option>
@@ -259,6 +177,17 @@
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="Cash" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Tests" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Cash" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Tests" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Cash.Autofac.Tests" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Cash" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Cash.Core" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
@@ -266,17 +195,6 @@
               <item name="Cash" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Cash.Core" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Enums" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="Cash" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Cash.Core.Tests" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="Cash" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Cash.Core.Tests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Providers" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
@@ -316,12 +234,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548600201105</updated>
-      <workItem from="1548600204077" duration="1489000" />
+      <workItem from="1548600204077" duration="2001000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1489000" />
+    <option name="totallyTimeSpent" value="2001000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -334,6 +252,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="Image Layers" order="1" />
@@ -342,12 +261,12 @@
       <window_info anchor="bottom" id="NuGet" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Unit Tests" weight="0.32981783" />
+      <window_info anchor="bottom" id="Unit Tests" visible="true" weight="0.32981783" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Performance Profiler" />
-      <window_info active="true" anchor="bottom" id="Build" visible="true" weight="0.32981783" />
+      <window_info anchor="bottom" id="Build" weight="0.32981783" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -358,21 +277,21 @@
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Errors In Solution" order="1" />
       <window_info anchor="right" id="Database" order="2" />
-      <window_info anchor="right" id="Unit Tests Coverage" order="3" weight="0.11140725" />
+      <window_info active="true" anchor="right" id="Unit Tests Coverage" order="3" visible="true" weight="0.31130064" />
       <window_info anchor="right" id="Commander" order="4" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="5" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="7" visible="true" weight="0.25266525" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="7" weight="0.25266525" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="UnitTestsCoverage.Settings">
-    <option name="coveragePercentColumnWidth" value="102" />
+    <option name="coveragePercentColumnWidth" value="150" />
     <option name="sortOrder" value="DESCENDING" />
     <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="53" />
+    <option name="symbolColumnWidth" value="216" />
     <coverage-tree-state>
       <expand>
         <path>
@@ -394,14 +313,14 @@
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
           <item name="6" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="40" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="75" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
           <item name="6" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="40" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="62" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="75" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />
@@ -639,6 +558,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Models/TestModelDefinition.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding>
+            <marker date="1548597877641" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
+            <marker date="1548597877641" expanded="false" signature="156:270" ph="..." />
+            <marker date="1548597877641" expanded="true" signature="304:1066" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="373:1064" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="462:482" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="540:560" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="636:656" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="734:767" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="830:894" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="963:983" ph="{...}" />
+            <marker date="1548597877641" expanded="true" signature="1038:1058" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/PrimitivieTypeCacheKeyProviderTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <folding>
+            <marker date="1548604178181" expanded="true" signature="6:118" ph="..." />
+            <marker date="1548604178181" expanded="true" signature="155:540" ph="{...}" />
+            <marker date="1548604178181" expanded="true" signature="315:538" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tests/Cash.Autofac.Tests/AssemblyInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/BaseCacheKeyProviderTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1548604466330" expanded="true" signature="6:104" ph="..." />
+            <marker date="1548604466330" expanded="true" signature="141:1842" ph="{...}" />
+            <marker date="1548604466330" expanded="true" signature="273:1840" ph="{...}" />
+            <marker date="1548604466330" expanded="true" signature="392:468" ph="{...}" />
+            <marker date="1548604466330" expanded="true" signature="676:917" ph="{...}" />
+            <marker date="1548604466330" expanded="true" signature="1014:1256" ph="{...}" />
+            <marker date="1548604466330" expanded="true" signature="1266:1834" ph="/* [TestMethod] ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/AssemblyInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/NullCacheKeyProviderTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1548604474611" expanded="true" signature="6:79" ph="..." />
+            <marker date="1548604474611" expanded="true" signature="116:443" ph="{...}" />
+            <marker date="1548604474611" expanded="true" signature="227:441" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <marker date="1548603872214" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
+            <marker date="1548603872214" expanded="true" signature="184:472" ph="{...}" />
+            <marker date="1548603872214" expanded="true" signature="253:470" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/UserRegisteredCacheKeyProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1548603865572" expanded="true" signature="6:57" ph="..." />
+            <marker date="1548603865572" expanded="true" signature="88:586" ph="{...}" />
+            <marker date="1548603865572" expanded="true" signature="171:584" ph="{...}" />
+            <marker date="1548603865572" expanded="true" signature="329:349" ph="{...}" />
+            <marker date="1548603865572" expanded="true" signature="405:578" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cash.Core/Services/CacheKeyGenerationService.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -663,100 +679,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/UserRegisteredCacheKeyProvider.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1548603865572" expanded="true" signature="6:57" ph="..." />
-            <marker date="1548603865572" expanded="true" signature="88:586" ph="{...}" />
-            <marker date="1548603865572" expanded="true" signature="171:584" ph="{...}" />
-            <marker date="1548603865572" expanded="true" signature="329:349" ph="{...}" />
-            <marker date="1548603865572" expanded="true" signature="405:578" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cash.Core/Providers/Base/BaseCacheKeyProvider.cs">
+    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Extensions/CacheItemPriorityExtensionsTests.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
           <folding>
-            <marker date="1548603872214" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
-            <marker date="1548603872214" expanded="true" signature="184:472" ph="{...}" />
-            <marker date="1548603872214" expanded="true" signature="253:470" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/PrimitivieTypeCacheKeyProviderTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1548603900174" expanded="true" signature="6:79" ph="..." />
-            <marker date="1548603900174" expanded="true" signature="116:471" ph="{...}" />
-            <marker date="1548603900174" expanded="true" signature="246:469" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/NullCacheKeyProviderTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1548603909551" expanded="true" signature="6:79" ph="..." />
-            <marker date="1548603909551" expanded="true" signature="116:443" ph="{...}" />
-            <marker date="1548603909551" expanded="true" signature="227:441" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Models/TestModelDefinition.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding>
-            <marker date="1548597877641" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
-            <marker date="1548597877641" expanded="false" signature="156:270" ph="..." />
-            <marker date="1548597877641" expanded="true" signature="304:1066" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="373:1064" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="462:482" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="540:560" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="636:656" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="734:767" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="830:894" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="963:983" ph="{...}" />
-            <marker date="1548597877641" expanded="true" signature="1038:1058" ph="{...}" />
+            <marker date="1548604488452" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
+            <marker date="1548604488452" expanded="true" signature="156:230" ph="..." />
+            <marker date="1548604488452" expanded="true" signature="268:1443" ph="{...}" />
+            <marker date="1548604488452" expanded="true" signature="336:1441" ph="{...}" />
+            <marker date="1548604488452" expanded="true" signature="423:629" ph="{...}" />
+            <marker date="1548604488452" expanded="true" signature="703:897" ph="{...}" />
+            <marker date="1548604488452" expanded="true" signature="973:1169" ph="{...}" />
+            <marker date="1548604488452" expanded="true" signature="1242:1435" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/EumCacheKeyProviderTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+        <state>
           <folding>
-            <marker date="1548604018990" expanded="false" signature="6:122" ph="..." />
-            <marker date="1548604018990" expanded="true" signature="159:1262" ph="{...}" />
-            <marker date="1548604018990" expanded="true" signature="186:231" ph="{...}" />
-            <marker date="1548604018990" expanded="true" signature="343:1260" ph="{...}" />
-            <marker date="1548604018990" expanded="true" signature="641:896" ph="{...}" />
-            <marker date="1548604018990" expanded="true" signature="988:1254" ph="{...}" />
+            <marker date="1548604504087" expanded="true" signature="6:79" ph="..." />
+            <marker date="1548604504087" expanded="true" signature="116:1202" ph="{...}" />
+            <marker date="1548604504087" expanded="true" signature="143:171" ph="{...}" />
+            <marker date="1548604504087" expanded="true" signature="283:1200" ph="{...}" />
+            <marker date="1548604504087" expanded="true" signature="581:836" ph="{...}" />
+            <marker date="1548604504087" expanded="true" signature="928:1194" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tests/Cash.Core.Tests/Providers/BaseCacheKeyProviderTests.cs">
+    <entry file="file://$PROJECT_DIR$/Cash.Core/Interceptors/BaseCachingInterceptor.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10">
-          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="170">
+          <caret line="99" column="9" lean-forward="true" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
           <folding>
-            <marker date="1548603890929" expanded="true" signature="6:104" ph="..." />
-            <marker date="1548603890929" expanded="true" signature="141:1842" ph="{...}" />
-            <marker date="1548603890929" expanded="true" signature="273:1840" ph="{...}" />
-            <marker date="1548603890929" expanded="true" signature="392:468" ph="{...}" />
-            <marker date="1548603890929" expanded="true" signature="676:917" ph="{...}" />
-            <marker date="1548603890929" expanded="true" signature="1014:1256" ph="{...}" />
-            <marker date="1548603890929" expanded="true" signature="1266:1834" ph="/* [TestMethod] ... */" />
+            <marker date="1548597888166" expanded="true" signature="0:148" ph="/* Copyright (c) Andrew Morger. All rights reserved. ... */" />
+            <marker date="1548597888166" expanded="false" signature="156:400" ph="..." />
+            <marker date="1548597888166" expanded="true" signature="434:3490" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="485:3488" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="736:852" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="1252:1559" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="1387:1523" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="1624:1723" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="1774:3299" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="2027:2117" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="2566:2822" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="3355:3482" ph="{...}" />
+            <marker date="1548597888166" expanded="true" signature="3402:3472" ph="{...}" />
           </folding>
         </state>
       </provider>

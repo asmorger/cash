@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Cash.Core.Providers;
+﻿using Cash.Core.Providers;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -11,7 +10,6 @@ namespace Cash.Core.Tests.Providers
     }
     
     [TestClass]
-    [ExcludeFromCodeCoverage]
     public class EumCacheKeyProviderTests : BaseCacheKeyProviderTests<EumCacheKeyProvider>
     {
         public override object[] GetSuccessArguments() => new object[] { TestEnum.Success };
