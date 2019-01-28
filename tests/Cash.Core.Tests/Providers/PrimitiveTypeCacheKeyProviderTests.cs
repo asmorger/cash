@@ -7,7 +7,7 @@ namespace Cash.Core.Tests.Providers
 {
     [TestClass]
     [ExcludeFromCodeCoverage]
-    public class PrimitivieTypeCacheKeyProviderTests : BaseCacheKeyProviderTests<PrimitiveTypeCacheKeyProvider>
+    public class PrimitiveTypeCacheKeyProviderTests : BaseCacheKeyProviderTests<PrimitiveTypeCacheKeyProvider>
     {
         public override object[] GetSuccessArguments() => new object[] { 1, 1.0, "test", (float)1 };
 
