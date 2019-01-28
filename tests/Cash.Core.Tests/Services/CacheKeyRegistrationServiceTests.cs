@@ -14,20 +14,20 @@ namespace Cash.Core.Tests.Services
     [ExcludeFromCodeCoverage]
     public class CacheKeyRegistrationServiceTests
     {
-        public CacheKeyRegistrationService Service { get; set; }
+        public ICacheKeyRegistry Registry { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            Service = new CacheKeyRegistrationService();
+            Registry = new CacheKeyRegistry();
         }
 
         [TestMethod]
         public void AddAndGetTypedCacheKeyProviders_PropertySetAndGet()
         {
-            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
+            Registry.Register<int>(i => $"int_{i}");
 
-            var targetProvider = Service.GetCacheKeyFormatter<int>();
+            var targetProvider = Registry.Get<int>();
             Assert.IsNotNull(targetProvider);
         }
 
@@ -35,33 +35,33 @@ namespace Cash.Core.Tests.Services
         [ExpectedException(typeof(UnregisteredCacheTypeException))]
         public void GetTypedCacheKeyProvider_ThrowsAnExceptionWhenAProviderHasNotBeenRegistered()
         {
-            var targetProvider = Service.GetCacheKeyFormatter<string>();
+            var targetProvider = Registry.Get<string>();
         }
 
         [TestMethod]
         [ExpectedException(typeof(DuplicateCacheFormatterRegistrationException))]
         public void AddTypedCacheKeyProvider_ThrowsAnExceptionWhenTheSameRegistrationTypeIsSet()
         {
-            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
-            Service.RegisterCacheKeyFormatter<int>(i => $"int2_{i}");
+            Registry.Register<int>(i => $"int_{i}");
+            Registry.Register<int>(i => $"int2_{i}");
         }
 
         [TestMethod]
         public void IsProviderRegistered_ReturnsTrue_WhenProviderIsRegistered()
         {
-            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
+            Registry.Register<int>(i => $"int_{i}");
 
-            var result = Service.IsFormatterRegistered(typeof(int));
+            var result = Registry.HasRegistration(typeof(int));
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void IsProviderRegistered_ReturnsFals_WhenProviderIsNotRegistered()
+        public void IsProviderRegistered_ReturnsFalse_WhenProviderIsNotRegistered()
         {
-            Service.RegisterCacheKeyFormatter<int>(i => $"int_{i}");
+            Registry.Register<int>(i => $"int_{i}");
 
-            var result = Service.IsFormatterRegistered(typeof(string));
+            var result = Registry.HasRegistration(typeof(string));
 
             Assert.IsFalse(result);
         }

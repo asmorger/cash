@@ -15,8 +15,8 @@ namespace Cash.Core.Interceptors
     {
         private IInvocation _invocation;
 
-        public CachingInterceptor(ObjectCache cache, ICacheKeyGenerationService cacheKeyGenerationService)
-            : base(cache, cacheKeyGenerationService)
+        public CachingInterceptor(ObjectCache cache, ICacheKeyGenerator cacheKeyGenerator)
+            : base(cache, cacheKeyGenerator)
         {
         }
 

@@ -14,8 +14,9 @@
     <tags>Caching Cache AOP Autofac</tags>
     <dependencies>
       <dependency id="Cash.Core" version="0.9" />
-      <dependency id="Castle.Core" version="3.3.3" />
-      <dependency id="Autofac.Extras.DynamicProxy2" version="3.0.7" />
+      <dependency id="Castle.Core" version="4.3.1" />
+      <dependency id="Autofac.Extras.DynamicProxy" version="4.2.0" />
+      <dependency id="Autofac" version="4.0.0" />
     </dependencies>
   </metadata>
   <files>

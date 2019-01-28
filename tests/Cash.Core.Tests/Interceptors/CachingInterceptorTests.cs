@@ -22,14 +22,14 @@ namespace Cash.Core.Tests.Interceptors
 
         public ObjectCache Cache { get; set; }
 
-        public ICacheKeyGenerationService CacheKeyGenerationService { get; set; }
+        public ICacheKeyGenerator Generator { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
             Cache = A.Fake<ObjectCache>();
-            CacheKeyGenerationService = A.Fake<ICacheKeyGenerationService>();
-            Interceptor = new CachingInterceptor(Cache, CacheKeyGenerationService);
+            Generator = A.Fake<ICacheKeyGenerator>();
+            Interceptor = new CachingInterceptor(Cache, Generator);
         }
 
         [TestMethod]

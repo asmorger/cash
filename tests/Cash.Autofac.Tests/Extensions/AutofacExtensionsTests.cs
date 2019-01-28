@@ -24,14 +24,14 @@ namespace Cash.Autofac.Tests.Extensions
         
         public ObjectCache Cache { get; set; }
 
-        public ICacheKeyRegistrationService RegistrationService { get; set; }
+        public ICacheKeyRegistry RegistrationService { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
             Builder = new ContainerBuilder();
             Cache = A.Fake<ObjectCache>();
-            RegistrationService = A.Fake<ICacheKeyRegistrationService>();
+            RegistrationService = A.Fake<ICacheKeyRegistry>();
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace Cash.Autofac.Tests.Extensions
         {
             try
             {
-                Builder.RegisterType<CacheKeyGenerationService>().As<ICacheKeyGenerationService>().WithDefaultCache();
+                Builder.RegisterType<CacheKeyRegistry>().As<ICacheKeyRegistry>().WithDefaultCache();
             }
             catch (Exception ex)
             {
@@ -50,10 +50,10 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheKeyGenerationService()
         {
-            AutofacExtensions.ConfigureCash(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
 
             var container = Builder.Build();
-            var service = container.Resolve<ICacheKeyGenerationService>();
+            var service = container.Resolve<ICacheKeyRegistry>();
 
             Assert.IsNotNull(service);
         }
@@ -61,10 +61,10 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheKeyRegistrationService()
         {
-            AutofacExtensions.ConfigureCash(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
 
             var container = Builder.Build();
-            var service = container.Resolve<ICacheKeyRegistrationService>();
+            var service = container.Resolve<ICacheKeyRegistry>();
 
             Assert.IsNotNull(service);
             Assert.AreEqual(RegistrationService, service);
@@ -73,7 +73,7 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheStore()
         {
-            AutofacExtensions.ConfigureCash(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
 
             var container = Builder.Build();
             var cache = container.Resolve<ObjectCache>();
@@ -85,7 +85,7 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheInterceptor()
         {
-            AutofacExtensions.ConfigureCash(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
 
             var container = Builder.Build();
             var interceptor = container.Resolve<CachingInterceptor>();

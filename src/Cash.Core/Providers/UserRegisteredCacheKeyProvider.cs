@@ -5,15 +5,15 @@ namespace Cash.Core.Providers
 {
     public class UserRegisteredCacheKeyProvider : BaseRegisteredCacheKeyProvider
     {
-        public UserRegisteredCacheKeyProvider(ICacheKeyRegistrationService cacheKeyRegistrationService)
-            : base(cacheKeyRegistrationService)
+        public UserRegisteredCacheKeyProvider(ICacheKeyRegistry cacheKeyRegistry)
+            : base(cacheKeyRegistry)
         {
         }
 
         public override bool IsValid(object parameter)
         {
             var type = parameter.GetType();
-            var output = CacheKeyRegistrationService.IsFormatterRegistered(type);
+            var output = CacheKeyRegistry.HasRegistration(type);
             return output;
         }
     }

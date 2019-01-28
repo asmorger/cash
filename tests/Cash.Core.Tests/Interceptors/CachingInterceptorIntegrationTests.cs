@@ -24,7 +24,7 @@ namespace Cash.Core.Tests.Interceptors
 
         public ObjectCache Cache { get; set; }
 
-        public ICacheKeyGenerationService CacheKeyGenerationService { get; set; }
+        public ICacheKeyGenerator Generator { get; set; }
 
         public IInvocation Invocation { get; set; }
 
@@ -32,10 +32,10 @@ namespace Cash.Core.Tests.Interceptors
         public void Initialize()
         {
             Cache = A.Fake<ObjectCache>();
-            CacheKeyGenerationService = A.Fake<ICacheKeyGenerationService>();
+            Generator = A.Fake<ICacheKeyGenerator>();
             Invocation = A.Fake<IInvocation>();
 
-            Interceptor = new CachingInterceptor(Cache, CacheKeyGenerationService);
+            Interceptor = new CachingInterceptor(Cache, Generator);
         }
 
         [TestMethod]
@@ -62,14 +62,14 @@ namespace Cash.Core.Tests.Interceptors
                 typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
 
             A.CallTo(() => Invocation.GetConcreteMethodInvocationTarget()).Returns(methodInfo);
-            A.CallTo(() => CacheKeyGenerationService.GetCacheKey(methodInfo, A<object[]>.Ignored)).Returns(cacheKey);
+            A.CallTo(() => Generator.Generate(methodInfo, A<object[]>.Ignored)).Returns(cacheKey);
             A.CallTo(() => Cache.Contains(cacheKey, region)).Returns(true);
             A.CallTo(() => Cache.Get(cacheKey, region)).Returns(cacheOutput);
 
             Interceptor.Intercept(Invocation);
 
             A.CallTo(() => Invocation.Proceed()).MustNotHaveHappened();
-            A.CallTo(() => CacheKeyGenerationService.GetCacheKey(methodInfo, A<object[]>.Ignored)).MustHaveHappened();
+            A.CallTo(() => Generator.Generate(methodInfo, A<object[]>.Ignored)).MustHaveHappened();
             A.CallTo(() => Cache.Get(cacheKey, region)).MustHaveHappened();
 
             Assert.AreEqual(cacheOutput, Invocation.ReturnValue);
@@ -86,14 +86,14 @@ namespace Cash.Core.Tests.Interceptors
                 typeof(TestModelDefinition).GetMethod(nameof(TestModelDefinition.TestMethod_WithCacheAttribute));
 
             A.CallTo(() => Invocation.GetConcreteMethodInvocationTarget()).Returns(methodInfo);
-            A.CallTo(() => CacheKeyGenerationService.GetCacheKey(methodInfo, A<object[]>.Ignored)).Returns(cacheKey);
+            A.CallTo(() => Generator.Generate(methodInfo, A<object[]>.Ignored)).Returns(cacheKey);
             A.CallTo(() => Cache.Contains(cacheKey, region)).Returns(false);
             A.CallTo(() => Invocation.ReturnValue).Returns(returnValue);
 
             Interceptor.Intercept(Invocation);
 
             A.CallTo(() => Invocation.Proceed()).MustHaveHappened();
-            A.CallTo(() => CacheKeyGenerationService.GetCacheKey(methodInfo, A<object[]>.Ignored)).MustHaveHappened();
+            A.CallTo(() => Generator.Generate(methodInfo, A<object[]>.Ignored)).MustHaveHappened();
             A.CallTo(() => Cache.Set(A<CacheItem>.Ignored, A<CacheItemPolicy>.Ignored)).MustHaveHappened();
         }
     }

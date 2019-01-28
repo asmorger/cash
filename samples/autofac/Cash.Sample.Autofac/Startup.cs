@@ -39,7 +39,7 @@ namespace Cash.Sample.Autofac
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
-            builder.ConfigureCash(MemoryCache.Default, ConfigureCaching());
+            builder.AddCaching(MemoryCache.Default, ConfigureCaching());
 
             builder.RegisterType<RandomDataService>().As<IRandomDataService>().SingleInstance().WithDefaultCache();
             builder.RegisterType<UserService>().As<IUserService>().SingleInstance().WithDefaultCache();
@@ -48,13 +48,13 @@ namespace Cash.Sample.Autofac
             return new AutofacServiceProvider(this.ApplicationContainer);
         }
 
-        public ICacheKeyRegistrationService ConfigureCaching()
+        public ICacheKeyRegistry ConfigureCaching()
         {
-            var registrationService = new CacheKeyRegistrationService();
+            var registry = new CacheKeyRegistry();
 
-            registrationService.RegisterCacheKeyFormatter<UserModel>(x => $"{x.Id}");
+            registry.Register<UserModel>(x => $"{x.Id}");
 
-            return registrationService;
+            return registry;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

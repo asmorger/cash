@@ -13,12 +13,12 @@ namespace Cash.Core.Interceptors
     {
         protected readonly ObjectCache _cache;
 
-        protected readonly ICacheKeyGenerationService _cacheKeyGenerationService;
+        protected readonly ICacheKeyGenerator CacheKeyGenerator;
 
-        protected BaseCachingInterceptor(ObjectCache cache, ICacheKeyGenerationService cacheKeyGenerationService)
+        protected BaseCachingInterceptor(ObjectCache cache, ICacheKeyGenerator cacheKeyGenerator)
         {
             _cache = cache;
-            _cacheKeyGenerationService = cacheKeyGenerationService;
+            CacheKeyGenerator = cacheKeyGenerator;
         }
 
         protected abstract MethodInfo GetMethodInfoFromInterceptor();
@@ -66,7 +66,7 @@ namespace Cash.Core.Interceptors
             var arguments = GetArgumentsFromInterceptor();
 
             // get the cache key for the method and it's parameters
-            var methodCacheKey = _cacheKeyGenerationService.GetCacheKey(method, arguments);
+            var methodCacheKey = CacheKeyGenerator.Generate(method, arguments);
 
             WriteDebugMessage($"Cache Key generated: {methodCacheKey}");
 

@@ -23,13 +23,13 @@ namespace Cash.Autofac.Extensions
             return registration.EnableInterfaceInterceptors().InterceptedBy(typeof(CachingInterceptor));
         }
 
-        public static void ConfigureCash(this ContainerBuilder builder, ObjectCache cacheProvider, ICacheKeyRegistrationService registrationService)
+        public static void AddCaching(this ContainerBuilder builder, ObjectCache cacheProvider, ICacheKeyRegistry registry)
         {
             builder.Register(x => cacheProvider).As<ObjectCache>().SingleInstance();
-            builder.RegisterType<CacheKeyGenerationService>().As<ICacheKeyGenerationService>().SingleInstance();
-            builder.Register(x => registrationService).As<ICacheKeyRegistrationService>().SingleInstance();
+            builder.RegisterType<CacheKeyGenerator>().As<ICacheKeyGenerator>().SingleInstance();
+            builder.Register(x => registry).As<ICacheKeyRegistry>().SingleInstance();
 
-            builder.Register(c => new CachingInterceptor(c.Resolve<ObjectCache>(), c.Resolve<ICacheKeyGenerationService>())).InstancePerDependency();
+            builder.Register(c => new CachingInterceptor(c.Resolve<ObjectCache>(), c.Resolve<ICacheKeyGenerator>())).InstancePerDependency();
         }
     }
 }

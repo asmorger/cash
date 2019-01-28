@@ -1,9 +1,6 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using Castle.DynamicProxy;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -13,7 +10,13 @@ using Cash.Core.Providers.Base;
 
 namespace Cash.Core.Services
 {
-    public class CacheKeyGenerator : ICacheKeyGenerationService
+    public interface ICacheKeyGenerator
+    {
+        string GenerateForArguments(object[] arguments);
+        string Generate(MethodInfo method, object[] arguments);
+    }
+    
+    public class CacheKeyGenerator : ICacheKeyGenerator
     {
         private readonly ICacheKeyProvider[] _cacheKeyProviders;
 
@@ -69,7 +72,7 @@ namespace Cash.Core.Services
             return string.Empty;
         }
 
-        public string GetArgumentsCacheKey(object[] arguments)
+        public string GenerateForArguments(object[] arguments)
         {
             if (arguments == null || !arguments.Any())
             {
@@ -82,7 +85,7 @@ namespace Cash.Core.Services
             return cacheKey;
         }
 
-        public string GetCacheKey(MethodInfo method, object[] arguments)
+        public string Generate(MethodInfo method, object[] arguments)
         {
             var type = method.DeclaringType;
 
@@ -94,7 +97,7 @@ namespace Cash.Core.Services
 
             var keyFormat = string.IsNullOrEmpty(typeNames) ? "{0}.{1}" : "{0}.{1}<{2}>";
             var formattedKey = string.Format(keyFormat, className, methodName, typeNames);
-            var argumentsCacheKey = GetArgumentsCacheKey(arguments);
+            var argumentsCacheKey = GenerateForArguments(arguments);
 
             var output = string.Concat(formattedKey, $"({argumentsCacheKey})");
             return output;
