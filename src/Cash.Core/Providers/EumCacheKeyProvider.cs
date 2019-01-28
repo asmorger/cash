@@ -18,10 +18,10 @@ namespace Cash.Core.Providers
 
         public override string GetValueRepresentation(object parameter)
         {
-            // since it's an enum we can safely cast it to an int
-            var item = (int)parameter;
+            // pull the value out of the underlying type
+            var item = Convert.ChangeType(parameter, Enum.GetUnderlyingType(parameter.GetType()));
 
-            var output = item.ToString(CultureInfo.InvariantCulture);
+            var output = item.ToString();
             return output;
         }
 
