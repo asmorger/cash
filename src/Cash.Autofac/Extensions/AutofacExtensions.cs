@@ -18,7 +18,7 @@ namespace Cash.Autofac.Extensions
         /// <summary>
         /// Enables support for caching the method output based upon it's type, name, and arguments
         /// </summary>
-        public static IRegistrationBuilder<TLimit, TActivatorData, TSingleRegistrationStyle> WithDefaultCache<TLimit, TActivatorData, TSingleRegistrationStyle>(this IRegistrationBuilder<TLimit, TActivatorData, TSingleRegistrationStyle> registration)
+        public static IRegistrationBuilder<TLimit, TActivatorData, TSingleRegistrationStyle>  <TLimit, TActivatorData, TSingleRegistrationStyle>(this IRegistrationBuilder<TLimit, TActivatorData, TSingleRegistrationStyle> registration)
         {
             return registration.EnableInterfaceInterceptors().InterceptedBy(typeof(CachingInterceptor));
         }
