@@ -19,6 +19,8 @@ Let's unpack what that actually means, eh?
 * _Dynamic proxy objects_: Dynamic proxies are a special type of object that are defined and generated on demand at run time.  These proxy objects define hooks that allow application developers to define behaviors before and after methods are invoked.  The solution used in this project is [Dynamic Proxy](http://www.castleproject.org/projects/dynamicproxy/).
 * _Dependency Injection_: You **ARE** using DI, right?  If not [here's an overview of SOLID](https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design).
 
+## Getting Started
+
 ## TODO!
 More to come.
 - Samples
