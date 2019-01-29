@@ -9,17 +9,17 @@
 ## Overview
 Cash is perhaps the simplest way of adding caching to your .Net application.  Through the clever use of standard patterns/practices, sane defaults, and a simple interface for the more complicated stuff, Cash provides a drop-in solution that easily integrates with your application at the DI level.
 
-## How does this Wizardry work?
-It's time for some buzzwords!  Cash is an **Aspect Oriented Programming (AOP)** implementation of the **Decorator pattern** via **dynamic proxy objects** that integrates with your application through your **Dependency Injection container**.  
+## How does this wizardry work?
+It's time for some buzzwords!  Cash is an **Aspect Oriented Programming (AOP)** implementation of the **Decorator pattern** via **dynamic proxy objects** that integrates with your application through your **Inversion of Control (dependency injection) container**.  
 
 Let's unpack what that actually means, eh?
 
 * _AOP_: AOP is a software development paradigm that seeks to increase software modularity by adding behaviors to existing code without modifying the code itself.
 * _Decorator pattern_: The Decorator pattern is a design pattern that adds behaviors to an individual object through inheritance.
 * _Dynamic proxy objects_: Dynamic proxies are a special type of object that are defined and generated on-demand at run time.  These proxy objects define hooks that allow application developers to define behaviors before and after methods are invoked.  The solution used in this project is [Dynamic Proxy](http://www.castleproject.org/projects/dynamicproxy/).
-* _Dependency Injection_: You **ARE** using DI, right?  If not [here's an overview of SOLID](https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design).
+* _Inversion of Control_: You **ARE** using DI, right?  If not, this solution is **not for you** and [here's an overview of SOLID](https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design).
 
-## Just how good is this Wizardry?
+## Just how good is this wizardry?
 
 ### Standard caching paradigm
 
@@ -45,6 +45,7 @@ public class DataService
             return cachedValue;
         }
 
+        // don't actually do this - it won't work the way you think.  It's an exmaple, yo!
         var random = new Random(0, maxValue);
         var value = random.Next();
 
@@ -74,6 +75,7 @@ public class DataService : IDataService
     [Cache]
     public int GenerateRandomData(int maxValue)
     {
+        // don't actually do this - it won't work the way you think.  It's an exmaple, yo!
         var random = new Random(1, maxValue);
         var value = random.Next();
 
@@ -92,27 +94,124 @@ var registry = new CacheKeyRegistry();
 // In this particular example we don't need to add anything to the registry due to the fact that 
 // the "maxValue" method parameter is a primitive type.
 
-// By default Cash will handle enum, primitive, and null parameter values.
+// By default Cash will handle enum, primitive, and null parameter values (see below).
 
 // within our Autofac registration logic:
 var builder = new ContainerBuilder();
 
 // this registers all of the necessary classes with Autofac
-builder.AddCaching(MemoryCache.Default, registry)
+// by default it will use MemoryCache.Default, but it can be overridden
+builder.AddCaching(registry);
 
 // append Autofac registration option to include caching logic
 builder.RegisterType<DataService>().As<IDataService>().WithCaching();
 ```
 
-In the words of a former coworker: **Boom!  Done!**.
+To quote an old friend: **Boom!  Done!**.
 
+## Ok, I'm interested.  How does it actually work?
+
+## Cache key generation
+
+One crucial aspect of a caching system is unique cache keys.  If your keys aren't appropriately unique you'll run into a heap of trouble when your keys collide and your caching returns unpredictable items.
+
+Cache keys are generally defined on a per-method instance.  Consider the following method signature
+
+```csharp
+public class UserService
+{
+    public User GetUserByUserId(Guid userId)
+    {
+       // ... goes forth and gets the user   
+    }
+}
+
+```
+
+If caching were to be added to this method I would expect a cache key to be something like:
+
+> GetUserById_{userId_guid_here}
+
+However, what if that particular key is used elsewhere?  We now have a collision problem.  To make it more unique we might do something like this:
+
+> UserService.GetUserByUserId_{userId_guid_here}
+
+With that specific of a cache key, it is unlikely to collide and you can have a reasonably high degree of confidence that it will behave as intended.
+
+## The Cash solution
+
+How can Cash solve this problem in an automatic way?  Well, we can get a long way using standard .Net reflection, but there are some areas where we **need** help from you.
+
+Using reflection, we can easily pull out the class and method names at runtime via our proxy.  That part is easy.  The hard part is dealing with the method parameters and pulling out a stable, unique representation of that object.  
+
+Enter type handlers.
+
+### Type handlers
+
+Type handlers are the way that we translate both simple and complex method parameters into a string representation so we can incorporate that into our cache key.
+
+A number of built-in .Net types are handled automatically for you:
+
+* Enums
+* Primitive types (string, int, bool, etc.)
+* Null
+
+This means that if your method parameters use only these types, Cash will work out-of-the-box with no further help from you.
+
+However, it is unlikely that you will _never_ use a complex type as a parameter.  How do we configure these types to integrate with Cash?
+
+The answer is the **CacheKeyRegistry**
+
+### Cache Key Registry
+
+The cache key registry is how we, as developers, can map complex types to simple string representations for incorporation into cache keys.
+
+Consider the following example:
+
+```csharp
+public class UserModel
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+}
+
+public class AddressModel
+{
+    public int Id { get; set }
+    public string Address1 { get; set; }
+}
+
+public class UserService
+{
+    [Cache]
+    public AddressModel GetAddress(UserModel user)
+    {
+        // .. goes forth and gets the address
+    }
+}
+```
+
+If we tried to run execute this method with Cash it would result in an Exception because Cash doesn't know how to handle the **UserModel**.
+
+How do we register that?  Great question.
+
+```csharp
+var registry = new CacheKeyRegistry();
+registry.Register<UserModel>(x => x.Id.ToString());
+
+// autofac example
+var builder = new ContainerBuilder();
+builder.AddCaching(registry)
+```
+
+That's it!  
+
+The cache key generated for the the example would be
+> UserService.AddressModel([UserModel]::{value of the Id property})
 
 
 ## TODO!
 More to come.
-- Samples
-- Built-in type handlers
-- Defining registrations via *ICacheKeyRegistrationService*
 - Defining Issues around
   - Updating interface to better match netStandard usages
   - Potential updates to the *ICacheKeyRegistrationService* to make it easier to define DI needs of the solution
