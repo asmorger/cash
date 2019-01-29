@@ -41,8 +41,8 @@ namespace Cash.Sample.Autofac
             builder.Populate(services);
             builder.AddCaching(MemoryCache.Default, ConfigureCaching());
 
-            builder.RegisterType<RandomDataService>().As<IRandomDataService>().SingleInstance().WithDefaultCache();
-            builder.RegisterType<UserService>().As<IUserService>().SingleInstance().WithDefaultCache();
+            builder.RegisterType<RandomDataService>().As<IRandomDataService>().SingleInstance().WithCaching();
+            builder.RegisterType<UserService>().As<IUserService>().SingleInstance().WithCaching();
             
             this.ApplicationContainer = builder.Build();
             return new AutofacServiceProvider(this.ApplicationContainer);

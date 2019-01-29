@@ -55,7 +55,7 @@ public class DataService
 }
 
 ```
-There's a lot of boilerplate code in the example above.  There is the generation of the method/argument specific **cache key**, **checking** the cache for existing data, and then **adding** the result of the method operation to the cache itself.  In fact, 7 out of 10 LOC of that method are dedicated toward caching alone!
+There's a lot of boilerplate code in the example above.  There is the generation of the method/argument specific **cache key**, **checking** the cache for existing data, and then **adding** the result of the method operation to the cache itself.  In fact, **7 out of 10 LOC** of that method are dedicated toward caching alone!
 
 For a single method, this isn't bad a bad pattern. In fact this is pretty straight-forward, to the point, and easy to maintain.
 
@@ -66,7 +66,7 @@ But what happens if you have 10 methods that need cached?  Or 100?  More?  At wh
 ```csharp
 public interface IDataService
 {
-    int GenerateRandomData();
+    int GenerateRandomData(int maxValue);
 }
 
 public class DataService : IDataService
@@ -89,14 +89,19 @@ That is all we need to do from a class declaration standpoint.  We do, however, 
 ```csharp
 
 var registry = new CacheKeyRegistry();
-// in this particular example we don't need to add anything to the registry due to the fact that the "maxValue" method parameter is a primitive type
-// by default Cash will handle enum, primitive, and null parameter values 
+// In this particular example we don't need to add anything to the registry due to the fact that 
+// the "maxValue" method parameter is a primitive type.
+
+// By default Cash will handle enum, primitive, and null parameter values.
 
 // within our Autofac registration logic:
 var builder = new ContainerBuilder();
+
+// this registers all of the necessary classes with Autofac
 builder.AddCaching(MemoryCache.Default, registry)
 
-builder.RegisterType<DataService>().As<IDataService>()**.WithDefaultCache()**;
+// append Autofac registration option to include caching logic
+builder.RegisterType<DataService>().As<IDataService>().WithCaching();
 ```
 
 In the words of a former coworker: **Boom!  Done!**.
