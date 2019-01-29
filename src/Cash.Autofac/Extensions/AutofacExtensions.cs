@@ -5,8 +5,8 @@ using System.Runtime.Caching;
 using Autofac;
 using Autofac.Builder;
 using Autofac.Extras.DynamicProxy;
+using Cash.Core;
 using Cash.Core.Interceptors;
-using Cash.Core.Services;
 
 namespace Cash.Autofac.Extensions
 {

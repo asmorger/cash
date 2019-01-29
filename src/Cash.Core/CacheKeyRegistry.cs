@@ -1,13 +1,12 @@
-﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-
 using Cash.Core.Exceptions;
 
-namespace Cash.Core.Services
+namespace Cash.Core
 {
     public interface ICacheKeyRegistry
     {

@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Caching;
 
 using Cash.Core.Interceptors;
-using Cash.Core.Services;
 using Cash.Core.Tests.Models;
 
 using FakeItEasy;

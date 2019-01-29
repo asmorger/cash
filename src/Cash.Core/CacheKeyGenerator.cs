@@ -1,14 +1,13 @@
-﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Linq;
 using System.Reflection;
-
 using Cash.Core.Exceptions;
 using Cash.Core.Providers;
 using Cash.Core.Providers.Base;
 
-namespace Cash.Core.Services
+namespace Cash.Core
 {
     public interface ICacheKeyGenerator
     {

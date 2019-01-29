@@ -4,8 +4,6 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Caching;
-using Cash.Core.Attributes;
-using Cash.Core.Services;
 
 namespace Cash.Core.Interceptors
 {

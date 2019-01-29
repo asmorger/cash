@@ -1,17 +1,13 @@
-﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
-
 using Cash.Core.Exceptions;
-using Cash.Core.Services;
 using Cash.Core.Tests.Models;
-
 using FakeItEasy;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Cash.Core.Tests.Services
+namespace Cash.Core.Tests
 {
     [TestClass]
     [ExcludeFromCodeCoverage]

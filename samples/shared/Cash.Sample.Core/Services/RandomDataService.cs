@@ -1,5 +1,5 @@
 using System;
-using Cash.Core.Attributes;
+using Cash.Core;
 
 namespace Cash.Sample.Core.Services
 {

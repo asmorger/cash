@@ -7,8 +7,8 @@ using System.Runtime.Caching;
 using Autofac;
 
 using Cash.Autofac.Extensions;
+using Cash.Core;
 using Cash.Core.Interceptors;
-using Cash.Core.Services;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

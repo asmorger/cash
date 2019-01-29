@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Cash.Core.Attributes;
+using Cash.Core;
 using Cash.Sample.Core.Models;
 
 namespace Cash.Sample.Core.Services

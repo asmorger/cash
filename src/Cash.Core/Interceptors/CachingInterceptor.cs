@@ -4,9 +4,6 @@
 using System;
 using System.Reflection;
 using System.Runtime.Caching;
-
-using Cash.Core.Services;
-
 using Castle.DynamicProxy;
 
 namespace Cash.Core.Interceptors

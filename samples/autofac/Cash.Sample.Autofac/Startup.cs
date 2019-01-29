@@ -3,7 +3,7 @@ using System.Runtime.Caching;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Cash.Autofac.Extensions;
-using Cash.Core.Services;
+using Cash.Core;
 using Cash.Sample.Core.Models;
 using Cash.Sample.Core.Services;
 using Microsoft.AspNetCore.Builder;

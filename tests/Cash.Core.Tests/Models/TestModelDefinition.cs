@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using Cash.Core.Attributes;
-
 namespace Cash.Core.Tests.Models
 {
     [ExcludeFromCodeCoverage]

@@ -3,8 +3,6 @@
 
 using System.Reflection;
 
-using Cash.Core.Services;
-
 namespace Cash.Core.Providers.Base
 {
     public abstract class BaseRegisteredCacheKeyProvider : BaseCacheKeyProvider

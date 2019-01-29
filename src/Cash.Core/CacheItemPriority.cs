@@ -1,4 +1,4 @@
-﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 namespace Cash.Core

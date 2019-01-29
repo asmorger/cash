@@ -1,12 +1,11 @@
-﻿// Copyright (c) Andrew Morger. All rights reserved.
+// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
 using System.Runtime.Caching;
-
 using Cash.Core.Extensions;
 
-namespace Cash.Core.Attributes
+namespace Cash.Core
 {
     /// <summary>
     ///     Attribute used to indicate that a method should be cached.
