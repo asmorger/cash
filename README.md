@@ -111,7 +111,7 @@ To quote an old friend: **Boom!  Done!**.
 
 ## Ok, I'm interested.  How does it actually work?
 
-## Cache key generation
+### Cache key generation
 
 One crucial aspect of a caching system is unique cache keys.  If your keys aren't appropriately unique you'll run into a heap of trouble when your keys collide and your caching returns unpredictable items.
 
@@ -164,7 +164,7 @@ The answer is the **CacheKeyRegistry**
 
 ### Cache Key Registry
 
-The cache key registry is how we, as developers, can map complex types to simple string representations for incorporation into cache keys.
+The cache key registry is how we, as developers, can map complex types to simple string representations for incorporation into the cache key generation process.
 
 Consider the following example:
 
@@ -191,7 +191,7 @@ public class UserService
 }
 ```
 
-If we tried to run execute this method with Cash it would result in an Exception because Cash doesn't know how to handle the **UserModel**.
+If we tried to run execute this method with Cash it would result in an exception because the system doesn't know how to handle the **UserModel**.
 
 How do we register that?  Great question.
 
@@ -204,7 +204,7 @@ var builder = new ContainerBuilder();
 builder.AddCaching(registry)
 ```
 
-That's it!  
+That's it!  Behind the scenes this method is transforming that UserModel Expression into another version of the TypeHandler and integrating it into the Cash system.
 
 The cache key generated for the the example would be
 > UserService.AddressModel(UserModel::{value of the Id property})
@@ -213,7 +213,7 @@ The cache key generated for the the example would be
 
 Oh, you think I missed something?  Let's go through some scenarios taken from the unit tests 
 
-## Enumerable parameters
+### Enumerable parameters
 
 Method signature:
 ```csharp
@@ -225,7 +225,7 @@ public void TestMethod_EnumerableParameter(IEnumerable<int> heights)
 Cache Key: 
 > TestMethod_EnumerableParameter(Int32::10||Int32::20)
 
-## No arguments
+### No arguments
 
 Method signature:
 ```csharp
@@ -237,7 +237,7 @@ public void TestMethod_NoParameters()
 Cache Key: 
 > TestMethod_NoParameters(<no_arguments>)
 
-## Multiple Args when 1 is null
+### Multiple Args when 1 is null
 
 Method signature:
 ```csharp
