@@ -4,9 +4,6 @@
 using System;
 using System.Reflection;
 using System.Runtime.Caching;
-
-using Cash.Core.Services;
-
 using Castle.DynamicProxy;
 
 namespace Cash.Core.Interceptors
@@ -15,8 +12,8 @@ namespace Cash.Core.Interceptors
     {
         private IInvocation _invocation;
 
-        public CachingInterceptor(ObjectCache cache, ICacheKeyGenerationService cacheKeyGenerationService)
-            : base(cache, cacheKeyGenerationService)
+        public CachingInterceptor(ObjectCache cache, ICacheKeyGenerator cacheKeyGenerator)
+            : base(cache, cacheKeyGenerator)
         {
         }
 

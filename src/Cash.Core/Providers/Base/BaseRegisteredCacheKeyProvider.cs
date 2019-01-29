@@ -3,17 +3,15 @@
 
 using System.Reflection;
 
-using Cash.Core.Services;
-
 namespace Cash.Core.Providers.Base
 {
     public abstract class BaseRegisteredCacheKeyProvider : BaseCacheKeyProvider
     {
-        protected readonly ICacheKeyRegistrationService CacheKeyRegistrationService;
+        protected readonly ICacheKeyRegistry CacheKeyRegistry;
 
-        protected BaseRegisteredCacheKeyProvider(ICacheKeyRegistrationService cacheKeyRegistrationService)
+        protected BaseRegisteredCacheKeyProvider(ICacheKeyRegistry cacheKeyRegistry)
         {
-            CacheKeyRegistrationService = cacheKeyRegistrationService;
+            CacheKeyRegistry = cacheKeyRegistry;
         }
 
         public override string GetTypeNameRepresentation(object parameter)
@@ -45,7 +43,7 @@ namespace Cash.Core.Providers.Base
 
         protected string GetCacheKeyValueRepresentation<TEntity>(TEntity item)
         {
-            var cacheKeyProvider = CacheKeyRegistrationService.GetCacheKeyFormatter<TEntity>();
+            var cacheKeyProvider = CacheKeyRegistry.Get<TEntity>();
             var value = cacheKeyProvider(item);
 
             return value;

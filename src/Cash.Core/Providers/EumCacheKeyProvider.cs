@@ -4,15 +4,12 @@
 using System;
 using System.Globalization;
 
-using Cash.Core.Enums;
 using Cash.Core.Providers.Base;
 
 namespace Cash.Core.Providers
 {
     public class EumCacheKeyProvider : BaseCacheKeyProvider
     {
-        public override CacheKeyProviderExecutionOrder ExecutionOrder => CacheKeyProviderExecutionOrder.Enum;
-
         public override bool IsValid(object parameter)
         {
             var output = parameter is Enum;
@@ -21,10 +18,24 @@ namespace Cash.Core.Providers
 
         public override string GetValueRepresentation(object parameter)
         {
-            // since it's an enum we can safely cast it to an int
-            var item = (int)parameter;
-
-            var output = item.ToString(CultureInfo.InvariantCulture);
+            /*
+             * Return the name of the Enum, not the value
+             * This helps prevent confusion when using default values.
+             * 
+             * Example:
+             * public enum CountryCode
+             * {
+             *     Usa,
+             *     Canada
+             * }
+             *
+             * Which is more obvious?
+             * Enum[CountryCode]::2
+             * Enum[CountryCode]::Canada
+             * 
+             */
+            
+            var output = parameter.ToString();
             return output;
         }
 

@@ -1,16 +1,9 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
-using Cash.Core.Attributes;
-using Cash.Core.Services;
 
 namespace Cash.Core.Interceptors
 {
@@ -18,12 +11,12 @@ namespace Cash.Core.Interceptors
     {
         protected readonly ObjectCache _cache;
 
-        protected readonly ICacheKeyGenerationService _cacheKeyGenerationService;
+        protected readonly ICacheKeyGenerator CacheKeyGenerator;
 
-        protected BaseCachingInterceptor(ObjectCache cache, ICacheKeyGenerationService cacheKeyGenerationService)
+        protected BaseCachingInterceptor(ObjectCache cache, ICacheKeyGenerator cacheKeyGenerator)
         {
             _cache = cache;
-            _cacheKeyGenerationService = cacheKeyGenerationService;
+            CacheKeyGenerator = cacheKeyGenerator;
         }
 
         protected abstract MethodInfo GetMethodInfoFromInterceptor();
@@ -71,7 +64,7 @@ namespace Cash.Core.Interceptors
             var arguments = GetArgumentsFromInterceptor();
 
             // get the cache key for the method and it's parameters
-            var methodCacheKey = _cacheKeyGenerationService.GetCacheKey(method, arguments);
+            var methodCacheKey = CacheKeyGenerator.Generate(method, arguments);
 
             WriteDebugMessage($"Cache Key generated: {methodCacheKey}");
 
@@ -101,10 +94,7 @@ namespace Cash.Core.Interceptors
 
         private void WriteDebugMessage(string message)
         {
-            if (Debugger.IsAttached)
-            {
-                Debug.WriteLine(message);
-            }
+            Debug.WriteLine(message);
         }
     }
 }
