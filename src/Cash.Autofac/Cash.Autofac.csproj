@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Andrew Morger</Authors>
+    <Description>An elegant, Autofac-specific solution to an old problem: caching.</Description>
+    <PackageLicenseUrl>https://github.com/asmorger/cash/blob/master/License.txt</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
