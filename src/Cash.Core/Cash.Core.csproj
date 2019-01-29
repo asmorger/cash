@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Cash.Core</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Andrew Morger</Authors>
+    <Company></Company>
+    <Description>An elegant solution to an old problem: caching.</Description>
+    <PackageLicenseUrl>https://github.com/asmorger/cash/blob/master/License.txt</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
