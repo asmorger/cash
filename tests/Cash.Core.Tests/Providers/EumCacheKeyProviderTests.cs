@@ -6,7 +6,13 @@ namespace Cash.Core.Tests.Providers
 {
     public enum TestEnum
     {
-        Success
+        Success = 1
+    }
+    
+    public enum ByteEnum : byte
+    {
+        One = 1,
+        Two = 2
     }
     
     [TestClass]
@@ -21,7 +27,7 @@ namespace Cash.Core.Tests.Providers
         {
             var argument = TestEnum.Success;
             var result = CacheKeyProvider.GetValueRepresentation(argument);
-            var expectedResult = ((int)argument).ToString();
+            var expectedResult = argument.ToString();
             Assert.AreEqual(expectedResult, result);
         }
 
@@ -33,5 +39,15 @@ namespace Cash.Core.Tests.Providers
             var expectedResult = $"Enum[{argument.GetType().Name}]";
             Assert.AreEqual(expectedResult, result);
         }
+
+        [TestMethod]
+        public void GetValueRepresentation_ReturnsExpectedValues_ForNonIntBasedEnums()
+        {
+            var argument = ByteEnum.One;
+            var result = CacheKeyProvider.GetValueRepresentation(argument);
+            var expectedResult = argument.ToString();
+            Assert.AreEqual(expectedResult, result);
+        }
+        
     }
 }

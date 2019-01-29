@@ -18,10 +18,24 @@ namespace Cash.Core.Providers
 
         public override string GetValueRepresentation(object parameter)
         {
-            // pull the value out of the underlying type
-            var item = Convert.ChangeType(parameter, Enum.GetUnderlyingType(parameter.GetType()));
-
-            var output = item.ToString();
+            /*
+             * Return the name of the Enum, not the value
+             * This helps prevent confusion when using default values.
+             * 
+             * Example:
+             * public enum CountryCode
+             * {
+             *     Usa,
+             *     Canada
+             * }
+             *
+             * Which is more obvious?
+             * Enum[CountryCode]::2
+             * Enum[CountryCode]::Canada
+             * 
+             */
+            
+            var output = parameter.ToString();
             return output;
         }
 

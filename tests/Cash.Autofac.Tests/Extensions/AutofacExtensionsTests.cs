@@ -35,11 +35,11 @@ namespace Cash.Autofac.Tests.Extensions
         }
 
         [TestMethod]
-        public void WithDefaultCache_ExecutesSuccessfully()
+        public void WithCaching_ExecutesSuccessfully()
         {
             try
             {
-                Builder.RegisterType<CacheKeyRegistry>().As<ICacheKeyRegistry>().WithDefaultCache();
+                Builder.RegisterType<CacheKeyRegistry>().As<ICacheKeyRegistry>().WithCaching();
             }
             catch (Exception ex)
             {
