@@ -181,7 +181,12 @@ public class AddressModel
     public string Address1 { get; set; }
 }
 
-public class UserService
+public interface IUserService
+{
+    AddressModel GetAddress(UserModel user);
+}
+
+public class UserService : IUserService
 {
     [Cache]
     public AddressModel GetAddress(UserModel user)
@@ -201,7 +206,8 @@ registry.Register<UserModel>(x => x.Id.ToString());
 
 // autofac example
 var builder = new ContainerBuilder();
-builder.AddCaching(registry)
+builder.AddCaching(registry);
+builder.RegisterType<UserService>().As<IUserService>().WithCaching();
 ```
 
 That's it!  Behind the scenes this method is transforming that UserModel Expression into another version of the TypeHandler and integrating it into the Cash system.
