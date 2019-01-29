@@ -39,7 +39,7 @@ namespace Cash.Sample.Autofac
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
-            builder.AddCaching(MemoryCache.Default, ConfigureCaching());
+            builder.AddCaching(ConfigureCaching());
 
             builder.RegisterType<RandomDataService>().As<IRandomDataService>().SingleInstance().WithCaching();
             builder.RegisterType<UserService>().As<IUserService>().SingleInstance().WithCaching();

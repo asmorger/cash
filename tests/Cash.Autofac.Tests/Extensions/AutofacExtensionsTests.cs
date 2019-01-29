@@ -50,7 +50,7 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheKeyGenerationService()
         {
-            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, RegistrationService, Cache);
 
             var container = Builder.Build();
             var service = container.Resolve<ICacheKeyRegistry>();
@@ -61,7 +61,7 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheKeyRegistrationService()
         {
-            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, RegistrationService, Cache);
 
             var container = Builder.Build();
             var service = container.Resolve<ICacheKeyRegistry>();
@@ -73,7 +73,7 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheStore()
         {
-            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, RegistrationService, Cache);
 
             var container = Builder.Build();
             var cache = container.Resolve<ObjectCache>();
@@ -85,7 +85,7 @@ namespace Cash.Autofac.Tests.Extensions
         [TestMethod]
         public void RegisterCacheInfrastructure_RegistersTheCacheInterceptor()
         {
-            AutofacExtensions.AddCaching(Builder, Cache, RegistrationService);
+            AutofacExtensions.AddCaching(Builder, RegistrationService, Cache);
 
             var container = Builder.Build();
             var interceptor = container.Resolve<CachingInterceptor>();

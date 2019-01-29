@@ -23,9 +23,10 @@ namespace Cash.Autofac.Extensions
             return registration.EnableInterfaceInterceptors().InterceptedBy(typeof(CachingInterceptor));
         }
 
-        public static void AddCaching(this ContainerBuilder builder, ObjectCache cacheProvider, ICacheKeyRegistry registry)
+        public static void AddCaching(this ContainerBuilder builder, ICacheKeyRegistry registry, ObjectCache cacheProvider = null)
         {
-            builder.Register(x => cacheProvider).As<ObjectCache>().SingleInstance();
+            var definedCacheProvider = cacheProvider ?? MemoryCache.Default;
+            builder.Register(x => definedCacheProvider).As<ObjectCache>().SingleInstance();
             builder.RegisterType<CacheKeyGenerator>().As<ICacheKeyGenerator>().SingleInstance();
             builder.Register(x => registry).As<ICacheKeyRegistry>().SingleInstance();
 
