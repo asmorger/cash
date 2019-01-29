@@ -207,7 +207,48 @@ builder.AddCaching(registry)
 That's it!  
 
 The cache key generated for the the example would be
-> UserService.AddressModel([UserModel]::{value of the Id property})
+> UserService.AddressModel(UserModel::{value of the Id property})
+
+## But wait!  You didn't think about ...
+
+Oh, you think I missed something?  Let's go through some scenarios taken from the unit tests 
+
+## Enumerable parameters
+
+Method signature:
+```csharp
+public void TestMethod_EnumerableParameter(IEnumerable<int> heights)
+{
+}
+```
+
+Cache Key: 
+> TestMethod_EnumerableParameter(Int32::10||Int32::20)
+
+## No arguments
+
+Method signature:
+```csharp
+public void TestMethod_NoParameters()
+{
+}
+```
+
+Cache Key: 
+> TestMethod_NoParameters(<no_arguments>)
+
+## Multiple Args when 1 is null
+
+Method signature:
+```csharp
+public void TestMethod_Args(object[] args)
+{
+    // called with valeus 5, null
+}
+```
+
+Cache Key: 
+> TestMethod_Args(Int32::5||[UnknownType]::[NULL])
 
 
 ## TODO!
