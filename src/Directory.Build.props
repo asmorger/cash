@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- edit this value to change the current major.minor version -->
+    <VersionPrefix>0.10</VersionPrefix>
+ 
+    <!-- append the build number if it is available -->
+    <VersionPrefix Condition="'$(Build_BuildNumber)' != ''">$(VersionPrefix).$(Build_BuildNumber)</VersionPrefix>
+  </PropertyGroup>
+
+    <Choose>
+    <When Condition=" '$(Prerelease)' != '' ">
+      <PropertyGroup>
+        <!-- Prerelease version numbers-->
+        <VersionSuffix>$(VersionPrefix)-prerelease</VersionSuffix>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <!-- Release version numbers -->
+        <VersionPrefix>$(VersionPrefix)</VersionPrefix>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+</Project>
