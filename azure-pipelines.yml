@@ -10,10 +10,17 @@ variables:
 
 steps:
 - script: |
-    dotnet restore
-    dotnet build --configuration $(buildConfiguration)
-    dotnet test dotnetcore-tests --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
-    dotnet publish --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
+    dotnet restore .\src\Cash.sln
+    dotnet build .\src\Cash.sln --configuration $(buildConfiguration)
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- script: |
+    dotnet pack .\src\Cash.sln --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
 
 - task: PublishTestResults@2
   inputs:
