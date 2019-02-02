@@ -8,6 +8,9 @@ trigger:
 variables:
   buildConfiguration: 'Release'
 
+# this translates into the $(Build.BuildNumber) variable.
+name: $(Year:yy)$(DayOfYear).$(Rev:.r)
+
 steps:
 - script: |
     dotnet restore ./src/Cash.sln
