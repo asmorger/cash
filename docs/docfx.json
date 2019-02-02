@@ -30,6 +30,15 @@
           "toc.yml",
           "*.md"
         ]
+      },
+      {
+        "files": [
+          "getting-started/**.md",
+          "getting-started/**/toc.yml",
+          "getting-started/**/**.cs",
+          "toc.yml",
+          "*.md"
+        ]
       }
     ],
     "resource": [

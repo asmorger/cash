@@ -1,5 +1,5 @@
-- name: Articles
-  href: articles/
+- name: Getting Started
+  topicUid: getting-started-index
 - name: Cash Documentation
   href: api/
   homepage: api/index.md
