@@ -10,8 +10,8 @@ variables:
 
 steps:
 - script: |
-    dotnet restore .\src\Cash.sln
-    dotnet build .\src\Cash.sln --configuration $(buildConfiguration)
+    dotnet restore ./src/Cash.sln
+    dotnet build ./src/Cash.sln --configuration $(buildConfiguration)
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -20,7 +20,7 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
 
 - script: |
-    dotnet pack .\src\Cash.sln --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
+    dotnet pack ./src/Cash.sln --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
 
 - task: PublishTestResults@2
   inputs:
