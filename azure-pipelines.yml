@@ -25,9 +25,4 @@ steps:
 - script: |
     dotnet pack ./src/Cash.sln --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
 
-- task: PublishTestResults@2
-  inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
-
 - task: PublishBuildArtifacts@1
