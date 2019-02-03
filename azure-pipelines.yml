@@ -29,7 +29,7 @@ steps:
 
     copy $(Build.SourcesDirectory)\tests\Cash.Autofac.Tests\coverage.cobertura.xml $(Build.SourcesDirectory)\results
     dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.9
-    .\reportgenerator "-reports:$(Build.SourcesDirectory)\results\coverage.cobertura.xml" "-targetdir:results" "-reporttypes:HtmlInline_AzurePipelines;HTMLChart"
+    .\reportgenerator "-reports:$(Build.SourcesDirectory)\tests\Cash.Autofac.Tests\coverage.cobertura.xml" "-targetdir:results" "-reporttypes:HtmlInline_AzurePipelines;HTMLChart"
   displayName: 'Test'
 
 - task: PublishTestResults@2
