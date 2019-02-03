@@ -1,10 +1,10 @@
 # cash
 
 ## Build Status
-| Branch | Status | Coverage |
-| ------ | ------ | -------- |
-| develop | [![Build Status](https://dev.azure.com/asmorger/Cash/_apis/build/status/Cash-CI?branchName=develop)](https://dev.azure.com/asmorger/Cash/_build/latest?definitionId=14?branchName=develop) | [![Coverage Status](https://coveralls.io/repos/github/asmorger/cash/badge.svg?branch=develop)](https://coveralls.io/github/asmorger/cash?branch=develop) |
-| master | [![Build status](https://ci.appveyor.com/api/projects/status/cunktf3184qjhr8j/branch/master?svg=true)](https://ci.appveyor.com/project/asmorger/cash/branch/master) | [![Coverage Status](https://coveralls.io/repos/github/asmorger/cash/badge.svg?branch=master)](https://coveralls.io/github/asmorger/cash?branch=master) |
+| Branch | Status | Tests | Coverage |
+| ------ | ------ | ----- | -------- |
+| develop | [![Build Status](https://dev.azure.com/asmorger/Cash/_apis/build/status/Cash-CI?branchName=develop)](https://dev.azure.com/asmorger/Cash/_build/latest?definitionId=14?branchName=develop) | ![Tests](https://img.shields.io/azure-devops/tests/asmorger/cash/14/develop.svg?style=plastic) | ![Coverage](https://img.shields.io/azure-devops/coverage/asmorger/cash/14/develop.svg?style=plastic) |
+| master | [![Build Status](https://dev.azure.com/asmorger/Cash/_apis/build/status/Cash-CI?branchName=master)](https://dev.azure.com/asmorger/Cash/_build/latest?definitionId=14?branchName=master) | ![Tests](https://img.shields.io/azure-devops/tests/asmorger/cash/14/master.svg?style=plastic) | ![Coverage](https://img.shields.io/azure-devops/coverage/asmorger/cash/14/master.svg?style=plastic) |
 
 ## Overview
 Cash is perhaps the simplest way of adding caching to your .Net application.  Through the clever use of standard patterns/practices, sane defaults, and a simple interface for the more complicated stuff, Cash provides a drop-in solution that easily integrates with your application at the DI level.
