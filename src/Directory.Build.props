@@ -14,13 +14,13 @@
     <When Condition=" '$(Prerelease)' != '' ">
       <PropertyGroup>
         <!-- Prerelease version numbers-->
-        <VersionSuffix>$(VersionPrefix)-prerelease</VersionSuffix>
+        <VersionSuffix>-beta</VersionSuffix>
       </PropertyGroup>
     </When>
     <Otherwise>
       <PropertyGroup>
         <!-- Release version numbers -->
-        <VersionPrefix>$(VersionPrefix)</VersionPrefix>
+        <VersionPrefix>$(VersionPrefix).$(Build_BuildNumber)</VersionPrefix>
       </PropertyGroup>
     </Otherwise>
   </Choose>
