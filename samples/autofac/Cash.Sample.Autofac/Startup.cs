@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.Caching;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Cash.Autofac.Extensions;
@@ -36,6 +35,7 @@ namespace Cash.Sample.Autofac
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMemoryCache();
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
