@@ -12,6 +12,11 @@ variables:
 name: $(Year:yy)$(DayOfYear)$(Rev:.r)
 
 steps:
+- script: echo '##vso[task.setvariable variable=Prerelease]true'
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: echo Prerelease variable is $(Prerelease)
+
 - script: |
     dotnet restore ./src/Cash.sln
     dotnet build ./src/Cash.sln --configuration $(buildConfiguration)
