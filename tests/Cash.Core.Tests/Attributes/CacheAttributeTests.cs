@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cash.Core.Tests.Attributes
@@ -35,19 +36,19 @@ namespace Cash.Core.Tests.Attributes
         }
 
         [TestMethod]
-        public void GetCacheItemPolicy_ReturnsAnObject()
+        public void GetCacheEntryOptions_ReturnsAnObject()
         {
-            var result = CacheAttribute.GetCacheItemPolicy();
+            var result = CacheAttribute.GetCacheEntryOptions();
 
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void GetCacheItemPolicy_ProperlySetsTheCacheItemPriority()
+        public void GetCacheEntryOptions_ProperlySetsTheCacheItemPriority()
         {
-            var result = new CacheAttribute(CacheItemPriority.High).GetCacheItemPolicy();
+            var result = new CacheAttribute(CacheItemPriority.High).GetCacheEntryOptions();
 
-            Assert.AreEqual(System.Runtime.Caching.CacheItemPriority.Default, result.Priority);
+            Assert.AreEqual(CacheItemPriority.High, result.Priority);
         }
     }
 }

@@ -3,17 +3,17 @@
 
 using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Caching;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Cash.Core.Interceptors
 {
     public abstract class BaseCachingInterceptor
     {
-        protected readonly ObjectCache _cache;
+        protected readonly IMemoryCache _cache;
 
         protected readonly ICacheKeyGenerator CacheKeyGenerator;
 
-        protected BaseCachingInterceptor(ObjectCache cache, ICacheKeyGenerator cacheKeyGenerator)
+        protected BaseCachingInterceptor(IMemoryCache cache, ICacheKeyGenerator cacheKeyGenerator)
         {
             _cache = cache;
             CacheKeyGenerator = cacheKeyGenerator;
@@ -42,12 +42,6 @@ namespace Cash.Core.Interceptors
             return null;
         }
 
-        public CacheItem GetCacheItem(string key, object value)
-        {
-            var output = new CacheItem(key, value);
-            return output;
-        }
-
         protected void ExecuteInterceptionLogic()
         {
             var method = GetMethodInfoFromInterceptor();
@@ -69,10 +63,9 @@ namespace Cash.Core.Interceptors
             WriteDebugMessage($"Cache Key generated: {methodCacheKey}");
 
             // check to see if the cached item exists.  If so, retrieve it from the cache and return it
-            if (_cache.Contains(methodCacheKey))
+            if (_cache.TryGetValue(methodCacheKey, out var cachedEntry))
             {
-                var result = _cache.Get(methodCacheKey);
-                SetIntercetporReturnValue(result);
+                SetIntercetporReturnValue(cachedEntry);
 
                 WriteDebugMessage($"Cached method results being returned: {methodCacheKey}");
 
@@ -83,14 +76,16 @@ namespace Cash.Core.Interceptors
             InterceptorProceed();
 
             var returnValue = GetInterceptorReturnValue();
-
-            // cache the resulting output
-            var cacheItem = GetCacheItem(methodCacheKey, returnValue);
-            var cachePolicy = cacheAttribute.GetCacheItemPolicy();
-            _cache.Set(cacheItem, cachePolicy);
+            
+            var cacheConfiguration = new CashConfiguration(cacheAttribute, returnValue, methodCacheKey);
+            
+            
+            SetCache(cacheConfiguration);
 
             WriteDebugMessage($"Results cached for key: {methodCacheKey}");
         }
+
+        private void SetCache(ICacheConfiguration config) => _cache.Set(config.Key, config.Item, config.Options);
 
         private void WriteDebugMessage(string message)
         {

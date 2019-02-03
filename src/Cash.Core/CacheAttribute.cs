@@ -2,8 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
-using System.Runtime.Caching;
-using Cash.Core.Extensions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Cash.Core
 {
@@ -28,14 +27,8 @@ namespace Cash.Core
             Priority = priority;
         }
 
-        /// <summary>
-        ///     Gets the configured CacheItemPolicy based upon the properties of the attribute
-        /// </summary>
-        /// <returns>The <see cref="CacheItemPolicy"/> that will be applied to the cache item.</returns>
-        public CacheItemPolicy GetCacheItemPolicy()
-        {
-            var policy = new CacheItemPolicy { Priority = Priority.Convert() };
-            return policy;
-        }
+        public MemoryCacheEntryOptions GetCacheEntryOptions()
+            => new MemoryCacheEntryOptions()
+                .SetPriority(Priority);
     }
 }
