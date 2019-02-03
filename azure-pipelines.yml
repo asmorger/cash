@@ -29,10 +29,8 @@ steps:
   displayName: 'Test'
 
 - script: |
-    dotnet pack ./src/Cash.sln --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
+    dotnet pack ./src/Cash.sln --configuration $(buildConfiguration) --output $(BUILD_ARTIFACTSTAGINGDIRECTORY)
   displayName: 'Publish'
-
-- task: PublishBuildArtifacts@1
 
 - task: chrismason.vsts-docfxtasks.docfx-extension-build-task.DocFxTask@0
   displayName: 'Generate docs'
