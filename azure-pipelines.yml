@@ -28,8 +28,11 @@ steps:
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
   displayName: 'Test'
 
-- script: |
-    dotnet pack ./src/Cash.sln --configuration $(buildConfiguration) --output $(BUILD_ARTIFACTSTAGINGDIRECTORY)
+- task: DotNetCoreCLI@2
+  inputs:
+    command: pack
+    projects: './src/Cash.sln'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   displayName: 'Publish'
 
 - task: chrismason.vsts-docfxtasks.docfx-extension-build-task.DocFxTask@0
