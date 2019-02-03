@@ -33,12 +33,12 @@ steps:
   displayName: 'Publish'
 
 - task: chrismason.vsts-docfxtasks.docfx-extension-build-task.DocFxTask@0
-  displayName: 'Create DocFx Documentation'
+  displayName: 'Generate docs'
   inputs:
     solution: docs/docfx.json
 
 - task: ArchiveFiles@2
-  displayName: 'Archive docs\_site'
+  displayName: 'Package docs'
   inputs:
     rootFolderOrFile: 'docs\_site'
     archiveFile: '$(Build.ArtifactStagingDirectory)/docs-$(Build.BuildNumber).zip'
