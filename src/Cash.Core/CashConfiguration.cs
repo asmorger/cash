@@ -14,11 +14,6 @@ namespace Cash.Core
     
     public class CashConfiguration : ICacheConfiguration
     {
-        public CashConfiguration(CacheAttribute attribute)
-        {
-            Options = attribute.GetCacheEntryOptions();
-        }
-
         public CashConfiguration(CacheAttribute attribute, object item, string key)
         {
             Options = attribute.GetCacheEntryOptions();
