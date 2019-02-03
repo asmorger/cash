@@ -25,7 +25,7 @@ steps:
     mkdir $(Build.SourcesDirectory)\results
 
     dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  ./tests/Cash.Core.Tests/Cash.Core.Tests.csproj
-    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:MergeWtih=$(Build.SourcesDirectory)/tests/Cash.Core.Tests/coverage.cobertura.xml ./tests/Cash.Autofac.Tests/Cash.Autofac.Tests.csproj
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:MergeWtih=$(Build.SourcesDirectory)\tests\Cash.Core.Tests\coverage.cobertura.xml ./tests/Cash.Autofac.Tests/Cash.Autofac.Tests.csproj
 
     copy $(Build.SourcesDirectory)\tests\Cash.Autofac.Tests\coverage.cobertura.xml $(Build.SourcesDirectory)\results
     dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.9
@@ -56,11 +56,11 @@ steps:
   displayName: 'Generate docs'
   inputs:
     solution: docs/docfx.json
-
+  
 - task: ArchiveFiles@2
   displayName: 'Package docs'
   inputs:
     rootFolderOrFile: 'docs\_site'
     archiveFile: '$(Build.ArtifactStagingDirectory)/docs-$(Build.BuildNumber).zip'
-
+  
 - task: PublishBuildArtifacts@1
