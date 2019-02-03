@@ -21,18 +21,29 @@ steps:
     dotnet build ./src/Cash.sln --configuration $(buildConfiguration)
   displayName: 'Build'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-  displayName: 'Test'
+- script: |
+    mkdir $(Build.SourcesDirectory)\results
+
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  ./tests/Cash.Core.Tests/Cash.Core.Tests.csproj
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:MergeWtih=$(Build.SourcesDirectory)/tests/Cash.Core.Tests/coverage.cobertura.xml ./tests/Cash.Autofac.Tests/Cash.Autofac.Tests.csproj
+
+    copy ./tests/Cash.Autofac.Tests/Cash.Autofac.Tests/coverage.cobertura.xml $(Build.SourcesDirectory)\results
+    dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
+    .\reportgenerator "-reports:$(Build.SourcesDirectory)\StrikesRepository.Test\coverage.cobertura.xml" "-targetdir:results" "-reporttypes:HTMLInline;HTMLChart"
+  displayName: 'Testing'
 
 - task: PublishTestResults@2
+  displayName: 'Publish Test Report'
   inputs:
-    testResultsFormat: 'VSTest'
-    testResultsFiles: '**/TEST-*.xml' 
-    publishRunAttachments: true
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Test Coverage'
+  inputs:
+    summaryFileLocation: $(Build.SourcesDirectory)\results\coverage.cobertura.xml
+    reportDirectory: $(Build.SourcesDirectory)\results
+    codecoverageTool: cobertura
 
 - task: DotNetCoreCLI@2
   inputs:
