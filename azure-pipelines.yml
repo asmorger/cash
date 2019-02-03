@@ -32,6 +32,8 @@ steps:
     dotnet pack ./src/Cash.sln --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
   displayName: 'Publish'
 
+- task: PublishBuildArtifacts@1
+
 - task: chrismason.vsts-docfxtasks.docfx-extension-build-task.DocFxTask@0
   displayName: 'Generate docs'
   inputs:
