@@ -14,7 +14,7 @@
     <When Condition=" '$(Prerelease)' != '' ">
       <PropertyGroup>
         <!-- Prerelease version numbers-->
-        <VersionSuffix>-beta</VersionSuffix>
+        <VersionSuffix>beta</VersionSuffix>
       </PropertyGroup>
     </When>
     <Otherwise>
