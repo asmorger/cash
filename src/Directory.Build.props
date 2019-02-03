@@ -19,8 +19,6 @@
     </When>
     <Otherwise>
       <PropertyGroup>
-        <!-- Release version numbers -->
-        <VersionPrefix>$(VersionPrefix).$(Build_BuildNumber)</VersionPrefix>
       </PropertyGroup>
     </Otherwise>
   </Choose>

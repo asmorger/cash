@@ -2,13 +2,12 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Caching;
 
 using Cash.Core.Interceptors;
 using Cash.Core.Tests.Models;
 
 using FakeItEasy;
-
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cash.Core.Tests.Interceptors
@@ -19,14 +18,14 @@ namespace Cash.Core.Tests.Interceptors
     {
         public CachingInterceptor Interceptor { get; set; }
 
-        public ObjectCache Cache { get; set; }
+        public IMemoryCache Cache { get; set; }
 
         public ICacheKeyGenerator Generator { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            Cache = A.Fake<ObjectCache>();
+            Cache = A.Fake<IMemoryCache>();
             Generator = A.Fake<ICacheKeyGenerator>();
             Interceptor = new CachingInterceptor(Cache, Generator);
         }
@@ -49,30 +48,6 @@ namespace Cash.Core.Tests.Interceptors
             var attribute = Interceptor.GetCacheAttribute(methodInfo);
 
             Assert.IsNull(attribute);
-        }
-
-        [TestMethod]
-        public void GetCacheItem_ReturnsNotNullItem()
-        {
-            var item = Interceptor.GetCacheItem("key", "value");
-
-            Assert.IsNotNull(item);
-        }
-
-        [TestMethod]
-        public void GetCacheItem_ResultingItemShouldSetKeyCorrectly()
-        {
-            var item = Interceptor.GetCacheItem("key", "value");
-
-            Assert.AreEqual("key", item.Key);
-        }
-
-        [TestMethod]
-        public void GetCacheItem_ResultingItemShouldSetValueCorrectly()
-        {
-            var item = Interceptor.GetCacheItem("key", "value");
-
-            Assert.AreEqual("value", item.Value);
         }
     }
 }

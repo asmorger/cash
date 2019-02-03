@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Andrew Morger. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
 using System.Reflection;
-using System.Runtime.Caching;
 using Castle.DynamicProxy;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Cash.Core.Interceptors
 {
@@ -12,7 +11,7 @@ namespace Cash.Core.Interceptors
     {
         private IInvocation _invocation;
 
-        public CachingInterceptor(ObjectCache cache, ICacheKeyGenerator cacheKeyGenerator)
+        public CachingInterceptor(IMemoryCache cache, ICacheKeyGenerator cacheKeyGenerator)
             : base(cache, cacheKeyGenerator)
         {
         }
