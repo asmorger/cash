@@ -46,20 +46,24 @@ namespace Cash.Core
             Measure = measure;
         }
 
+        /// <summary>
+        /// Constructs a <see cref="MemoryCacheEntryOptions"/> from the properties of this class.
+        /// </summary>
         public MemoryCacheEntryOptions GetCacheEntryOptions()
         {
+            // default to minutes
             TimeSpan ConvertDuration()
             {
                 switch (Measure)
                 {
                     case TimeMeasure.Seconds:
                         return TimeSpan.FromSeconds(Duration.Value);
-                    case TimeMeasure.Minutes:
-                        return TimeSpan.FromMinutes(Duration.Value);
                     case TimeMeasure.Hours:
                         return TimeSpan.FromHours(Duration.Value);
+                    // ReSharper disable once RedundantCaseLabel
+                    case TimeMeasure.Minutes:
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        return TimeSpan.FromMinutes(Duration.Value);
                 }
             }
             
@@ -77,6 +81,9 @@ namespace Cash.Core
         }
     }
 
+    /// <summary>
+    /// Represents different increments of time measurement
+    /// </summary>
     public enum TimeMeasure
     {
         Seconds,
