@@ -5,8 +5,8 @@
         {
           "src": "",
           "files": [
-            "src/Cash.Core/**.csproj",
-            "src/Cash.Autofac/**.csproj"
+            "../src/Cash.Core/**.csproj",
+            "../src/Cash.Autofac/**.csproj"
           ]
         }
       ],

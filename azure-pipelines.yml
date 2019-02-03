@@ -1,30 +1,49 @@
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'vs2017-win2016'
 
 trigger:
   branches:
-    include: [ "develop" ]
+    include: [ 'develop' ]
   
 variables:
   buildConfiguration: 'Release'
 
+# this translates into the $(Build.BuildNumber) variable.
+name: $(Year:yy)$(DayOfYear)$(Rev:.r)
+
 steps:
+- script: echo '##vso[task.setvariable variable=Prerelease]true'
+  condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+  displayName: 'Set Prerelease'
+
 - script: |
-    dotnet restore .\src\Cash.sln
-    dotnet build .\src\Cash.sln --configuration $(buildConfiguration)
+    dotnet restore ./src/Cash.sln
+    dotnet build ./src/Cash.sln --configuration $(buildConfiguration)
+  displayName: 'Build'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+  displayName: 'Test'
 
-- script: |
-    dotnet pack .\src\Cash.sln --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
-
-- task: PublishTestResults@2
+- task: DotNetCoreCLI@2
   inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
+    command: pack
+    projects: './src/Cash.sln'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+  displayName: 'Publish'
+
+- task: chrismason.vsts-docfxtasks.docfx-extension-build-task.DocFxTask@0
+  displayName: 'Generate docs'
+  inputs:
+    solution: docs/docfx.json
+
+- task: ArchiveFiles@2
+  displayName: 'Package docs'
+  inputs:
+    rootFolderOrFile: 'docs\_site'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/docs-$(Build.BuildNumber).zip'
 
 - task: PublishBuildArtifacts@1
