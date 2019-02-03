@@ -24,12 +24,12 @@ steps:
 - script: |
     mkdir $(Build.SourcesDirectory)\results
 
-    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  ./tests/Cash.Core.Tests/Cash.Core.Tests.csproj
-    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:MergeWtih=$(Build.SourcesDirectory)\tests\Cash.Core.Tests\coverage.cobertura.xml ./tests/Cash.Autofac.Tests/Cash.Autofac.Tests.csproj
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  ./tests/Cash.Autofac.Tests/Cash.Autofac.Tests.csproj
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:MergeWtih=$(Build.SourcesDirectory)\tests\Cash.Autofac.Tests\coverage.cobertura.xml ./tests/Cash.Core.Tests/Cash.Core.Tests.csproj
 
-    copy $(Build.SourcesDirectory)\tests\Cash.Autofac.Tests\coverage.cobertura.xml $(Build.SourcesDirectory)\results
+    copy $(Build.SourcesDirectory)\tests\Cash.Core.Tests\coverage.cobertura.xml $(Build.SourcesDirectory)\results
     dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.9
-    .\reportgenerator "-reports:$(Build.SourcesDirectory)\tests\Cash.Autofac.Tests\coverage.cobertura.xml" "-targetdir:results" "-reporttypes:HtmlInline_AzurePipelines;HTMLChart"
+    .\reportgenerator "-reports:$(Build.SourcesDirectory)\tests\Cash.Core.Tests\coverage.cobertura.xml" "-targetdir:results" "-reporttypes:HtmlInline_AzurePipelines;HTMLChart"
   displayName: 'Test'
 
 - task: PublishTestResults@2
