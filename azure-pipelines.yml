@@ -28,6 +28,12 @@ steps:
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
   displayName: 'Test'
 
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/TEST-*.xml' 
+    publishRunAttachments: true
+
 - task: DotNetCoreCLI@2
   inputs:
     command: pack
