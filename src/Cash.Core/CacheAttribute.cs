@@ -41,6 +41,11 @@ namespace Cash.Core
         /// </summary>
         public CacheAttribute(double duration, TimeMeasure measure)
         {
+            if (duration <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(duration), "Duration must be greater than zero.");
+            }
+            
             Priority = CacheItemPriority.Normal;
             Duration = duration;
             Measure = measure;
